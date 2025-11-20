@@ -1,0 +1,3 @@
+IF hello THEN Hello, World!
+IF goodbye THEN Goodbye, World!
+IF test THEN Testing, testing
