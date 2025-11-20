@@ -2,13 +2,13 @@ import json
 import sys
 from pathlib import Path
 
+
 def load_json(path: Path) -> dict | None:
     """
     Read JSON from a file and print the loaded object.
     Usage: python main.py [path_to_json]
     If no path is provided, defaults to 'data.json' in the current directory.
     """
-    path = Path(sys.argv[1])
     try:
         with path.open("r", encoding="utf-8") as f:
             data = json.load(f)
@@ -41,12 +41,16 @@ def parse_args_to_path() -> Path:
 
     return path
 
+
 def main():
     path = parse_args_to_path()
     json_data = load_json(path)
-    if json_data:
-        for key, value in json_data.items():
-            print(f"{key:<8}: {value}")
+    if json_data is not None:
+        print(f"options: {', '.join([key for key in json_data.keys()])}")
+        key = input("key> ").strip()
+        value = json_data.get(key, None)
+        print(f"value: {value}")
+
 
 if __name__ == "__main__":
     main()
