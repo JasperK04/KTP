@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Question {{ qid }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Hello World</h1>
+
+  <div class="options">
+    {% for i in range(5) %}
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="answer" value="{{ i }}">
+        <button type="submit">{{ i }}</button>
+      </form>
+    {% endfor %}
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,11 @@
+body{
+    font-family: Arial, sans-serif; padding:20px
+}
+
+.options form {
+    display:inline-block; margin:6px
+}
+
+button {
+    padding:10px 14px; cursor:pointer
+}
