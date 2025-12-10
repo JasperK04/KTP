@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
+import json
 from typing import Callable
 
 # -----------------------------------------------
@@ -188,9 +189,35 @@ class Fastener:
 
 class KnowledgeBase:
     """
-    Docstring for KnowledgeBase
+    Stores all fasteners, rules, and questions
     """
-    ...
+
+    def __init__(self):
+        self.fasteners: list[Fastener] = []
+        self.rules: list[Rule] = []
+        self.questions: list[Question] = []
+
+    def load_from_file(self, filepath: str):
+        """Load knowledge base from JSON file"""
+        with open(filepath, 'r') as f:
+            data = json.load(f)
+        
+        self.questions = [Question.from_dict(q) for q in data.get("questions", [])]
+        self.fasteners = [Fastener.from_dict(f) for f in data.get("fasteners", [])]
+        self.rules = [Rule.from_dict(r) for r in data.get("rules", [])]
+
+    def save_to_file(self, filepath: str):
+        """Save knowledge base to JSON file"""
+        data = {
+            "questions": [q.to_dict() for q in self.questions],
+            "fasteners": [f.to_dict() for f in self.fasteners],
+            "rules": [r.to_dict() for r in self.rules]
+        }
+        
+        with open(filepath, 'w') as f:
+            json.dump(data, f, indent=2)
+
+
 
 
 class InferenceEngine:
