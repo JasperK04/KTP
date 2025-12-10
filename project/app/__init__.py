@@ -1,6 +1,7 @@
 from os import getenv
 
 from flask import Flask
+from flask_session import Session
 
 from app.config import config
 from app.routes import routes
@@ -11,6 +12,7 @@ def create_app():
     environment = getenv("ENV", "development")
     app.config.from_object(config[environment])
     app.register_blueprint(routes)
+    Session(app)
 
     return app
 
