@@ -5,7 +5,11 @@ uses a json file to store and retrieve information
 
 ## requirements
 Developed using python3.12
-No external packages needed
+
+dependencies can be installed into a virtual environment using:
+```bash
+uv sync
+```
 
 
 ## usage
