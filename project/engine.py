@@ -7,16 +7,40 @@ from typing import Callable
 # -----------------------------------------------
 
 class Strength(Enum):
-    ...
+    NONE = "none"
+    VERY_LOW = "very_low"
+    LOW = "low"
+    MODERATE = "moderate"
+    HIGH = "high"
+    VERY_HIGH = "very_high"
 
 class Resistance(Enum):
-    ...
+    POOR = "poor"
+    FAIR = "fair"
+    GOOD = "good"
+    EXCELLENT = "excellent"
 
-class Permanance(Enum):
-    ...
+
+class Permanence(Enum):
+    REMOVABLE = "removable"
+    SEMI_PERMANENT = "semi_permanent"
+    PERMANENT = "permanent"
+
 
 class Rigidity(Enum):
-    ...
+    FLEXIBLE = "flexible"
+    SEMI_FLEXIBLE = "semi_flexible"
+    RIGID = "rigid"
+
+class FastenerCategory(Enum):
+    ADHESIVE = "adhesive"
+    MECHANICAL = "mechanical"
+    THERMAL = "thermal"
+
+class QuestionType(Enum):
+    CHOICE = "choice"
+    BOOLEAN = "boolean"
+
 
 # -----------------------------------------------
 # Dataclasses
@@ -25,37 +49,138 @@ class Rigidity(Enum):
 @dataclass
 class Question:
     """
-    Docstring for Question
+    Represents a question to the user.
     """
-    ...
+    id: str
+    text: str
+    type: QuestionType
+    choices: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "text": self.text,
+            "type": self.type.value,
+            "choices": self.choices,
+        }
+    
+    @classmethod
+    def from_dict(cls, data: dict) -> 'Question':
+        return cls(
+            id=data["id"],
+            text=data["text"],
+            type=QuestionType(data["type"]),
+            choices=data.get("choices", [])
+        )
 
 @dataclass
 class Rule:
-    """
-    Docstring for Rule
-    """
-    ...
+    id: str
+    conditions: dict[str, any]  # question_id -> expected_value
+    conclusion: dict[str, any]  # attribute -> value pairs
+    priority: int = 0  # Higher priority rules are evaluated first
+
+    def to_dict(self) -> dict[str, any]:
+        return {
+            "id": self.id,
+            "conditions": self.conditions,
+            "conclusion": self.conclusion,
+            "priority": self.priority
+        }
+    
+    @classmethod
+    def from_dict(cls, data: dict[str, any]) -> 'Rule':
+        return cls(**data)
+
 
 @dataclass
 class Fact:
-    """
-    Docstring for Fact
-    """
-    ...
+    """Represents a known fact from user answers"""
+    question_id: str
+    value: any
 
 @dataclass
 class MaterialProperties:
-    """
-    Docstring for MaterialProperties
-    """
-    ...
+    """Properties of a fastener for specific materials"""
+    compatible_materials: list[str]
+    tensile_strength: Strength
+    shear_strength: Strength
+    compressive_strength: Strength
+    water_resistance: Resistance
+    weather_resistance: Resistance
+    chemical_resistance: Resistance
+    temperature_resistance: Resistance
+    vibration_resistance: Resistance
+    rigidity: Rigidity
+    permanence: Permanence
+    notes: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, any]:
+        return {
+            "compatible_materials": self.compatible_materials,
+            "tensile_strength": self.tensile_strength.value,
+            "shear_strength": self.shear_strength.value,
+            "compressive_strength": self.compressive_strength.value,
+            "water_resistance": self.water_resistance.value,
+            "weather_resistance": self.weather_resistance.value,
+            "chemical_resistance": self.chemical_resistance.value,
+            "temperature_resistance": self.temperature_resistance.value,
+            "vibration_resistance": self.vibration_resistance.value,
+            "rigidity": self.rigidity.value,
+            "permanence": self.permanence.value,
+            "notes": self.notes
+        }
+    
+    @classmethod
+    def from_dict(cls, data: dict[str, any]) -> 'MaterialProperties':
+        return cls(
+            compatible_materials=data["compatible_materials"],
+            tensile_strength=Strength(data["tensile_strength"]),
+            shear_strength=Strength(data["shear_strength"]),
+            compressive_strength=Strength(data["compressive_strength"]),
+            water_resistance=Resistance(data["water_resistance"]),
+            weather_resistance=Resistance(data["weather_resistance"]),
+            chemical_resistance=Resistance(data["chemical_resistance"]),
+            temperature_resistance=Resistance(data["temperature_resistance"]),
+            vibration_resistance=Resistance(data["vibration_resistance"]),
+            rigidity=Rigidity(data["rigidity"]),
+            permanence=Permanence(data["permanence"]),
+            notes=data.get("notes", [])
+        )
 
 @dataclass
 class Fastener:
-    """
-    Docstring for Fastener
-    """
-    ...
+    """Represents a fastening method"""
+    name: str
+    category: FastenerCategory
+    properties: MaterialProperties
+    requires_tools: list[str] = field(default_factory=list)
+    surface_prep: list[str] = field(default_factory=list)
+    curing_time: str | None = None
+    special_conditions: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, any]:
+        return {
+            "name": self.name,
+            "category": self.category.value,
+            "properties": self.properties.to_dict(),
+            "requires_tools": self.requires_tools,
+            "surface_prep": self.surface_prep,
+            "curing_time": self.curing_time,
+            "special_conditions": self.special_conditions
+        }
+    
+    @classmethod
+    def from_dict(cls, data: dict[str, any]) -> 'Fastener':
+        return cls(
+            name=data["name"],
+            category=FastenerCategory(data["category"]),
+            properties=MaterialProperties.from_dict(data["properties"]),
+            requires_tools=data.get("requires_tools", []),
+            surface_prep=data.get("surface_prep", []),
+            curing_time=data.get("curing_time"),
+            special_conditions=data.get("special_conditions", [])
+        )
 
 # -----------------------------------------------
 # Inference Engine
