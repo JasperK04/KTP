@@ -49,9 +49,7 @@ class QuestionType(Enum):
 
 @dataclass
 class Question:
-    """
-    Represents a question to the user.
-    """
+    """Represents a question to the user."""
     id: str
     text: str
     type: QuestionType
@@ -76,6 +74,7 @@ class Question:
 
 @dataclass
 class Rule:
+    """Represents an inference rule"""
     id: str
     conditions: dict[str, any]  # question_id -> expected_value
     conclusion: dict[str, any]  # attribute -> value pairs
@@ -188,9 +187,7 @@ class Fastener:
 # -----------------------------------------------
 
 class KnowledgeBase:
-    """
-    Stores all fasteners, rules, and questions
-    """
+    """Stores all fasteners, rules, and questions"""
 
     def __init__(self):
         self.fasteners: list[Fastener] = []
@@ -218,11 +215,39 @@ class KnowledgeBase:
             json.dump(data, f, indent=2)
 
 
-
-
 class InferenceEngine:
-    """
-    Docstring for InferenceEngine
-    """
-    ...
+    """Forward-chaining inference engine for fastener selection"""
+    def __init__(self, kb: KnowledgeBase):
+        self.kb = kb
+        self.facts: dict[str, any] = {}
+        self.conclusions: dict[str, any] = {}
+    
+    def add_fact(self, question_id: str, value: any):
+        """Add a fact from user answer"""
+        self.facts[question_id] = value
+    
+    def reset(self):
+        """Clear all facts and conclusions"""
+        self.facts.clear()
+        self.conclusions.clear()
+    
+    def evaluate_rule(self, rule: Rule) -> bool:
+        """Check if a rule's conditions are satisfied"""
+        for question_id, expected in rule.conditions.items():
+            if question_id not in self.facts:
+                return False
+            
+            actual = self.facts[question_id]
+            
+            # Handle list of acceptable values
+            if isinstance(expected, list):
+                if actual not in expected:
+                    return False
+            elif actual != expected:
+                return False
+        
+        return True
 
+
+# this is as far as i could get before running out of time. I dont want to submit code i didnt review. properly.
+# check out the claude_inference_engine.py for the complete implementation
