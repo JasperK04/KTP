@@ -1113,7 +1113,7 @@
         "shear_strength": "high",
         "compressive_strength": "high",
         "water_resistance": "fair",
-        "weather_resitance": "fair",
+        "weather_resistance": "fair",
         "chemical_resistance": "poor",
         "temperature_resistance": "good",
         "vibration_resistance": "fair",
