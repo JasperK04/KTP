@@ -1,0 +1,397 @@
+{
+    "questions": [
+        {
+            "id": "material_type",
+            "text": "What material or surface is it intended for?",
+            "answer_type": "choice",
+            "choices": ["wood", "metal", "masonry", "plastic", "glass", "ceramic", "fabric", "multiple"]
+        },
+        {
+            "id": "mechanical_strength",
+            "text": "What type of mechanical strength is required?",
+            "answer_type": "choice",
+            "choices": ["none", "very_low", "low", "moderate", "high", "very_high"]
+        },
+        {
+            "id": "moisture_exposure",
+            "text": "Will the connection be exposed to weather or moisture?",
+            "answer_type": "choice",
+            "choices": ["no", "splash", "outdoor", "submerged"]
+        },
+        {
+            "id": "permanence",
+            "text": "Does the connection need to be permanent or removable?",
+            "answer_type": "choice",
+            "choices": ["removable", "semi_permanent", "permanent"]
+        },
+        {
+            "id": "curing_time",
+            "text": "What is the acceptable curing/drying time?",
+            "answer_type": "choice",
+            "choices": ["immediate", "minutes", "hours", "days"]
+        },
+        {
+            "id": "load_type",
+            "text": "What load will the connection experience?",
+            "answer_type": "choice",
+            "choices": ["static", "light_dynamic", "heavy_dynamic", "vibration"]
+        },
+        {
+            "id": "chemical_corrosion_resistance",
+            "text": "Does it require chemical or corrosion resistance?",
+            "answer_type": "boolean",
+            "choices": null
+        },
+        {
+            "id": "flexibility",
+            "text": "Is flexibility required in the cured state?",
+            "answer_type": "boolean",
+            "choices": null
+        },
+        {
+            "id": "orientation",
+            "text": "Is the application vertical or overhead?",
+            "answer_type": "boolean",
+            "choices": null
+        },
+        {
+            "id": "health_concerns",
+            "text": "Are there health concerns (fumes, food safety)?",
+            "answer_type": "boolean",
+            "choices": null
+        }
+    ],
+    "fasteners": [
+        {
+            "name": "Wood glue (PVA)",
+            "category": "adhesive",
+            "properties": {
+                "compatible_materials": ["wood", "paper", "cardboard"],
+                "tensile_strength": "moderate",
+                "shear_strength": "moderate",
+                "compressive_strength": "low",
+                "water_resistance": "poor",
+                "weather_resistance": "poor",
+                "chemical_resistance": "poor",
+                "temperature_resistance": "fair",
+                "vibration_resistance": "poor",
+                "rigidity": "rigid",
+                "permanence": "semi_permanent",
+                "notes": ["Works best on porous materials", "Requires clean, dry surfaces"]
+            },
+            "requires_tools": [],
+            "surface_prep": ["clean", "dry", "remove dust"],
+            "curing_time": "30 minutes to 24 hours",
+            "special_conditions": []
+        },
+        {
+            "name": "Two-component epoxy",
+            "category": "adhesive",
+            "properties": {
+                "compatible_materials": ["wood", "metal", "ceramic", "stone", "plastic"],
+                "tensile_strength": "high",
+                "shear_strength": "high",
+                "compressive_strength": "high",
+                "water_resistance": "excellent",
+                "weather_resistance": "excellent",
+                "chemical_resistance": "excellent",
+                "temperature_resistance": "excellent",
+                "vibration_resistance": "good",
+                "rigidity": "rigid",
+                "permanence": "permanent",
+                "notes": ["High strength bond", "Excellent environmental resistance"]
+            },
+            "requires_tools": [],
+            "surface_prep": ["clean", "abrade", "degrease"],
+            "curing_time": "5 minutes to 24 hours depending on formulation",
+            "special_conditions": []
+        },
+        {
+            "name": "Silicone sealant",
+            "category": "adhesive",
+            "properties": {
+                "compatible_materials": ["glass", "ceramic", "metal", "plastic", "masonry"],
+                "tensile_strength": "very_low",
+                "shear_strength": "very_low",
+                "compressive_strength": "very_low",
+                "water_resistance": "excellent",
+                "weather_resistance": "excellent",
+                "chemical_resistance": "good",
+                "temperature_resistance": "excellent",
+                "vibration_resistance": "excellent",
+                "rigidity": "flexible",
+                "permanence": "semi_permanent",
+                "notes": ["Not for structural strength", "Excellent for movement and vibration"]
+            },
+            "requires_tools": [],
+            "surface_prep": ["clean", "dry"],
+            "curing_time": "24 hours for full cure",
+            "special_conditions": []
+        },
+        {
+            "name": "Hex bolts with nuts",
+            "category": "mechanical",
+            "properties": {
+                "compatible_materials": ["metal", "wood", "plastic", "composite"],
+                "tensile_strength": "high",
+                "shear_strength": "high",
+                "compressive_strength": "high",
+                "water_resistance": "good",
+                "weather_resistance": "good",
+                "chemical_resistance": "good",
+                "temperature_resistance": "excellent",
+                "vibration_resistance": "good",
+                "rigidity": "rigid",
+                "permanence": "removable",
+                "notes": ["Fully reversible", "Requires access to both sides"]
+            },
+            "requires_tools": ["wrench", "drill"],
+            "surface_prep": ["drill holes", "clean"],
+            "curing_time": "immediate",
+            "special_conditions": []
+        },
+        {
+            "name": "Wood screws",
+            "category": "mechanical",
+            "properties": {
+                "compatible_materials": ["wood", "soft_composite"],
+                "tensile_strength": "moderate",
+                "shear_strength": "moderate",
+                "compressive_strength": "moderate",
+                "water_resistance": "fair",
+                "weather_resistance": "fair",
+                "chemical_resistance": "fair",
+                "temperature_resistance": "good",
+                "vibration_resistance": "fair",
+                "rigidity": "rigid",
+                "permanence": "removable",
+                "notes": ["Reversible but threads can wear", "Use pilot holes"]
+            },
+            "requires_tools": ["screwdriver", "drill"],
+            "surface_prep": ["pilot hole", "clean"],
+            "curing_time": "immediate",
+            "special_conditions": []
+        },
+        {
+            "name": "Metal welding",
+            "category": "thermal",
+            "properties": {
+                "compatible_materials": ["steel", "stainless_steel", "aluminum"],
+                "tensile_strength": "very_high",
+                "shear_strength": "very_high",
+                "compressive_strength": "very_high",
+                "water_resistance": "excellent",
+                "weather_resistance": "excellent",
+                "chemical_resistance": "excellent",
+                "temperature_resistance": "excellent",
+                "vibration_resistance": "excellent",
+                "rigidity": "rigid",
+                "permanence": "permanent",
+                "notes": ["Extremely strong", "Requires specialized equipment"]
+            },
+            "requires_tools": ["welding_equipment", "grinder"],
+            "surface_prep": ["clean_bare_metal", "remove_contaminants"],
+            "curing_time": "immediate",
+            "special_conditions": []
+        },
+        {
+            "name": "Cable ties (zip-ties)",
+            "category": "mechanical",
+            "properties": {
+                "compatible_materials": ["cable", "hose", "plastic", "metal_fixture"],
+                "tensile_strength": "moderate",
+                "shear_strength": "very_low",
+                "compressive_strength": "low",
+                "water_resistance": "good",
+                "weather_resistance": "fair",
+                "chemical_resistance": "fair",
+                "temperature_resistance": "fair",
+                "vibration_resistance": "fair",
+                "rigidity": "semi_flexible",
+                "permanence": "semi_permanent",
+                "notes": ["Quick installation", "UV-stabilized variants available"]
+            },
+            "requires_tools": [],
+            "surface_prep": ["clean"],
+            "curing_time": "immediate",
+            "special_conditions": []
+        }
+    ],
+    "rules": [
+        {
+            "id": "high_strength_metal",
+            "conditions": {
+                "material_type": "metal",
+                "mechanical_strength": ["high", "very_high"]
+            },
+            "conclusion": {
+                "recommended_categories": ["mechanical", "thermal"]
+            },
+            "priority": 10
+        },
+        {
+            "id": "waterproof_flexible",
+            "conditions": {
+                "moisture_exposure": ["outdoor", "submerged"],
+                "flexibility": true
+            },
+            "conclusion": {
+                "required_properties": ["water_resistance:excellent", "rigidity:flexible"]
+            },
+            "priority": 9
+        },
+        {
+            "id": "removable_connection",
+            "conditions": {
+                "permanence": "removable"
+            },
+            "conclusion": {
+                "required_properties": ["permanence:removable"]
+            },
+            "priority": 8
+        },
+        {
+            "id": "immediate_use",
+            "conditions": {
+                "curing_time": "immediate"
+            },
+            "conclusion": {
+                "exclude_categories": ["adhesive"]
+            },
+            "priority": 7
+        },
+        {
+            "id": "wood_to_wood",
+            "conditions": {
+                "material_type": "wood",
+                "mechanical_strength": ["low", "moderate"]
+            },
+            "conclusion": {
+                "recommended_categories": ["adhesive", "mechanical"]
+            },
+            "priority": 6
+        },
+        {
+            "id": "glass_ceramic_applications",
+            "conditions": {
+                "material_type": ["glass", "ceramic"]
+            },
+            "conclusion": {
+                "recommended_categories": ["adhesive"]
+            },
+            "priority": 6
+        },
+        {
+            "id": "high_vibration",
+            "conditions": {
+                "load_type": ["vibration", "heavy_dynamic"]
+            },
+            "conclusion": {
+                "required_properties": ["vibration_resistance:good"]
+            },
+            "priority": 5
+        }
+    ],
+    "suggestion_rules": [
+        {
+            "id": "bolts_outdoor_corrosion",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": ["outdoor", "submerged"]
+            },
+            "suggestion": "Consider stainless steel bolts for superior corrosion resistance"
+        },
+        {
+            "id": "bolts_marine_grade",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": "submerged"
+            },
+            "suggestion": "Use marine-grade (316) stainless steel for saltwater applications"
+        },
+        {
+            "id": "bolts_splash_protection",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": "splash"
+            },
+            "suggestion": "Zinc-plated or galvanized fasteners recommended for moisture protection"
+        },
+        {
+            "id": "bolts_vibration_locking",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "load_type": ["vibration", "heavy_dynamic"]
+            },
+            "suggestion": "Use lock washers, lock nuts, or threadlocker to prevent loosening"
+        },
+        {
+            "id": "bolts_chemical_resistance",
+            "applies_to_fasteners": ["bolts", "nuts", "screws"],
+            "conditions": {
+                "chemical_corrosion_resistance": true
+            },
+            "suggestion": "Consider coated or stainless steel fasteners for chemical resistance"
+        },
+        {
+            "id": "screws_outdoor_coating",
+            "applies_to_fasteners": ["screws"],
+            "conditions": {
+                "moisture_exposure": ["outdoor", "submerged"]
+            },
+            "suggestion": "Use stainless steel or coated screws for outdoor applications"
+        },
+        {
+            "id": "wood_screws_pilot_holes",
+            "applies_to_fasteners": ["Wood screws"],
+            "conditions": {
+                "material_type": "wood"
+            },
+            "suggestion": "Pre-drill pilot holes to prevent splitting, especially near edges"
+        },
+        {
+            "id": "adhesive_vertical_application",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "orientation": true
+            },
+            "suggestion": "For vertical/overhead application, consider using tape or clamps during curing"
+        },
+        {
+            "id": "adhesive_health_ventilation",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "health_concerns": true
+            },
+            "suggestion": "Ensure adequate ventilation and consider low-VOC or food-safe options"
+        },
+        {
+            "id": "adhesive_curing_time_note",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "curing_time": "immediate"
+            },
+            "suggestion": "Note: Most adhesives require curing time. Consider mechanical fasteners for immediate use"
+        },
+        {
+            "id": "welding_equipment_requirement",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {},
+            "suggestion": "Requires specialized equipment and trained operator"
+        },
+        {
+            "id": "welding_joint_design",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {},
+            "suggestion": "Consider joint design and material thickness for optimal weld strength"
+        },
+        {
+            "id": "welding_safety",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {
+                "health_concerns": true
+            },
+            "suggestion": "Welding produces fumes - ensure proper ventilation and PPE"
+        }
+    ]
+}

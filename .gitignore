@@ -76,6 +76,7 @@ ENV/
 env/
 env.bak/
 venv.bak/
+uv.lock
 
 # Editor directories and files
 .vscode/
@@ -107,4 +108,5 @@ Thumbs.db
 
 data/
 *utils.py
-*engine.py
+# *engine.py # Yeah, why is this in here? -- commented out for now
+debug_state.yaml
