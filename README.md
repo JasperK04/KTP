@@ -34,7 +34,7 @@ The debug file includes:
 - Question history with timestamps
 - Complete recommendation details
 
-### Web Interface
+### Web Interface (NOT YET IMPLEMENTED)
 
 Run the Flask web application:
 
