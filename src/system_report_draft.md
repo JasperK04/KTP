@@ -1,5 +1,9 @@
 # Fastener Recommendation Expert System - First Draft Report
 
+Jasper Kleine (s5152372),
+Marinus van den Ende (s5460484),
+Joel Boer (s5542332)
+
 ## Problem
 
 ### Task
@@ -24,7 +28,7 @@ The problem involves multi-dimensional decision-making considering:
 
 ### Identity
 
-> Jasper please fill this
+Jasper's dad and uncle co-own a hardware stoor with over two decades of experience.
 
 ### Expertise Domain
 The expert knowledge encompasses:
