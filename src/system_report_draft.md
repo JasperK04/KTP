@@ -24,7 +24,12 @@ The problem involves multi-dimensional decision-making considering:
 
 ### Identity
 
-> Jasper please fill this
+**Klaas Kleine**, has been part of Hubo Noordhorn since 2004, where he is one of the two owners and takes on much of the daily operational work. 
+His way of assisting customers is direct and practical: he listens closely, identifies what the issue truly is, and offers solutions grounded in technical knowledge. 
+Whether the question concerns fastening materials or something entirely different, he focuses on what will actually solve the problem.
+
+The same qualities that shape his work; clear reasoning, a hands-on attitude, and a readiness to help also shows how customers learn from him. His approach illustrates how practical expertise and problem solving can reinforce each other in a setting where reliability matters.
+
 
 ### Expertise Domain
 The expert knowledge encompasses:
@@ -34,6 +39,7 @@ The expert knowledge encompasses:
 - Material science principles governing compatibility
 - Environmental resistance requirements
 - Load-bearing capacity specifications
+- Much more
 
 ## Knowledge Models
 
