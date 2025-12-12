@@ -6,13 +6,13 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from engine import KnowledgeBase
+from src.engine import KnowledgeBase
 
 
 @pytest.fixture
 def kb_path():
     """Fixture to provide the path to kb.json"""
-    return Path(__file__).parent.parent / "kb.json"
+    return Path(__file__).parent.parent / "src" / "kb.json"
 
 
 @pytest.fixture

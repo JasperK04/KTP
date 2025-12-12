@@ -89,7 +89,7 @@ recommendations:
 **No recommendations?**
 1. Check `current_facts` - Are all required answers present?
 2. Check `current_conclusions` - Did rules fire as expected?
-3. Check `recommendations: []` - Review fastener properties in `kb.json`
+3. Check `recommendations: []` - Review fastener properties in `src/kb.json`
 
 **Wrong recommendations?**
 1. Review `question_history` - Were answers interpreted correctly?
@@ -97,7 +97,7 @@ recommendations:
 3. Compare fastener properties to required properties
 
 **Rule not firing?**
-1. Verify all conditions in `kb.json` match the facts
+1. Verify all conditions in `src/kb.json` match the facts
 2. Check rule priority (higher priority = evaluated first)
 3. Look for conflicting conclusions from multiple rules
 

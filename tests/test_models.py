@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from engine import (
+from src.engine import (
     Question,
     Rule,
     SuggestionRule,

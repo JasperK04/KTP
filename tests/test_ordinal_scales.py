@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from engine import OrdinalScales, Strength, Resistance
+from src.engine import OrdinalScales, Strength, Resistance
 
 
 class TestOrdinalScales:
