@@ -259,6 +259,139 @@
                 "exclude_categories": ["adhesive"]
             },
             "priority": 7
+        },
+        {
+            "id": "wood_to_wood",
+            "conditions": {
+                "material_type": "wood",
+                "mechanical_strength": ["low", "moderate"]
+            },
+            "conclusion": {
+                "recommended_categories": ["adhesive", "mechanical"]
+            },
+            "priority": 6
+        },
+        {
+            "id": "glass_ceramic_applications",
+            "conditions": {
+                "material_type": ["glass", "ceramic"]
+            },
+            "conclusion": {
+                "recommended_categories": ["adhesive"]
+            },
+            "priority": 6
+        },
+        {
+            "id": "high_vibration",
+            "conditions": {
+                "load_type": ["vibration", "heavy_dynamic"]
+            },
+            "conclusion": {
+                "required_properties": ["vibration_resistance:good"]
+            },
+            "priority": 5
+        }
+    ],
+    "suggestion_rules": [
+        {
+            "id": "bolts_outdoor_corrosion",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": ["outdoor", "submerged"]
+            },
+            "suggestion": "Consider stainless steel bolts for superior corrosion resistance"
+        },
+        {
+            "id": "bolts_marine_grade",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": "submerged"
+            },
+            "suggestion": "Use marine-grade (316) stainless steel for saltwater applications"
+        },
+        {
+            "id": "bolts_splash_protection",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "moisture_exposure": "splash"
+            },
+            "suggestion": "Zinc-plated or galvanized fasteners recommended for moisture protection"
+        },
+        {
+            "id": "bolts_vibration_locking",
+            "applies_to_fasteners": ["bolts", "nuts"],
+            "conditions": {
+                "load_type": ["vibration", "heavy_dynamic"]
+            },
+            "suggestion": "Use lock washers, lock nuts, or threadlocker to prevent loosening"
+        },
+        {
+            "id": "bolts_chemical_resistance",
+            "applies_to_fasteners": ["bolts", "nuts", "screws"],
+            "conditions": {
+                "chemical_corrosion_resistance": true
+            },
+            "suggestion": "Consider coated or stainless steel fasteners for chemical resistance"
+        },
+        {
+            "id": "screws_outdoor_coating",
+            "applies_to_fasteners": ["screws"],
+            "conditions": {
+                "moisture_exposure": ["outdoor", "submerged"]
+            },
+            "suggestion": "Use stainless steel or coated screws for outdoor applications"
+        },
+        {
+            "id": "wood_screws_pilot_holes",
+            "applies_to_fasteners": ["Wood screws"],
+            "conditions": {
+                "material_type": "wood"
+            },
+            "suggestion": "Pre-drill pilot holes to prevent splitting, especially near edges"
+        },
+        {
+            "id": "adhesive_vertical_application",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "orientation": true
+            },
+            "suggestion": "For vertical/overhead application, consider using tape or clamps during curing"
+        },
+        {
+            "id": "adhesive_health_ventilation",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "health_concerns": true
+            },
+            "suggestion": "Ensure adequate ventilation and consider low-VOC or food-safe options"
+        },
+        {
+            "id": "adhesive_curing_time_note",
+            "applies_to_fasteners": ["adhesive"],
+            "conditions": {
+                "curing_time": "immediate"
+            },
+            "suggestion": "Note: Most adhesives require curing time. Consider mechanical fasteners for immediate use"
+        },
+        {
+            "id": "welding_equipment_requirement",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {},
+            "suggestion": "Requires specialized equipment and trained operator"
+        },
+        {
+            "id": "welding_joint_design",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {},
+            "suggestion": "Consider joint design and material thickness for optimal weld strength"
+        },
+        {
+            "id": "welding_safety",
+            "applies_to_fasteners": ["welding"],
+            "conditions": {
+                "health_concerns": true
+            },
+            "suggestion": "Welding produces fumes - ensure proper ventilation and PPE"
         }
     ]
 }
