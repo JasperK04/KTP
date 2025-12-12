@@ -8,7 +8,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from engine import KnowledgeBase, Question, Fastener, Rule, SuggestionRule
+from src.engine import KnowledgeBase, Question, Fastener, Rule, SuggestionRule
 
 
 class TestKnowledgeBaseInitialization:

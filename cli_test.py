@@ -5,7 +5,7 @@ Asks questions interactively and provides recommendations with debug output
 """
 import sys
 from pathlib import Path
-from engine import KnowledgeBase, InferenceEngine, QuestionType
+from src.engine import KnowledgeBase, InferenceEngine, QuestionType
 import yaml
 from datetime import datetime
 
@@ -165,7 +165,7 @@ def main():
     print("=" * 80)
     
     # Load knowledge base
-    kb_path = Path(__file__).parent / "kb.json"
+    kb_path = Path(__file__).parent / "src" / "kb.json"
     if not kb_path.exists():
         print(f"Error: Knowledge base not found at {kb_path}")
         sys.exit(1)

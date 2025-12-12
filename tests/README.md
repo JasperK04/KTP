@@ -6,7 +6,7 @@
 
 ### `conftest.py`
 Shared pytest fixtures:
-- `kb_path` - Path to kb.json
+- `kb_path` - Path to src/kb.json
 - `kb` - Pre-loaded KnowledgeBase
 - `empty_kb` - Empty KnowledgeBase instance
 
@@ -21,7 +21,7 @@ Dataclass model tests:
 ### `test_knowledge_base.py` (19 tests)
 KnowledgeBase operations:
 - `TestKnowledgeBaseInitialization` - Empty KB initialization
-- `TestKnowledgeBaseLoading` - Loading from kb.json
+- `TestKnowledgeBaseLoading` - Loading from src/kb.json
 - `TestKnowledgeBaseSaving` - Saving/reloading data integrity
 
 ### `test_inference_engine.py` (33 tests)

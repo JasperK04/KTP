@@ -124,12 +124,6 @@ Flask-based web application providing:
 - Visual presentation of recommendations
 - Persistent session management
 
-### Functionality Justification
-Dual interface approach serves different use cases:
-- CLI enables rapid testing, automation, and debugging workflows
-- Web interface provides accessible user experience for end users
-- Both implementations share core inference engine ensuring consistency
-
 ### Tools Used
 - Python 3.12: Core implementation language
 - uv: Package management and virtual environment handling
@@ -185,40 +179,30 @@ All tests passing confirms:
 - Ordinal comparisons enforce minimum thresholds
 - Category filtering respects recommendations and exclusions
 
-## Task Division
-
-This draft represents individual development. Knowledge engineering, system architecture, inference engine implementation, testing framework, and documentation were completed as integrated effort.
-
-Future collaborative work will require:
-- Knowledge base expansion through expert interviews
-- User interface refinement based on testing feedback
-- Additional test coverage for edge cases
-- Performance optimization for larger knowledge bases
-
 ## Repository Information
 
 **GitHub Repository:** https://github.com/JasperK04/KTP
 **Branch:** dev
-**Entry Point:** `src/main.py` (web, not implemented) or `src/cli_test.py` (CLI)
-**Dependencies:** Managed via `src/pyproject.toml`, installed with `uv sync`
+**Entry Point:** `main.py` (web, not implemented) or `cli_test.py` (CLI)
+**Dependencies:** Managed via `pyproject.toml`, installed with `uv sync`
 
 ### Running the System
 
 ```bash
-cd src
 uv sync
 uv run python cli_test.py    # CLI interface
 uv run python main.py         # Web interface (not implemented)
-uv run pytest                 # Test suite
+uv run pytest tests/          # Test suite
 ```
 
 ### Project Structure
 - `src/engine.py` (474 lines): Core inference engine and knowledge base
 - `src/kb.json` (396 lines): Declarative knowledge base
-- `src/cli_test.py` (227 lines): CLI testing interface
-- `src/tests/`: Automated test suite (89 tests)
-- `src/README.md`: Usage documentation
-- `src/cli_test.md`: Testing workflow and debug format documentation
+- `src/app/`: Flask web application (not yet implemented)
+- `cli_test.py` (227 lines): CLI testing interface
+- `tests/`: Automated test suite (89 tests)
+- `README.md`: Usage documentation
+- `cli_test.md`: Testing workflow and debug format documentation
 
 ## Knowledge Complexity
 
