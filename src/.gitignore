@@ -76,6 +76,7 @@ ENV/
 env/
 env.bak/
 venv.bak/
+uv.lock
 
 # Editor directories and files
 .vscode/
