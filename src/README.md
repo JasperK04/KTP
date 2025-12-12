@@ -1,20 +1,96 @@
-# hello world
+# Fastener Recommendation System
 
-create a simple program that greets the world.
-uses a json file to store and retrieve information
+An expert system for recommending fastening methods based on material properties, strength requirements, and environmental conditions.
 
-## requirements
-Developed using python3.12
-No external packages needed
+## Requirements
+- Python 3.12+
+- uv (Python package manager)
 
+## Installation
 
-## usage
-
-### <span>main.py</span>
 ```bash
-python3 main.py
+cd src
+uv sync
 ```
-or for development
+
+## Usage
+
+### CLI Testing Interface
+
+Interactive command-line interface for testing the recommendation engine:
+
 ```bash
-flask run --debug
+uv run python cli_test.py
 ```
+
+This will:
+- Ask you a series of questions about your fastening requirements
+- **Save debug state after each question** to `debug_state.yaml`
+- Generate final recommendations based on your answers
+- Provide complete audit trail with timestamps
+
+The debug file includes:
+- Current facts (all answers so far)
+- Current conclusions from inference rules
+- Question history with timestamps
+- Complete recommendation details
+
+### Web Interface
+
+Run the Flask web application:
+
+```bash
+uv run python main.py
+```
+
+Or for development with auto-reload:
+
+```bash
+uv run flask run --debug
+```
+
+### Running Tests
+
+Run the complete test suite:
+
+```bash
+uv run pytest
+```
+
+Run with verbose output:
+
+```bash
+uv run pytest -v
+```
+
+## Project Structure
+
+- `engine.py` - Core inference engine and knowledge base
+- `kb.json` - Knowledge base (questions, fasteners, rules, suggestion rules)
+- `cli_test.py` - CLI testing interface
+- `cli_test.md` - CLI testing documentation and design rationale
+- `main.py` - Web application entry point
+- `app/` - Flask web application
+- `tests/` - Test suite (89 tests)
+- `debug_state.yaml` - Generated debug output (updated after each question)
+
+## Debugging
+
+The CLI tool automatically updates `debug_state.yaml` **after every question**. This file contains:
+
+```yaml
+current_facts:              # All answers provided so far
+current_conclusions:        # Inferred facts from rules
+current_recommendations_count: N
+question_history:           # Complete audit trail with timestamps
+recommendations:            # Matching fasteners with full details
+```
+
+Use this file to:
+- Monitor the inference process in real-time
+- Debug why certain fasteners were/weren't recommended
+- Understand which rules fired and when
+- Verify the inference logic step-by-step
+- Track the complete recommendation process with timestamps
+
+See `cli_test.md` for detailed documentation on the debug format and testing workflow.
