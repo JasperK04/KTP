@@ -27,7 +27,7 @@
         {% for choice in question.choices %}
             <label>
                 <input type="radio" name="answer" value="{{ choice }}" required>
-                {{ choice.title() }}
+                {{ choice[0].upper() + choice[1:].lower().replace('_', ' ') }}
             </label><br>
         {% endfor %}
     {% endif %}
