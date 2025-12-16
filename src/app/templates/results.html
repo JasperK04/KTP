@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fastener Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Fastener Recommendations</h1>
+
+{% if recommendations|length == 0 %}
+    <p>
+        No fastening methods match your requirements.
+        Consider adjusting your answers or restarting the process.
+    </p>
+{% else %}
+    <p>
+        Found {{ recommendations|length }} matching fastening method(s).
+    </p>
+
+    <hr>
+
+    {% for fastener, suggestions in recommendations %}
+        <section>
+            <h2>{{ fastener.name }}</h2>
+
+            <p><strong>Category:</strong> {{ fastener.category.value }}</p>
+
+            <p>
+                <strong>Compatible Materials:</strong>
+                {{ fastener.properties.compatible_materials | join(", ") }}
+            </p>
+
+            <p><strong>Tensile Strength:</strong> {{ fastener.properties.tensile_strength.value }}</p>
+            <p><strong>Water Resistance:</strong> {{ fastener.properties.water_resistance.value }}</p>
+            <p><strong>Permanence:</strong> {{ fastener.properties.permanence.value }}</p>
+            <p><strong>Rigidity:</strong> {{ fastener.properties.rigidity.value }}</p>
+
+            {% if fastener.curing_time %}
+                <p><strong>Curing Time:</strong> {{ fastener.curing_time }}</p>
+            {% endif %}
+
+            {% if fastener.requires_tools %}
+                <p>
+                    <strong>Required Tools:</strong>
+                    {{ fastener.requires_tools | join(", ") }}
+                </p>
+            {% endif %}
+
+            {% if fastener.surface_prep %}
+                <p>
+                    <strong>Surface Preparation:</strong>
+                    {{ fastener.surface_prep | join(", ") }}
+                </p>
+            {% endif %}
+
+            {% if suggestions %}
+                <h3>Suggestions</h3>
+                <ul>
+                    {% for suggestion in suggestions %}
+                        <li>{{ suggestion }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if fastener.properties.notes %}
+                <h3>Notes</h3>
+                <ul>
+                    {% for note in fastener.properties.notes %}
+                        <li>{{ note }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+
+        <hr>
+    {% endfor %}
+{% endif %}
+
+<form action="{{ url_for('routes.reset') }}" method="post">
+    <button type="submit">Start Over</button>
+</form>
+
+</body>
+</html>

@@ -4,18 +4,85 @@
   <meta charset="utf-8">
   <title>Questions</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <body>
-  <div class="all_questions">
-    {% for qid in questions %}
-      <form method="post" style="display:inline;">
-        <input type="hidden" name="answer" value="{{ qid }}">
-        <button type="submit">{{ qid }}</button>
-      </form>
-    {% endfor %}
-  </div>
 
-  {% if selected %}
-    <p>You selected: <strong>{{ selected }}</strong></p>
-  {% endif %}
+<h1>Question Overview</h1>
+
+<p>
+This page shows all questions, your responses, and the fastening methods that
+are still compatible with your answers.
+</p>
+
+<h2>Answered Questions</h2>
+
+{% if history|length == 0 %}
+    <p>No questions answered yet.</p>
+{% else %}
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Your Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in history %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entry.question_text }}</td>
+                    <td>
+                        {% if entry.answer is none %}
+                            <em>Skipped</em>
+                        {% else %}
+                            {{ entry.answer }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<hr>
+
+<h2>Raw Facts (Internal State)</h2>
+
+<pre>
+{{ facts | tojson(indent=2) }}
+</pre>
+
+<h2>Current Possible Fasteners</h2>
+
+{% if recommendations|length == 0 %}
+    <p>
+        No fastening methods currently satisfy all constraints.
+    </p>
+{% else %}
+    <p>
+        {{ recommendations|length }} fastening method(s) still match the current answers.
+    </p>
+
+    <ul>
+        {% for fastener, _ in recommendations %}
+            <li>
+                <strong>{{ fastener.name }}</strong>
+                ({{ fastener.category.value }})
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<hr>
+
+<form action="{{ url_for('routes.question') }}" method="get">
+    <button type="submit">Continue Questionnaire</button>
+</form>
+
+<form action="{{ url_for('routes.results') }}" method="get">
+    <button type="submit">View Final Results</button>
+</form>
+
 </body>
 </html>

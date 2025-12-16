@@ -5,19 +5,49 @@
   <title>Question {{ qid }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <body>
-  <h1>{{ question }}</h1>
 
-  <div class="options">
-    {% for opt in options %}
-      <form method="post" style="display:inline;">
-        <input type="hidden" name="answer" value="{{ opt }}">
-        <button type="submit">{{ opt }}</button>
-      </form>
-    {% endfor %}
-  </div>
+<h2>Question {{ index }} of {{ total }}</h2>
 
-  {% if selected %}
-    <p>You selected: <strong>{{ selected }}</strong></p>
-  {% endif %}
+<p>{{ question.text }}</p>
+
+<form method="post">
+
+    {% if question_type == "boolean" %}
+        <label>
+            <input type="radio" name="answer" value="true" required>
+            Yes
+        </label><br>
+
+        <label>
+            <input type="radio" name="answer" value="false">
+            No
+        </label><br>
+
+    {% elif question_type == "choice" %}
+        {% for choice in question.choices %}
+            <label>
+                <input type="radio" name="answer" value="{{ choice }}" required>
+                {{ choice.title() }}
+            </label><br>
+        {% endfor %}
+    {% endif %}
+
+    <label>
+        <input type="radio" name="answer" value="false">
+        Skip
+    </label><br>
+
+    <br>
+
+    <button type="submit">
+        Next
+    </button>
+
+</form><br>
+
+<form action="{{ url_for('routes.questions_overview') }}" method="get">
+    <button type="submit">Show current overview</button>
+</form>
+
 </body>
 </html>
