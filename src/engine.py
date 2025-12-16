@@ -1,11 +1,12 @@
+import json
 from dataclasses import dataclass, field
 from enum import Enum
-import json
 from typing import Callable
 
 # -----------------------------------------------
 # ENUM classes
 # -----------------------------------------------
+
 
 class Strength(Enum):
     NONE = "none"
@@ -14,6 +15,7 @@ class Strength(Enum):
     MODERATE = "moderate"
     HIGH = "high"
     VERY_HIGH = "very_high"
+
 
 class Resistance(Enum):
     POOR = "poor"
@@ -33,10 +35,12 @@ class Rigidity(Enum):
     SEMI_FLEXIBLE = "semi_flexible"
     RIGID = "rigid"
 
+
 class FastenerCategory(Enum):
     ADHESIVE = "adhesive"
     MECHANICAL = "mechanical"
     THERMAL = "thermal"
+
 
 class QuestionType(Enum):
     CHOICE = "choice"
@@ -47,17 +51,19 @@ class QuestionType(Enum):
 # Ordinal scales
 # -----------------------------------------------
 
+
 class OrdinalScales:
     """Centralized ordinal scales for comparisons"""
+
     STRENGTH = ["none", "very_low", "low", "moderate", "high", "very_high"]
     RESISTANCE = ["poor", "fair", "good", "excellent"]
-    
+
     # Mapping of exposure types to minimum required resistance
     MOISTURE_TO_RESISTANCE = {
         "no": "poor",
         "splash": "fair",
         "outdoor": "good",
-        "submerged": "excellent"
+        "submerged": "excellent",
     }
 
 
@@ -65,9 +71,11 @@ class OrdinalScales:
 # Dataclasses
 # -----------------------------------------------
 
+
 @dataclass
 class Question:
     """Represents a question to the user."""
+
     id: str
     text: str
     type: QuestionType
@@ -80,19 +88,21 @@ class Question:
             "answer_type": self.type.value,
             "choices": self.choices,
         }
-    
+
     @classmethod
-    def from_dict(cls, data: dict) -> 'Question':
+    def from_dict(cls, data: dict) -> "Question":
         return cls(
             id=data["id"],
             text=data["text"],
             type=QuestionType(data["answer_type"]),
-            choices=data.get("choices", []) if data.get("choices") is not None else []
+            choices=data.get("choices", []) if data.get("choices") is not None else [],
         )
+
 
 @dataclass
 class Rule:
     """Represents an inference rule"""
+
     id: str
     conditions: dict[str, any]  # question_id -> expected_value
     conclusion: dict[str, any]  # attribute -> value pairs
@@ -103,17 +113,18 @@ class Rule:
             "id": self.id,
             "conditions": self.conditions,
             "conclusion": self.conclusion,
-            "priority": self.priority
+            "priority": self.priority,
         }
-    
+
     @classmethod
-    def from_dict(cls, data: dict[str, any]) -> 'Rule':
+    def from_dict(cls, data: dict[str, any]) -> "Rule":
         return cls(**data)
 
 
 @dataclass
 class SuggestionRule:
     """Represents a contextual suggestion rule"""
+
     id: str
     applies_to_fasteners: list[str]  # List of fastener names or "all"
     conditions: dict[str, any]  # fact conditions that trigger this suggestion
@@ -124,23 +135,26 @@ class SuggestionRule:
             "id": self.id,
             "applies_to_fasteners": self.applies_to_fasteners,
             "conditions": self.conditions,
-            "suggestion": self.suggestion
+            "suggestion": self.suggestion,
         }
-    
+
     @classmethod
-    def from_dict(cls, data: dict[str, any]) -> 'SuggestionRule':
+    def from_dict(cls, data: dict[str, any]) -> "SuggestionRule":
         return cls(**data)
 
 
 @dataclass
 class Fact:
     """Represents a known fact from user answers"""
+
     question_id: str
     value: any
+
 
 @dataclass
 class MaterialProperties:
     """Properties of a fastener for specific materials"""
+
     compatible_materials: list[str]
     tensile_strength: Strength
     shear_strength: Strength
@@ -167,11 +181,11 @@ class MaterialProperties:
             "vibration_resistance": self.vibration_resistance.value,
             "rigidity": self.rigidity.value,
             "permanence": self.permanence.value,
-            "notes": self.notes
+            "notes": self.notes,
         }
-    
+
     @classmethod
-    def from_dict(cls, data: dict[str, any]) -> 'MaterialProperties':
+    def from_dict(cls, data: dict[str, any]) -> "MaterialProperties":
         return cls(
             compatible_materials=data["compatible_materials"],
             tensile_strength=Strength(data["tensile_strength"]),
@@ -184,12 +198,14 @@ class MaterialProperties:
             vibration_resistance=Resistance(data["vibration_resistance"]),
             rigidity=Rigidity(data["rigidity"]),
             permanence=Permanence(data["permanence"]),
-            notes=data.get("notes", [])
+            notes=data.get("notes", []),
         )
+
 
 @dataclass
 class Fastener:
     """Represents a fastening method"""
+
     name: str
     category: FastenerCategory
     properties: MaterialProperties
@@ -206,11 +222,11 @@ class Fastener:
             "requires_tools": self.requires_tools,
             "surface_prep": self.surface_prep,
             "curing_time": self.curing_time,
-            "special_conditions": self.special_conditions
+            "special_conditions": self.special_conditions,
         }
-    
+
     @classmethod
-    def from_dict(cls, data: dict[str, any]) -> 'Fastener':
+    def from_dict(cls, data: dict[str, any]) -> "Fastener":
         return cls(
             name=data["name"],
             category=FastenerCategory(data["category"]),
@@ -218,12 +234,14 @@ class Fastener:
             requires_tools=data.get("requires_tools", []),
             surface_prep=data.get("surface_prep", []),
             curing_time=data.get("curing_time"),
-            special_conditions=data.get("special_conditions", [])
+            special_conditions=data.get("special_conditions", []),
         )
+
 
 # -----------------------------------------------
 # Inference Engine
 # -----------------------------------------------
+
 
 class KnowledgeBase:
     """Stores all fasteners, rules, and questions"""
@@ -236,13 +254,15 @@ class KnowledgeBase:
 
     def load_from_file(self, filepath: str):
         """Load knowledge base from JSON file"""
-        with open(filepath, 'r') as f:
+        with open(filepath, "r") as f:
             data = json.load(f)
-        
+
         self.questions = [Question.from_dict(q) for q in data.get("questions", [])]
         self.fasteners = [Fastener.from_dict(f) for f in data.get("fasteners", [])]
         self.rules = [Rule.from_dict(r) for r in data.get("rules", [])]
-        self.suggestion_rules = [SuggestionRule.from_dict(s) for s in data.get("suggestion_rules", [])]
+        self.suggestion_rules = [
+            SuggestionRule.from_dict(s) for s in data.get("suggestion_rules", [])
+        ]
 
     def save_to_file(self, filepath: str):
         """Save knowledge base to JSON file"""
@@ -250,46 +270,47 @@ class KnowledgeBase:
             "questions": [q.to_dict() for q in self.questions],
             "fasteners": [f.to_dict() for f in self.fasteners],
             "rules": [r.to_dict() for r in self.rules],
-            "suggestion_rules": [s.to_dict() for s in self.suggestion_rules]
+            "suggestion_rules": [s.to_dict() for s in self.suggestion_rules],
         }
-        
-        with open(filepath, 'w') as f:
+
+        with open(filepath, "w") as f:
             json.dump(data, f, indent=2)
 
 
 class InferenceEngine:
     """Forward-chaining inference engine for fastener selection"""
+
     def __init__(self, kb: KnowledgeBase):
         self.kb = kb
         self.facts: dict[str, any] = {}
         self.conclusions: dict[str, any] = {}
-    
+
     def add_fact(self, question_id: str, value: any):
         """Add a fact from user answer"""
         self.facts[question_id] = value
-    
+
     def reset(self):
         """Clear all facts and conclusions"""
         self.facts.clear()
         self.conclusions.clear()
-    
+
     def evaluate_rule(self, rule: Rule) -> bool:
         """Check if a rule's conditions are satisfied"""
         for question_id, expected in rule.conditions.items():
             if question_id not in self.facts:
                 return False
-            
+
             actual = self.facts[question_id]
-            
+
             # Handle list of acceptable values
             if isinstance(expected, list):
                 if actual not in expected:
                     return False
             elif actual != expected:
                 return False
-        
+
         return True
-    
+
     def apply_rule(self, rule: Rule):
         """Apply a rule's conclusions"""
         for key, value in rule.conclusion.items():
@@ -313,133 +334,138 @@ class InferenceEngine:
 
     def matches_fastener(self, fastener: Fastener) -> bool:
         """Check if fastener meets all required criteria from facts and conclusions"""
-        
+
         # Check if fastener category is excluded
         if "exclude_categories" in self.conclusions:
             if fastener.category.value in self.conclusions["exclude_categories"]:
                 return False
-        
+
         # Check if fastener category is recommended (if specified)
         if "recommended_categories" in self.conclusions:
-            if fastener.category.value not in self.conclusions["recommended_categories"]:
+            if (
+                fastener.category.value
+                not in self.conclusions["recommended_categories"]
+            ):
                 return False
-        
+
         # Check required properties from conclusions
         if "required_properties" in self.conclusions:
             for prop_requirement in self.conclusions["required_properties"]:
                 # Format: "property_name:required_value"
                 if ":" in prop_requirement:
                     prop_name, required_value = prop_requirement.split(":", 1)
-                    
+
                     # Get the property value from fastener
                     if hasattr(fastener.properties, prop_name):
                         actual_value = getattr(fastener.properties, prop_name)
-                        
+
                         # Handle enum values
-                        if hasattr(actual_value, 'value'):
+                        if hasattr(actual_value, "value"):
                             actual_value = actual_value.value
-                        
+
                         if actual_value != required_value:
                             return False
-        
+
         # Check material compatibility
-        if "material_type" in self.facts:
-            material = self.facts["material_type"]
-            if material != "multiple":
-                # Check for exact match or generic category match
-                compatible = False
-                for compat_mat in fastener.properties.compatible_materials:
-                    # Exact match
-                    if material == compat_mat:
-                        compatible = True
-                        break
-                    # Generic metal category matches specific metals
-                    if material == "metal" and compat_mat in ["steel", "stainless_steel", "aluminum", "metal"]:
-                        compatible = True
-                        break
-                
-                if not compatible:
-                    return False
-        
+        if "material_type" in self.facts and "material_type_2" in self.facts:
+            material2 = self.facts["material_type_2"]
+            # Check for exact match or generic category match
+            compatible = False
+            compat_materials = fastener.properties.compatible_materials
+            if material2 in compat_materials:
+                compatible = True
+
+            if not compatible:
+                return False
+
         # Check strength requirements (ordinal comparison)
         if "mechanical_strength" in self.facts:
             required_strength = self.facts["mechanical_strength"]
-            
+
             req_idx = OrdinalScales.STRENGTH.index(required_strength)
-            fastener_idx = OrdinalScales.STRENGTH.index(fastener.properties.tensile_strength.value)
-            
+            fastener_idx = OrdinalScales.STRENGTH.index(
+                fastener.properties.tensile_strength.value
+            )
+
             if fastener_idx < req_idx:
                 return False
-        
+
         # Check water resistance based on moisture exposure
         if "moisture_exposure" in self.facts:
             exposure = self.facts["moisture_exposure"]
-            
+
             if exposure in OrdinalScales.MOISTURE_TO_RESISTANCE:
                 required_resistance = OrdinalScales.MOISTURE_TO_RESISTANCE[exposure]
                 req_idx = OrdinalScales.RESISTANCE.index(required_resistance)
-                actual_idx = OrdinalScales.RESISTANCE.index(fastener.properties.water_resistance.value)
-                
+                actual_idx = OrdinalScales.RESISTANCE.index(
+                    fastener.properties.water_resistance.value
+                )
+
                 if actual_idx < req_idx:
                     return False
-        
+
         # Check permanence match
         if "permanence" in self.facts:
             required_perm = self.facts["permanence"]
             actual_perm = fastener.properties.permanence.value
-            
+
             # Exact match or semi-permanent accepts all
             if required_perm == "semi_permanent":
                 # Semi-permanent is flexible - any permanence works
                 pass
             elif required_perm != actual_perm:
                 return False
-        
+
         # Check flexibility requirement
         if "flexibility" in self.facts:
             needs_flexibility = self.facts["flexibility"]
-            is_flexible = fastener.properties.rigidity in [Rigidity.FLEXIBLE, Rigidity.SEMI_FLEXIBLE]
-            
+            is_flexible = fastener.properties.rigidity in [
+                Rigidity.FLEXIBLE,
+                Rigidity.SEMI_FLEXIBLE,
+            ]
+
             if needs_flexibility and not is_flexible:
                 return False
-        
+
         # Check vibration resistance for dynamic loads
         if "load_type" in self.facts:
             load_type = self.facts["load_type"]
             if load_type in ["heavy_dynamic", "vibration"]:
-                vib_idx = OrdinalScales.RESISTANCE.index(fastener.properties.vibration_resistance.value)
+                vib_idx = OrdinalScales.RESISTANCE.index(
+                    fastener.properties.vibration_resistance.value
+                )
                 required_idx = OrdinalScales.RESISTANCE.index("good")
-                
+
                 if vib_idx < required_idx:
                     return False
-        
+
         return True
-    
+
     def evaluate_suggestion_conditions(self, suggestion_rule: SuggestionRule) -> bool:
         """Check if suggestion rule conditions are met by current facts"""
         for fact_key, expected_value in suggestion_rule.conditions.items():
             if fact_key not in self.facts:
                 return False
-            
+
             actual_value = self.facts[fact_key]
-            
+
             # Handle list of acceptable values
             if isinstance(expected_value, list):
                 if actual_value not in expected_value:
                     return False
             elif actual_value != expected_value:
                 return False
-        
+
         return True
-    
+
     def get_suggestions(self, fastener: Fastener) -> list[str]:
         """Generate context-specific suggestions from suggestion rules in kb.json"""
         suggestions = []
-        
+
         for suggestion_rule in self.kb.suggestion_rules:
             # Check if this suggestion applies to this fastener
             applies = False
-            
+
             if "all" in suggestion_rule.applies_to_fasteners:
                 applies = True
             else:
@@ -448,28 +474,28 @@ class InferenceEngine:
                     if pattern.lower() in fastener.name.lower():
                         applies = True
                         break
-                
+
                 # Also check category matches
                 if fastener.category.value in suggestion_rule.applies_to_fasteners:
                     applies = True
-            
+
             # If applies and conditions are met, add suggestion
             if applies and self.evaluate_suggestion_conditions(suggestion_rule):
                 suggestions.append(suggestion_rule.suggestion)
-        
+
         return suggestions
-    
+
     def recommend_fasteners(self) -> list[tuple[Fastener, list[str]]]:
         """Get list of qualifying fasteners with suggestions (no scoring)"""
         self.infer()  # Run inference first
-        
+
         qualifying_fasteners = []
-        
+
         for fastener in self.kb.fasteners:
             if self.matches_fastener(fastener):
                 suggestions = self.get_suggestions(fastener)
                 qualifying_fasteners.append((fastener, suggestions))
-        
+
         # Sort by priority from rules if applicable
         # For now, just return all qualifying fasteners
         return qualifying_fasteners
