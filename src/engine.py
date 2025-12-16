@@ -1,7 +1,6 @@
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Callable
 
 # -----------------------------------------------
 # ENUM classes
@@ -288,6 +287,13 @@ class InferenceEngine:
     def add_fact(self, question_id: str, value: any):
         """Add a fact from user answer"""
         self.facts[question_id] = value
+
+    def restore_facts(self, facts: dict[str, any]):
+        """Restore multiple facts"""
+        self.facts.update(facts)
+
+    def retrieve_facts(self) -> any:
+        return self.facts
 
     def reset(self):
         """Clear all facts and conclusions"""
