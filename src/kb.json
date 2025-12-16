@@ -1737,7 +1737,7 @@
   "questions": [
     {
       "id": "material_type",
-      "text": "What is the first surface is it intended for?",
+      "text": "What is the first surface it is intended for?",
       "answer_type": "choice",
       "choices": [
         "wood",
@@ -1747,12 +1747,13 @@
         "glass",
         "ceramic",
         "fabric",
-        "paper"
+        "paper",
+        "stone"
       ]
     },
     {
       "id": "material_type_2",
-      "text": "What is the second surface is it intended for?",
+      "text": "What is the second surface it is intended for?",
       "answer_type": "choice",
       "choices": [
         "wood",
@@ -1762,7 +1763,8 @@
         "glass",
         "ceramic",
         "fabric",
-        "paper"
+        "paper",
+        "stone"
       ]
     },
     {
