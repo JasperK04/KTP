@@ -78,6 +78,10 @@
     {% endfor %}
 {% endif %}
 
+<form action="{{ url_for('routes.questions_overview') }}" method="get">
+    <button type="submit">Check your answers</button>
+</form>
+
 <form action="{{ url_for('routes.reset') }}" method="post">
     <button type="submit">Start Over</button>
 </form>
