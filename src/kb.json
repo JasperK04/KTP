@@ -1911,6 +1911,7 @@
       "id": "wood_to_wood",
       "conditions": {
         "material_type": "wood",
+        "material_type_2": "wood",
         "mechanical_strength": [
           "low",
           "moderate"
@@ -1928,6 +1929,10 @@
       "id": "glass_ceramic_applications",
       "conditions": {
         "material_type": [
+          "glass",
+          "ceramic"
+        ],
+        "material_type_2": [
           "glass",
           "ceramic"
         ]
