@@ -49,7 +49,7 @@ def question():
 
         if raw != "skip":
             if question.type == QuestionType.BOOLEAN:
-                value = raw == "true"
+                value = raw
             elif question.type == QuestionType.CHOICE:
                 value = raw
             else:
@@ -63,7 +63,7 @@ def question():
             {
                 "question_id": question.id,
                 "question_text": question.text,
-                "answer": None if raw == "skip" else value,
+                "answer": None if raw == "skip" else str(value),
                 "timestamp": datetime.now().isoformat(),
             }
         )
