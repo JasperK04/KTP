@@ -84,5 +84,9 @@ are still compatible with your answers.
     <button type="submit">View Final Results</button>
 </form>
 
+<form action="{{ url_for('routes.reset') }}" method="post">
+    <button type="submit">Restart</button>
+</form>
+
 </body>
 </html>
