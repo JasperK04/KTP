@@ -3,7 +3,7 @@ from pathlib import Path
 
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
-from engine import InferenceEngine, KnowledgeBase
+from engine import InferenceEngine, KnowledgeBase, QuestionType
 
 routes = Blueprint("routes", __name__)
 
@@ -45,11 +45,15 @@ def question():
 
     if request.method == "POST":
         raw = request.form.get("answer")
+        if not raw:
+            return redirect(url_for("routes.question"))
         session["count"] += 1
 
         if raw != "skip":
-            value = raw
-            engine.add_fact(question.id, value)
+            if question.type == QuestionType.BOOLEAN:
+                raw = raw.lower() in ["true", "yes", "y"]
+
+            engine.add_fact(question.id, raw)
             session["facts"] = engine.retrieve_facts()
 
         session["question_history"].append(
