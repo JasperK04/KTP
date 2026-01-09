@@ -406,9 +406,6 @@ class InferenceEngine:
         if not candidates:
             return None
 
-        # Step 1: prefer questions covering multiple categories
-        max_coverage = max(c[1] for c in candidates)
-
         # If more than one category remains, prefer multi-category questions
         if len(remaining_categories) > 1:
             multi_category = [c for c in candidates if c[1] > 1]
@@ -416,10 +413,10 @@ class InferenceEngine:
             if multi_category:
                 candidates = multi_category
 
-        # Step 2: select by elimination score
-        best_question, _, best_score = max(candidates, key=lambda x: x[2])
+        # select best question by highest elimination score
+        best_question, _, _ = max(candidates, key=lambda x: x[2])
 
-        # Step 3: single-category safety check
+        # prioritize questions that cover multiple categories
         if (
             self.question_category_coverage(best_question, remaining_categories) == 1
             and len(remaining_categories) > 1
