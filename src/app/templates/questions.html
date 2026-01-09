@@ -35,6 +35,12 @@ are still compatible with your answers.
                     <td>
                         {% if entry.answer is none %}
                             <em>Skipped</em>
+                        {% elif entry.answer is boolean %}
+                            {% if entry.answer %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
                         {% else %}
                             {{ entry.answer[0].upper() + entry.answer[1:].lower().replace('_', ' ') }}
                         {% endif %}
