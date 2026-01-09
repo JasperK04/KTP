@@ -202,6 +202,8 @@ def main():
 
         answer = ask_question(question, engine, question_history)
         if answer is not None:
+            if question.type == QuestionType.BOOLEAN:
+                answer = answer.lower() in ["true", "yes", "y"]
             engine.add_fact(question.id, answer)
 
     print("\n" + "=" * 80)
