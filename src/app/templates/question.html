@@ -32,10 +32,12 @@
         {% endfor %}
     {% endif %}
 
-    <label>
-        <input type="radio" name="answer" value="skip">
-        Skip
-    </label><br>
+    {% if question.id not in ["material_type", "material_type_2"]: %}
+        <label>
+            <input type="radio" name="answer" value="skip">
+            Skip
+        </label><br>
+    {% endif %}
 
     <br>
 

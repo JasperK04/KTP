@@ -87,10 +87,12 @@ def ask_question(question, engine: InferenceEngine, question_history: list) -> a
     elif question.type == QuestionType.CHOICE:
         for idx, choice in enumerate(question.choices, 1):
             print(f"  [{idx}] {choice}")
-        print("  [s] Skip")
+
+        if question.id not in ["material_type", "material_type_2"]:
+            print("  [s] Skip")
 
         while True:
-            answer = input("Your answer (number or 's' to skip): ").strip().lower()
+            answer = input("Your answer (nr): ").strip().lower()
             if answer == "s":
                 return None
             try:
