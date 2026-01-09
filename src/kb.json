@@ -1749,7 +1749,8 @@
         "fabric",
         "paper",
         "stone"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "material_type_2",
@@ -1765,7 +1766,8 @@
         "fabric",
         "paper",
         "stone"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "mechanical_strength",
@@ -1778,7 +1780,8 @@
         "moderate",
         "high",
         "very_high"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "moisture_exposure",
@@ -1789,7 +1792,8 @@
         "splash",
         "outdoor",
         "submerged"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "permanence",
@@ -1799,7 +1803,8 @@
         "removable",
         "semi_permanent",
         "permanent"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "curing_time",
@@ -1810,7 +1815,8 @@
         "minutes",
         "hours",
         "days"
-      ]
+      ],
+      "applicable_to": ["adhesive"]
     },
     {
       "id": "load_type",
@@ -1821,31 +1827,36 @@
         "light_dynamic",
         "heavy_dynamic",
         "vibration"
-      ]
+      ],
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "chemical_corrosion_resistance",
       "text": "Does it require chemical or corrosion resistance?",
       "answer_type": "boolean",
-      "choices": null
+      "choices": null,
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "flexibility",
       "text": "Is flexibility required in the cured state?",
       "answer_type": "boolean",
-      "choices": null
+      "choices": null,
+      "applicable_to": ["adhesive"]
     },
     {
       "id": "orientation",
       "text": "Is the application vertical or overhead?",
       "answer_type": "boolean",
-      "choices": null
+      "choices": null,
+      "applicable_to": ["adhesive", "mechanical", "thermal"]
     },
     {
       "id": "health_concerns",
       "text": "Are there health concerns (fumes, food safety)?",
       "answer_type": "boolean",
-      "choices": null
+      "choices": null,
+      "applicable_to": ["adhesive", "thermal"]
     }
   ],
   "rules": [

@@ -1,4 +1,5 @@
 import json
+from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import Enum
 
@@ -79,6 +80,7 @@ class Question:
     text: str
     type: QuestionType
     choices: list[str] = field(default_factory=list)
+    applicable_to: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -86,6 +88,7 @@ class Question:
             "text": self.text,
             "answer_type": self.type.value,
             "choices": self.choices,
+            "applicable_to": self.applicable_to,
         }
 
     @classmethod
@@ -95,6 +98,7 @@ class Question:
             text=data["text"],
             type=QuestionType(data["answer_type"]),
             choices=data.get("choices", []) if data.get("choices") is not None else [],
+            applicable_to=data.get("applicable_to", []),
         )
 
 
@@ -299,6 +303,133 @@ class InferenceEngine:
         """Clear all facts and conclusions"""
         self.facts.clear()
         self.conclusions.clear()
+
+    def remaining_fasteners(self) -> list[Fastener]:
+        return [f for f in self.kb.fasteners if self.matches_fastener(f)]
+
+    def remaining_categories(self, remaining_fasteners):
+        return {f.category.value for f in remaining_fasteners}
+
+    def simulate_answer_on_subset(
+        self,
+        question_id: str,
+        value: any,
+        subset: list[Fastener],
+    ) -> int:
+        temp_engine = deepcopy(self)
+        temp_engine.add_fact(question_id, value)
+        temp_engine.infer()
+
+        return sum(1 for f in subset if temp_engine.matches_fastener(f))
+
+    def question_category_coverage(self, question, remaining_categories) -> int:
+        return len(set(question.applicable_to) & remaining_categories)
+
+    def normalized_question_score(self, question) -> float:
+        remaining = self.remaining_fasteners()
+        n = len(remaining)
+
+        if n <= 1:
+            return 0.0
+
+        answers = (
+            question.choices if question.type == QuestionType.CHOICE else [True, False]
+        )
+
+        remaining_counts = []
+        for a in answers:
+            remaining_counts.append(
+                self.simulate_answer_on_subset(question.id, a, remaining)
+            )
+
+        expected_remaining = sum(remaining_counts) / len(answers)
+
+        raw_reduction = n - expected_remaining
+        max_reduction = n - (n / len(answers))
+
+        if max_reduction == 0:
+            return 0.0
+
+        return raw_reduction / max_reduction
+
+    def is_question_applicable(self, question, remaining_fasteners) -> bool:
+        if not question.applicable_to:
+            return True
+
+        remaining_categories = {f.category.value for f in remaining_fasteners}
+
+        return bool(remaining_categories & set(question.applicable_to))
+
+    def question_can_discriminate(self, question, remaining_fasteners) -> bool:
+        answers = (
+            question.choices if question.type == QuestionType.CHOICE else [True, False]
+        )
+
+        sizes = set()
+        for a in answers:
+            count = self.simulate_answer_on_subset(question.id, a, remaining_fasteners)
+            sizes.add(count)
+
+        return len(sizes) > 1
+
+    def select_next_question(self, asked_questions: set[str]):
+        mandatory = ["material_type", "material_type_2"]
+
+        for qid in mandatory:
+            if qid not in self.facts:
+                return next(q for q in self.kb.questions if q.id == qid)
+
+        remaining_fasteners = self.remaining_fasteners()
+        remaining_categories = self.remaining_categories(remaining_fasteners)
+
+        if len(remaining_fasteners) <= 1:
+            return None
+
+        candidates = []
+
+        for question in self.kb.questions:
+            if question.id in self.facts or question.id in asked_questions:
+                continue
+
+            coverage = self.question_category_coverage(question, remaining_categories)
+
+            if coverage == 0:
+                continue
+
+            if not self.question_can_discriminate(question, remaining_fasteners):
+                continue
+
+            score = self.normalized_question_score(question)
+
+            candidates.append((question, coverage, score))
+
+        if not candidates:
+            return None
+
+        # Step 1: prefer questions covering multiple categories
+        max_coverage = max(c[1] for c in candidates)
+
+        # If more than one category remains, prefer multi-category questions
+        if len(remaining_categories) > 1:
+            multi_category = [c for c in candidates if c[1] > 1]
+
+            if multi_category:
+                candidates = multi_category
+
+        # Step 2: select by elimination score
+        best_question, _, best_score = max(candidates, key=lambda x: x[2])
+
+        # Step 3: single-category safety check
+        if (
+            self.question_category_coverage(best_question, remaining_categories) == 1
+            and len(remaining_categories) > 1
+        ):
+            # Only allow if no other question exists
+            alternative_exists = any(c for c in candidates if c[1] > 1)
+            if alternative_exists:
+                return None
+
+        return best_question
 
     def evaluate_rule(self, rule: Rule) -> bool:
         """Check if a rule's conditions are satisfied"""
