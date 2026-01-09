@@ -4,22 +4,32 @@ An expert system for recommending fastening methods based on material properties
 
 ## Requirements
 - Python 3.12+
-- uv (Python package manager)
+- uv (Python package manager) or pip
 
 ## Installation
-
+### using uv 
 ```bash
 uv sync
 ```
+### using pip
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
+
+### Activate your virtual environment
+
+```bash
+source .venv/bin/activate
+```
 
 ### CLI Testing Interface
 
 Interactive command-line interface for testing the recommendation engine:
 
 ```bash
-uv run python cli_test.py
+python cli_test.py
 ```
 
 This will:
@@ -34,18 +44,28 @@ The debug file includes:
 - Question history with timestamps
 - Complete recommendation details
 
-### Web Interface (NOT YET IMPLEMENTED)
+### Web Interface
 
-Run the Flask web application:
+The web-based interface is provided through a Flask application.  
+You can start the application using either of the following commands:
 
 ```bash
-uv run python main.py
+python main.py
+```
+or
+```bash
+flask run
 ```
 
-Or for development with auto-reload:
+Both commands support the same runtime options:
+- `--debug`, Starts the application in development mode with automatic reloading enabled.
+- `--port <port>`, Runs the application on the specified available port.
 
 ```bash
-uv run flask run --debug
+python main.py --debug --port 5001
+```
+```bash
+flask run --debug --port 5001
 ```
 
 ### Running Tests
@@ -70,7 +90,7 @@ uv run pytest -v
 - `cli_test.py` - CLI testing interface (root level)
 - `cli_test.md` - CLI testing documentation and design rationale
 - `main.py` - Web application entry point (root level)
-- `tests/` - Test suite (89 tests, root level)
+- `tests/` - Test suite (80 tests, root level)
 - `debug_state.yaml` - Generated debug output (updated after each question)
 
 ## Debugging
