@@ -3,7 +3,7 @@ from pathlib import Path
 
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
-from engine import InferenceEngine, KnowledgeBase, QuestionType
+from engine import InferenceEngine, KnowledgeBase
 
 routes = Blueprint("routes", __name__)
 
@@ -24,7 +24,7 @@ def load_engine():
 @routes.before_app_request
 def ensure_session():
     session.setdefault("facts", {})
-    session.setdefault("question_index", 0)
+    session.setdefault("count", 1)
     session.setdefault("question_history", [])
 
 
@@ -36,46 +36,37 @@ def index():
 @routes.route("/question", methods=["GET", "POST"])
 def question():
     engine = load_engine()
-    questions = engine.kb.questions
-    idx = session["question_index"]
 
-    if idx >= len(questions):
+    asked = {h["question_id"] for h in session["question_history"]}
+    question = engine.select_next_question(asked)
+
+    if question is None:
         return redirect(url_for("routes.results"))
-
-    question = questions[idx]
 
     if request.method == "POST":
         raw = request.form.get("answer")
+        session["count"] += 1
 
         if raw != "skip":
-            if question.type == QuestionType.BOOLEAN:
-                value = raw
-            elif question.type == QuestionType.CHOICE:
-                value = raw
-            else:
-                value = None
-
-            if value is not None:
-                engine.add_fact(question.id, value)
-                session["facts"] = engine.retrieve_facts()
+            value = raw
+            engine.add_fact(question.id, value)
+            session["facts"] = engine.retrieve_facts()
 
         session["question_history"].append(
             {
                 "question_id": question.id,
                 "question_text": question.text,
-                "answer": None if raw == "skip" else str(value),
+                "answer": None if raw == "skip" else raw,
                 "timestamp": datetime.now().isoformat(),
             }
         )
 
-        session["question_index"] += 1
         return redirect(url_for("routes.question"))
 
     return render_template(
         "question.html",
         question=question,
-        index=idx + 1,
-        total=len(questions),
+        count=session["count"],
         question_type=question.type.value,
     )
 
