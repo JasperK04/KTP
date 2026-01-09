@@ -248,6 +248,7 @@
       "category": "adhesive",
       "properties": {
         "compatible_materials": [
+          "wood",
           "glass",
           "ceramic",
           "metal",
@@ -1881,7 +1882,6 @@
       "id": "waterproof_flexible",
       "conditions": {
         "moisture_exposure": [
-          "outdoor",
           "submerged"
         ],
         "flexibility": true
@@ -1895,6 +1895,18 @@
       "priority": 9
     },
     {
+      "id": "outdoorproof",
+      "conditions": {
+        "moisture_exposure": "outdoor"
+      },
+      "conclusion": {
+        "required_properties": [
+          "water_resistance:good"
+        ]
+      },
+      "priority": 8
+    },
+    {
       "id": "removable_connection",
       "conditions": {
         "permanence": "removable"
@@ -1904,7 +1916,7 @@
           "permanence:removable"
         ]
       },
-      "priority": 8
+      "priority": 7
     },
     {
       "id": "immediate_use",
@@ -1916,7 +1928,7 @@
           "adhesive"
         ]
       },
-      "priority": 7
+      "priority": 6
     },
     {
       "id": "wood_to_wood",
@@ -1934,7 +1946,7 @@
           "mechanical"
         ]
       },
-      "priority": 6
+      "priority": 5
     },
     {
       "id": "glass_ceramic_applications",
@@ -1953,7 +1965,7 @@
           "adhesive"
         ]
       },
-      "priority": 6
+      "priority": 5
     },
     {
       "id": "high_vibration",
@@ -1968,7 +1980,31 @@
           "vibration_resistance:good"
         ]
       },
-      "priority": 5
+      "priority": 4
+    },
+    {
+      "id": "flexible",
+      "conditions": {
+        "flexibility": true
+      },
+      "conclusion": {
+        "required_properties": [
+          "rigidity:flexible"
+        ]
+      },
+      "priority": 3
+    },
+    {
+      "id": "inflexible",
+      "conditions": {
+        "flexibility": false
+      },
+      "conclusion": {
+        "required_properties": [
+          "rigidity:rigid"
+        ]
+      },
+      "priority": 2
     }
   ],
   "suggestion_rules": [
