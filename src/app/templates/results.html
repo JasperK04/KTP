@@ -48,6 +48,13 @@
                     </p>
                 {% endif %}
 
+                {% if fastener.requires_materials %}
+                    <p>
+                        <strong>Required Materials:</strong>
+                        {{ fastener.requires_materials | join(", ") }}
+                    </p>
+                {% endif %}
+
                 {% if fastener.surface_prep %}
                     <p>
                         <strong>Surface Preparation:</strong>

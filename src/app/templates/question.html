@@ -8,7 +8,10 @@
 
     <h2>Question {{ count }}</h2>
 
-    <p class="question-text">{{ question.text }}</p>
+    {% for line in question.text.split('\n') %}
+        <p class="question-text">{{ line }}</p>
+    {% endfor %}
+
 
     <form method="post">
 
@@ -36,7 +39,7 @@
             <label>
                 <input type="radio" name="answer" value="skip">
                 Skip
-            </label><
+            </label>
         {% endif %}
 
         <div class="button">

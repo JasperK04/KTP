@@ -36,6 +36,12 @@ class Rigidity(Enum):
     RIGID = "rigid"
 
 
+class SurfaceArea(Enum):
+    SMALL = "small"
+    MEDIUM = "medium"
+    LARGE = "large"
+
+
 class FastenerCategory(Enum):
     ADHESIVE = "adhesive"
     MECHANICAL = "mechanical"
@@ -57,6 +63,8 @@ class OrdinalScales:
 
     STRENGTH = ["none", "very_low", "low", "moderate", "high", "very_high"]
     RESISTANCE = ["poor", "fair", "good", "excellent"]
+    AREA = ["small", "medium", "large"]
+    CURING_TIME = ["immediate", "minutes", "hours", "days"]
 
     # Mapping of exposure types to minimum required resistance
     MOISTURE_TO_RESISTANCE = {
@@ -169,6 +177,7 @@ class MaterialProperties:
     vibration_resistance: Resistance
     rigidity: Rigidity
     permanence: Permanence
+    area: SurfaceArea
     notes: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, any]:
@@ -184,6 +193,7 @@ class MaterialProperties:
             "vibration_resistance": self.vibration_resistance.value,
             "rigidity": self.rigidity.value,
             "permanence": self.permanence.value,
+            "area": self.area.value,
             "notes": self.notes,
         }
 
@@ -201,6 +211,7 @@ class MaterialProperties:
             vibration_resistance=Resistance(data["vibration_resistance"]),
             rigidity=Rigidity(data["rigidity"]),
             permanence=Permanence(data["permanence"]),
+            area=SurfaceArea(data["area"]),
             notes=data.get("notes", []),
         )
 
@@ -213,6 +224,7 @@ class Fastener:
     category: FastenerCategory
     properties: MaterialProperties
     requires_tools: list[str] = field(default_factory=list)
+    requires_materials: list[str] = field(default_factory=list)
     surface_prep: list[str] = field(default_factory=list)
     curing_time: str | None = None
     special_conditions: list[str] = field(default_factory=list)
@@ -223,6 +235,7 @@ class Fastener:
             "category": self.category.value,
             "properties": self.properties.to_dict(),
             "requires_tools": self.requires_tools,
+            "requires_materials": self.requires_materials,
             "surface_prep": self.surface_prep,
             "curing_time": self.curing_time,
             "special_conditions": self.special_conditions,
@@ -235,6 +248,7 @@ class Fastener:
             category=FastenerCategory(data["category"]),
             properties=MaterialProperties.from_dict(data["properties"]),
             requires_tools=data.get("requires_tools", []),
+            requires_materials=data.get("requires_materials", []),
             surface_prep=data.get("surface_prep", []),
             curing_time=data.get("curing_time"),
             special_conditions=data.get("special_conditions", []),
@@ -336,29 +350,19 @@ class InferenceEngine:
             question.choices if question.type == QuestionType.CHOICE else [True, False]
         )
 
-        remaining_counts = []
-        for a in answers:
-            remaining_counts.append(
-                self.simulate_answer_on_subset(question.id, a, remaining)
-            )
+        remaining_counts = [
+            self.simulate_answer_on_subset(question.id, a, remaining) for a in answers
+        ]
 
         expected_remaining = sum(remaining_counts) / len(answers)
 
-        raw_reduction = n - expected_remaining
-        max_reduction = n - (n / len(answers))
-
-        if max_reduction == 0:
-            return 0.0
-
-        return raw_reduction / max_reduction
+        return 1.0 - (expected_remaining / n)
 
     def is_question_applicable(self, question, remaining_fasteners) -> bool:
-        if not question.applicable_to:
-            return True
-
         remaining_categories = {f.category.value for f in remaining_fasteners}
+        applicable_categories = set(question.applicable_to)
 
-        return bool(remaining_categories & set(question.applicable_to))
+        return remaining_categories.issubset(applicable_categories)
 
     def question_can_discriminate(self, question, remaining_fasteners) -> bool:
         answers = (
@@ -368,7 +372,8 @@ class InferenceEngine:
         sizes = set()
         for a in answers:
             count = self.simulate_answer_on_subset(question.id, a, remaining_fasteners)
-            sizes.add(count)
+            if count > 0:
+                sizes.add(count)
 
         return len(sizes) > 1
 
@@ -571,6 +576,33 @@ class InferenceEngine:
                 required_idx = OrdinalScales.RESISTANCE.index("good")
 
                 if vib_idx < required_idx:
+                    return False
+
+        # Check area requirements (ordinal comparison)
+        if "area" in self.facts:
+            required_area = self.facts["area"]
+
+            req_idx = OrdinalScales.AREA.index(required_area)
+            fastener_idx = OrdinalScales.AREA.index(fastener.properties.area.value)
+
+            if fastener_idx < req_idx:
+                return False
+
+        if "curing_time" in self.facts and fastener.curing_time:
+            req_idx = OrdinalScales.CURING_TIME.index(self.facts["curing_time"])
+            fast_idx = OrdinalScales.CURING_TIME.index(fastener.curing_time)
+
+            if fast_idx > req_idx:
+                return False
+
+        if "chemical_corrosion_resistance" in self.facts:
+            if self.facts["chemical_corrosion_resistance"]:
+                req_idx = OrdinalScales.RESISTANCE.index("good")
+                fast_idx = OrdinalScales.RESISTANCE.index(
+                    fastener.properties.chemical_resistance.value
+                )
+
+                if fast_idx < req_idx:
                     return False
 
         return True

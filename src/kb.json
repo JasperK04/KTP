@@ -21,7 +21,8 @@
         "notes": [
           "Works best on porous materials",
           "Requires clean, dry surfaces"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -30,7 +31,8 @@
         "remove dust"
       ],
       "curing_time": "30 minutes to 24 hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Polyurethane glue",
@@ -55,7 +57,8 @@
         "notes": [
           "Expands slightly during cure",
           "Requires moisture for curing in some formulations"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -64,7 +67,8 @@
         "abrade for non-porous"
       ],
       "curing_time": "1 hour to 24 hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Two-component epoxy",
@@ -91,7 +95,8 @@
           "High strength",
           "Requires clean and abraded surfaces",
           "Two-part mixing required"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "mixing tools",
@@ -103,7 +108,8 @@
         "degrease"
       ],
       "curing_time": "5 minutes to 24 hours depending on formulation",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Superglue (cyanoacrylate)",
@@ -129,7 +135,8 @@
           "Bonds quickly",
           "Brittle under shear and vibration",
           "Not ideal for large gaps"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -137,7 +144,8 @@
         "dry"
       ],
       "curing_time": "seconds to minutes",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Construction adhesive",
@@ -162,7 +170,8 @@
         "notes": [
           "Designed for structural assembly",
           "Often used in building envelopes"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "caulking gun"
@@ -173,7 +182,8 @@
         "roughen if needed"
       ],
       "curing_time": "1 hour to 7 days (formulation dependent)",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Hot-melt glue",
@@ -198,7 +208,8 @@
         "notes": [
           "Fast setting",
           "Poor high-temperature performance"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "hot glue gun"
@@ -208,7 +219,8 @@
         "dry"
       ],
       "curing_time": "seconds to minutes (on cooling)",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Contact cement",
@@ -231,7 +243,8 @@
         "notes": [
           "Apply to both surfaces and allow to flash",
           "Immediate bond on contact"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "brush or roller"
@@ -241,7 +254,8 @@
         "dry"
       ],
       "curing_time": "immediate bond after contact; full strength in 24+ hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Silicone sealant",
@@ -268,7 +282,8 @@
         "notes": [
           "Not structural",
           "Excellent for movement joints"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "caulking gun"
@@ -279,7 +294,8 @@
         "use primer if specified"
       ],
       "curing_time": "24 hours to several days (skin time within hours)",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Acrylic sealant",
@@ -302,7 +318,8 @@
         "notes": [
           "Paintable",
           "Used for interior/exterior joints with limited movement"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "caulking gun"
@@ -312,7 +329,8 @@
         "dry"
       ],
       "curing_time": "24 hours to several days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Spray adhesive",
@@ -336,7 +354,8 @@
         "notes": [
           "Good for light bonding and laminating",
           "Can be messy; ventilation required"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "spray can or sprayer"
@@ -346,7 +365,8 @@
         "dry"
       ],
       "curing_time": "minutes to hours (tack dependent)",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Rubber cement",
@@ -368,7 +388,8 @@
         "notes": [
           "Removable bonds on paper",
           "Primarily for craft/bookbinding"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -376,7 +397,8 @@
         "dry"
       ],
       "curing_time": "minutes",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Marine epoxy",
@@ -401,7 +423,8 @@
         "notes": [
           "Formulated for submerged/outdoor conditions",
           "Very good environmental resistance"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "mixing tools"
@@ -412,7 +435,8 @@
         "degrease"
       ],
       "curing_time": "hours to days depending on formulation",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Tile adhesive",
@@ -434,7 +458,8 @@
         "permanence": "permanent",
         "notes": [
           "Designed to set under tile loads; use appropriate mortar/setting material"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "notched trowel"
@@ -445,7 +470,8 @@
         "moisten per instructions"
       ],
       "curing_time": "24 hours to 7 days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Flooring adhesive",
@@ -467,7 +493,8 @@
         "permanence": "permanent",
         "notes": [
           "Formulated to resist foot traffic and shear loads"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "trowel"
@@ -478,7 +505,8 @@
         "moisture check"
       ],
       "curing_time": "24 hours to 7 days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Wallpaper adhesive",
@@ -499,7 +527,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Designed for interior surfaces; removable with effort"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "paste brush or roller"
@@ -509,7 +538,8 @@
         "smooth wall"
       ],
       "curing_time": "24 hours to several days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "PVC pipe cement",
@@ -530,7 +560,8 @@
         "permanence": "permanent",
         "notes": [
           "Solvent-welds PVC pipes; requires correct primer in some systems"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "applicator brush"
@@ -541,7 +572,8 @@
         "apply primer if required"
       ],
       "curing_time": "minutes to 24 hours (initial set then full cure)",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "ABS pipe cement",
@@ -562,7 +594,8 @@
         "permanence": "permanent",
         "notes": [
           "Formulated for ABS solvent-welding"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "applicator"
@@ -572,7 +605,8 @@
         "degrease"
       ],
       "curing_time": "minutes to 24 hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "CPVC pipe cement",
@@ -593,7 +627,8 @@
         "permanence": "permanent",
         "notes": [
           "High temperature CPVC variants available"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "applicator"
@@ -603,7 +638,8 @@
         "degrease"
       ],
       "curing_time": "minutes to 24 hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "High-temperature adhesive",
@@ -626,7 +662,8 @@
         "permanence": "permanent",
         "notes": [
           "Formulated to remain stable at elevated temperatures"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -635,7 +672,8 @@
         "abrade if metal"
       ],
       "curing_time": "varies by formulation",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Gasket adhesive",
@@ -656,7 +694,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Designed to hold gaskets in place during assembly"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -664,7 +703,8 @@
         "degrease"
       ],
       "curing_time": "minutes to hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Glass adhesive",
@@ -687,7 +727,8 @@
         "permanence": "permanent",
         "notes": [
           "Special formulations for optical clarity and thermal stress"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -696,7 +737,8 @@
         "use primer for some glass types"
       ],
       "curing_time": "hours to days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Metal epoxy",
@@ -717,7 +759,8 @@
         "permanence": "permanent",
         "notes": [
           "Formulated for metal repair and bonding"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "mixing tools"
@@ -728,7 +771,8 @@
         "degrease"
       ],
       "curing_time": "minutes to hours depending on formula",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Fabric adhesive",
@@ -749,7 +793,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Formulated to remain flexible on textiles"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -757,7 +802,8 @@
         "dry"
       ],
       "curing_time": "minutes to hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Foam adhesive",
@@ -779,7 +825,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Low mechanical strength; used for cushioning assemblies"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -787,7 +834,8 @@
         "dry"
       ],
       "curing_time": "minutes to hours",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Pressure-sensitive adhesive (PSA)",
@@ -810,7 +858,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Bond forms on applied pressure; includes tapes and labels"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -818,7 +867,8 @@
         "dry"
       ],
       "curing_time": "immediate tack; full ageing over days",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Duct tape",
@@ -841,7 +891,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "General-purpose; leaves residue on removal"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -849,7 +900,8 @@
         "dry"
       ],
       "curing_time": "immediate",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Double-sided tape",
@@ -873,7 +925,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Good for mounting lightweight items; some high-bond variants exist"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
@@ -881,13 +934,14 @@
         "dry"
       ],
       "curing_time": "immediate",
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Hex bolt",
       "category": "mechanical",
       "properties": {
-      "compatible_materials": [
+        "compatible_materials": [
           "metal",
           "wood",
           "plastic"
@@ -904,7 +958,8 @@
         "permanence": "removable",
         "notes": [
           "High strength, reversible; performance depends on material and coating"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "wrench",
@@ -915,7 +970,8 @@
         "correct hole sizing"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Wood screw",
@@ -936,7 +992,8 @@
         "permanence": "removable",
         "notes": [
           "Threads designed for wood gripping; pilot hole often recommended"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "screwdriver",
@@ -947,7 +1004,8 @@
         "pilot hole for hardwoods"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Common nail",
@@ -968,7 +1026,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Simple fastening for wood; limited tensile capacity"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "hammer"
@@ -977,7 +1036,8 @@
         "clean wood surface"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Rivet",
@@ -999,7 +1059,8 @@
         "permanence": "permanent",
         "notes": [
           "Permanent mechanical fastener for sheet materials"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "rivet gun"
@@ -1009,7 +1070,8 @@
         "correct hole size"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Dowel pin",
@@ -1031,7 +1093,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Alignment pins; often used with glue for strength"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "drill",
@@ -1042,7 +1105,8 @@
         "precise hole drilling"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Plastic welding",
@@ -1063,7 +1127,8 @@
         "permanence": "permanent",
         "notes": [
           "Fuses plastic; strong when correctly performed"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "welding gun",
@@ -1076,7 +1141,8 @@
       "curing_time": null,
       "special_conditions": [
         "temperature control required"
-      ]
+      ],
+      "requires_materials": []
     },
     {
       "name": "Metal welding",
@@ -1097,7 +1163,8 @@
         "permanence": "permanent",
         "notes": [
           "Structural joining method; requires skilled operator"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "welding equipment",
@@ -1110,7 +1177,8 @@
       "curing_time": null,
       "special_conditions": [
         "Skilled procedure; heat effects on materials"
-      ]
+      ],
+      "requires_materials": []
     },
     {
       "name": "Soldering",
@@ -1131,7 +1199,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Electrical/mechanical joints but low structural strength; requires flux"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "soldering iron",
@@ -1142,7 +1211,8 @@
         "flux application"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Carriage bolt",
@@ -1164,7 +1234,8 @@
         "permanence": "removable",
         "notes": [
           "Square neck prevents rotation when embedded in wood"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "wrench"
@@ -1174,7 +1245,8 @@
         "correct hole sizing"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Lag bolt",
@@ -1195,7 +1267,8 @@
         "permanence": "removable",
         "notes": [
           "Large structural screw for heavy wood connections"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "socket",
@@ -1206,7 +1279,8 @@
         "pilot hole recommended"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Hex nut",
@@ -1228,10 +1302,14 @@
         "permanence": "removable",
         "notes": [
           "Paired with bolts to clamp materials"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "wrench"
+      ],
+      "requires_materials": [
+        "bolt"
       ],
       "surface_prep": [
         "clean threads"
@@ -1259,10 +1337,14 @@
         "permanence": "removable",
         "notes": [
           "Resists loosening under vibration"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "wrench"
+      ],
+      "requires_materials": [
+        "bolt"
       ],
       "surface_prep": [
         "clean threads"
@@ -1290,7 +1372,8 @@
         "permanence": "removable",
         "notes": [
           "Self-tapping threads for thin metal"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screwdriver",
@@ -1301,7 +1384,8 @@
         "pilot hole optional"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Drywall screw",
@@ -1322,7 +1406,8 @@
         "permanence": "removable",
         "notes": [
           "Brittle steel; not for structural loads"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "screwdriver",
@@ -1332,7 +1417,8 @@
         "clean"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Deck screw",
@@ -1353,7 +1439,8 @@
         "permanence": "removable",
         "notes": [
           "Coated for outdoor weather resistance"
-        ]
+        ],
+        "area": "large"
       },
       "requires_tools": [
         "screwdriver",
@@ -1364,7 +1451,8 @@
         "pilot hole optional"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Self-tapping screw",
@@ -1386,7 +1474,8 @@
         "permanence": "removable",
         "notes": [
           "Forms its own threads in metal or plastic"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "screwdriver",
@@ -1396,7 +1485,8 @@
         "clean"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Finishing nail",
@@ -1417,7 +1507,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Small head for aesthetic finishes"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "hammer"
@@ -1426,7 +1517,8 @@
         "clean wood"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Brad nail",
@@ -1447,7 +1539,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Used for trim and light woodworking"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "hammer",
@@ -1457,7 +1550,8 @@
         "clean"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Roofing nail",
@@ -1478,7 +1572,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Large head for securing shingles outdoors"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "hammer"
@@ -1487,7 +1582,8 @@
         "clean substrate"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Masonry nail",
@@ -1509,7 +1605,8 @@
         "permanence": "semi_permanent",
         "notes": [
           "Hardened steel for driving into masonry"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "hammer"
@@ -1518,7 +1615,8 @@
         "clean masonry"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Wall plug",
@@ -1539,10 +1637,14 @@
         "permanence": "semi_permanent",
         "notes": [
           "Expands to grip holes in masonry"
-        ]
+        ],
+        "area": "medium"
       },
       "requires_tools": [
         "drill"
+      ],
+      "requires_materials": [
+        "screw"
       ],
       "surface_prep": [
         "clean",
@@ -1571,7 +1673,8 @@
         "permanence": "removable",
         "notes": [
           "Provides right-angle reinforcement"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screws",
@@ -1581,7 +1684,8 @@
         "clean surfaces"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Flat bracket",
@@ -1603,11 +1707,15 @@
         "permanence": "removable",
         "notes": [
           "Used for flat reinforcement and joining"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screws",
         "screwdriver"
+      ],
+      "requires_materials": [
+        "screw"
       ],
       "surface_prep": [
         "clean"
@@ -1634,11 +1742,15 @@
         "permanence": "removable",
         "notes": [
           "Strengthens internal corners in frames or boxes"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screws",
         "screwdriver"
+      ],
+      "requires_materials": [
+        "screw"
       ],
       "surface_prep": [
         "clean"
@@ -1666,14 +1778,16 @@
         "permanence": "semi_permanent",
         "notes": [
           "Nylon loop fastener; cut to remove"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [],
       "surface_prep": [
         "ensure clean anchor point"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Pipe clamp",
@@ -1695,7 +1809,8 @@
         "permanence": "removable",
         "notes": [
           "Holds pipes securely to surfaces or fixtures"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screwdriver"
@@ -1704,7 +1819,8 @@
         "clean mounting surface"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     },
     {
       "name": "Hose clamp",
@@ -1723,7 +1839,8 @@
         "permanence": "removable",
         "notes": [
           "Ensures tight seal around hoses"
-        ]
+        ],
+        "area": "small"
       },
       "requires_tools": [
         "screwdriver"
@@ -1732,7 +1849,8 @@
         "clean hose"
       ],
       "curing_time": null,
-      "special_conditions": []
+      "special_conditions": [],
+      "requires_materials": []
     }
   ],
   "questions": [
@@ -1751,7 +1869,11 @@
         "paper",
         "stone"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "material_type_2",
@@ -1768,7 +1890,11 @@
         "paper",
         "stone"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "mechanical_strength",
@@ -1782,7 +1908,11 @@
         "high",
         "very_high"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "moisture_exposure",
@@ -1794,7 +1924,11 @@
         "outdoor",
         "submerged"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "permanence",
@@ -1805,7 +1939,11 @@
         "semi_permanent",
         "permanent"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "curing_time",
@@ -1817,7 +1955,9 @@
         "hours",
         "days"
       ],
-      "applicable_to": ["adhesive"]
+      "applicable_to": [
+        "adhesive"
+      ]
     },
     {
       "id": "load_type",
@@ -1829,35 +1969,67 @@
         "heavy_dynamic",
         "vibration"
       ],
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "chemical_corrosion_resistance",
       "text": "Does it require chemical or corrosion resistance?",
       "answer_type": "boolean",
       "choices": null,
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "flexibility",
       "text": "Is flexibility required in the cured state?",
       "answer_type": "boolean",
       "choices": null,
-      "applicable_to": ["adhesive"]
+      "applicable_to": [
+        "adhesive"
+      ]
     },
     {
       "id": "orientation",
       "text": "Is the application vertical or overhead?",
       "answer_type": "boolean",
       "choices": null,
-      "applicable_to": ["adhesive", "mechanical", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     },
     {
       "id": "health_concerns",
       "text": "Are there health concerns (fumes, food safety)?",
       "answer_type": "boolean",
       "choices": null,
-      "applicable_to": ["adhesive", "thermal"]
+      "applicable_to": [
+        "adhesive",
+        "thermal"
+      ]
+    },
+    {
+      "id": "area",
+      "text": "What is the size of the area to be joined?\n(small <20 cm\u00b2, medium <1 m\u00b2, large >1 m\u00b2)",
+      "answer_type": "choice",
+      "choices": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "applicable_to": [
+        "adhesive",
+        "mechanical",
+        "thermal"
+      ]
     }
   ],
   "rules": [
@@ -1876,23 +2048,7 @@
           "thermal"
         ]
       },
-      "priority": 10
-    },
-    {
-      "id": "waterproof_flexible",
-      "conditions": {
-        "moisture_exposure": [
-          "submerged"
-        ],
-        "flexibility": true
-      },
-      "conclusion": {
-        "required_properties": [
-          "water_resistance:excellent",
-          "rigidity:flexible"
-        ]
-      },
-      "priority": 9
+      "priority": 13
     },
     {
       "id": "outdoorproof",
@@ -1904,7 +2060,7 @@
           "water_resistance:good"
         ]
       },
-      "priority": 8
+      "priority": 11
     },
     {
       "id": "removable_connection",
@@ -1916,7 +2072,7 @@
           "permanence:removable"
         ]
       },
-      "priority": 7
+      "priority": 10
     },
     {
       "id": "immediate_use",
@@ -1926,6 +2082,42 @@
       "conclusion": {
         "exclude_categories": [
           "adhesive"
+        ]
+      },
+      "priority": 9
+    },
+    {
+      "id": "health_sensitive_application",
+      "conditions": {
+        "health_concerns": true
+      },
+      "conclusion": {
+        "exclude_categories": [
+          "thermal"
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": "vertical_application_constraints",
+      "conditions": {
+        "orientation": true
+      },
+      "conclusion": {
+        "recommended_categories": [
+          "mechanical"
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": "chemical_resistance_required",
+      "conditions": {
+        "chemical_corrosion_resistance": true
+      },
+      "conclusion": {
+        "required_properties": [
+          "chemical_resistance:good"
         ]
       },
       "priority": 6
@@ -1965,7 +2157,7 @@
           "adhesive"
         ]
       },
-      "priority": 5
+      "priority": 4
     },
     {
       "id": "high_vibration",
@@ -1980,7 +2172,7 @@
           "vibration_resistance:good"
         ]
       },
-      "priority": 4
+      "priority": 3
     },
     {
       "id": "flexible",
@@ -1992,7 +2184,7 @@
           "rigidity:flexible"
         ]
       },
-      "priority": 3
+      "priority": 2
     },
     {
       "id": "inflexible",
@@ -2004,7 +2196,7 @@
           "rigidity:rigid"
         ]
       },
-      "priority": 2
+      "priority": 1
     }
   ],
   "suggestion_rules": [
