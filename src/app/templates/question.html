@@ -4,52 +4,51 @@
   <meta charset="utf-8">
   <title>Question {{ qid }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<body>
+<body><div class="modal question-modal">
 
-<h2>Question {{ count }}</h2>
+    <h2>Question {{ count }}</h2>
 
-<p>{{ question.text }}</p>
+    <p class="question-text">{{ question.text }}</p>
 
-<form method="post">
+    <form method="post">
 
-    {% if question_type == "boolean" %}
-        <label>
-            <input type="radio" name="answer" value="true" required>
-            Yes
-        </label><br>
-
-        <label>
-            <input type="radio" name="answer" value="false">
-            No
-        </label><br>
-
-    {% elif question_type == "choice" %}
-        {% for choice in question.choices %}
+        {% if question_type == "boolean" %}
             <label>
-                <input type="radio" name="answer" value="{{ choice }}" required>
-                {{ choice[0].upper() + choice[1:].lower().replace('_', ' ') }}
-            </label><br>
-        {% endfor %}
-    {% endif %}
+                <input type="radio" name="answer" value="true" required>
+                Yes
+            </label>
 
-    {% if question.id not in ["material_type", "material_type_2"]: %}
-        <label>
-            <input type="radio" name="answer" value="skip">
-            Skip
-        </label><br>
-    {% endif %}
+            <label>
+                <input type="radio" name="answer" value="false">
+                No
+            </label>
 
-    <br>
+        {% elif question_type == "choice" %}
+            {% for choice in question.choices %}
+                <label>
+                    <input type="radio" name="answer" value="{{ choice }}" required>
+                    {{ choice[0].upper() + choice[1:].lower().replace('_', ' ') }}
+                </label>
+            {% endfor %}
+        {% endif %}
 
-    <button type="submit">
-        Next
-    </button>
+        {% if question.id not in ["material_type", "material_type_2"]: %}
+            <label>
+                <input type="radio" name="answer" value="skip">
+                Skip
+            </label><
+        {% endif %}
 
-</form><br>
+        <div class="button">
+            <button type="submit">Next</button>
+        </div>
 
-<form action="{{ url_for('routes.questions_overview') }}" method="get">
-    <button type="submit">Show current overview</button>
-</form>
+    </form>
+    <form action="{{ url_for('routes.questions_overview') }}" method="get">
+        <div class="button">
+            <button type="submit">Show current overview</button>
+        </div>
+    </form>
 
-</body>
+</div></body>
 </html>

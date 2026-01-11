@@ -5,94 +5,97 @@
   <title>Questions</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body><div class="modal">
 
-<h1>Question Overview</h1>
+    <h1>Question Overview</h1>
 
-<p>
-This page shows all questions, your responses, and the fastening methods that
-are still compatible with your answers.
-</p>
+    <p>
+    This page shows all questions, your responses, and the fastening methods that
+    are still compatible with your answers.
+    </p>
 
-<h2>Answered Questions</h2>
+    <h2>Answered Questions</h2>
 
-{% if history|length == 0 %}
-    <p>No questions answered yet.</p>
-{% else %}
-    <table border="1" cellpadding="6" cellspacing="0">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Question</th>
-                <th>Your Answer</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in history %}
+    {% if history|length == 0 %}
+        <p>No questions answered yet.</p>
+    {% else %}
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
                 <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ entry.question_text }}</td>
-                    <td>
-                        {% if entry.answer is none %}
-                            <em>Skipped</em>
-                        {% elif entry.answer is boolean %}
-                            {% if entry.answer %}
-                                Yes
-                            {% else %}
-                                No
-                            {% endif %}
-                        {% else %}
-                            {{ entry.answer[0].upper() + entry.answer[1:].lower().replace('_', ' ') }}
-                        {% endif %}
-                    </td>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Your Answer</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry.question_text }}</td>
+                        <td>
+                            {% if entry.answer is none %}
+                                <em>Skipped</em>
+                            {% elif entry.answer is boolean %}
+                                {% if entry.answer %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            {% else %}
+                                {{ entry.answer[0].upper() + entry.answer[1:].lower().replace('_', ' ') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <hr>
+
+    <h2>Raw Facts (Internal State)</h2>
+    <pre>{{ facts | tojson(indent=2) }}</pre>
+
+    <h2>Current Possible Fasteners</h2>
+
+    {% if recommendations|length == 0 %}
+        <p>
+            No fastening methods currently satisfy all constraints.
+        </p>
+    {% else %}
+        <p>
+            {{ recommendations|length }} fastening method(s) still match the current answers.
+        </p>
+
+        <ul>
+            {% for fastener, _ in recommendations %}
+                <li>
+                    <strong>{{ fastener.name }}</strong>
+                    ({{ fastener.category.value }})
+                </li>
             {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+        </ul>
+    {% endif %}
 
-<hr>
+    <hr>
 
-<h2>Raw Facts (Internal State)</h2>
+    <form action="{{ url_for('routes.question') }}" method="get">
+        <div class="button">
+            <button type="submit">Continue Questionnaire</button>
+        </div>
+    </form>
 
-<pre>
-{{ facts | tojson(indent=2) }}
-</pre>
+    <form action="{{ url_for('routes.results') }}" method="get">
+        <div class="button">
+            <button type="submit">View Final Results</button>
+        </div>
+    </form>
 
-<h2>Current Possible Fasteners</h2>
+    <form action="{{ url_for('routes.reset') }}" method="post">
+        <div class="button">
+            <button type="submit">Restart</button>
+        </div>
+    </form>
 
-{% if recommendations|length == 0 %}
-    <p>
-        No fastening methods currently satisfy all constraints.
-    </p>
-{% else %}
-    <p>
-        {{ recommendations|length }} fastening method(s) still match the current answers.
-    </p>
-
-    <ul>
-        {% for fastener, _ in recommendations %}
-            <li>
-                <strong>{{ fastener.name }}</strong>
-                ({{ fastener.category.value }})
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-<hr>
-
-<form action="{{ url_for('routes.question') }}" method="get">
-    <button type="submit">Continue Questionnaire</button>
-</form>
-
-<form action="{{ url_for('routes.results') }}" method="get">
-    <button type="submit">View Final Results</button>
-</form>
-
-<form action="{{ url_for('routes.reset') }}" method="post">
-    <button type="submit">Restart</button>
-</form>
-
-</body>
+</div></body>
 </html>

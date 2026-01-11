@@ -5,24 +5,25 @@
   <title>Question {{ qid }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body><div class="modal">
+  <h1>Fastener Recommendation System</h1>
 
-<h1>Fastener Recommendation System</h1>
+  <p>
+    This tool helps you select an appropriate fastening method by asking a series
+    of targeted questions. Your answers are evaluated using a rule-based inference
+    engine.
+  </p>
 
-<p>
-This tool helps you select an appropriate fastening method by asking a series
-of targeted questions. Your answers are evaluated using a rule-based inference
-engine.
-</p>
+  <p>
+    You may skip any question. At the end, the system will present one or more
+    recommended fastening solutions.
+  </p>
 
-<p>
-You may skip any question. At the end, the system will present one or more
-recommended fastening solutions.
-</p>
+  <form action="{{ url_for('routes.question') }}" method="get">
+    <div class="button">
+      <button type="submit">Start</button>
+    </div>
+  </form>
 
-<form action="{{ url_for('routes.question') }}" method="get">
-    <button type="submit">Start</button>
-</form>
-
-</body>
+</div></body>
 </html>
