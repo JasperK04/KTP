@@ -1,2345 +1,987 @@
 {
-  "fasteners": [
-    {
-      "name": "Wood glue (PVA)",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "paper"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Works best on porous materials",
-          "Requires clean, dry surfaces"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry",
-        "remove dust"
-      ],
-      "curing_time": "30 minutes to 24 hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Polyurethane glue",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal",
-          "plastic",
-          "stone"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Expands slightly during cure",
-          "Requires moisture for curing in some formulations"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry",
-        "abrade for non-porous"
-      ],
-      "curing_time": "1 hour to 24 hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Two-component epoxy",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal",
-          "ceramic",
-          "stone",
-          "plastic"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "very_high",
-        "water_resistance": "excellent",
-        "weather_resistance": "excellent",
-        "chemical_resistance": "excellent",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "High strength",
-          "Requires clean and abraded surfaces",
-          "Two-part mixing required"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "mixing tools",
-        "dispensing nozzles"
-      ],
-      "surface_prep": [
-        "clean",
-        "abrade",
-        "degrease"
-      ],
-      "curing_time": "5 minutes to 24 hours depending on formulation",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Superglue (cyanoacrylate)",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic",
-          "ceramic",
-          "wood"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Bonds quickly",
-          "Brittle under shear and vibration",
-          "Not ideal for large gaps"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "seconds to minutes",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Construction adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal",
-          "stone",
-          "plastic"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Designed for structural assembly",
-          "Often used in building envelopes"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "caulking gun"
-      ],
-      "surface_prep": [
-        "clean",
-        "dry",
-        "roughen if needed"
-      ],
-      "curing_time": "1 hour to 7 days (formulation dependent)",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Hot-melt glue",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "paper",
-          "fabric",
-          "plastic",
-          "wood"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Fast setting",
-          "Poor high-temperature performance"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "hot glue gun"
-      ],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "seconds to minutes (on cooling)",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Contact cement",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "semi_flexible",
-        "permanence": "permanent",
-        "notes": [
-          "Apply to both surfaces and allow to flash",
-          "Immediate bond on contact"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "brush or roller"
-      ],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "immediate bond after contact; full strength in 24+ hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Silicone sealant",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "glass",
-          "ceramic",
-          "metal",
-          "plastic",
-          "masonry"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "very_low",
-        "water_resistance": "excellent",
-        "weather_resistance": "excellent",
-        "chemical_resistance": "good",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "excellent",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Not structural",
-          "Excellent for movement joints"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "caulking gun"
-      ],
-      "surface_prep": [
-        "clean",
-        "degrease",
-        "use primer if specified"
-      ],
-      "curing_time": "24 hours to several days (skin time within hours)",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Acrylic sealant",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "masonry",
-          "wood"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "very_low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "good",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Paintable",
-          "Used for interior/exterior joints with limited movement"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "caulking gun"
-      ],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "24 hours to several days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Spray adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "fabric",
-          "paper",
-          "plastic"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Good for light bonding and laminating",
-          "Can be messy; ventilation required"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "spray can or sprayer"
-      ],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "minutes to hours (tack dependent)",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Rubber cement",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "paper"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "very_low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "flexible",
-        "permanence": "removable",
-        "notes": [
-          "Removable bonds on paper",
-          "Primarily for craft/bookbinding"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "minutes",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Marine epoxy",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal",
-          "glass",
-          "stone"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "very_high",
-        "water_resistance": "excellent",
-        "weather_resistance": "excellent",
-        "chemical_resistance": "excellent",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Formulated for submerged/outdoor conditions",
-          "Very good environmental resistance"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "mixing tools"
-      ],
-      "surface_prep": [
-        "clean",
-        "abrade",
-        "degrease"
-      ],
-      "curing_time": "hours to days depending on formulation",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Tile adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "ceramic",
-          "stone"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "moderate",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Designed to set under tile loads; use appropriate mortar/setting material"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "notched trowel"
-      ],
-      "surface_prep": [
-        "clean",
-        "roughen substrate if needed",
-        "moisten per instructions"
-      ],
-      "curing_time": "24 hours to 7 days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Flooring adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "stone"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "good",
-        "rigidity": "semi_flexible",
-        "permanence": "permanent",
-        "notes": [
-          "Formulated to resist foot traffic and shear loads"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "trowel"
-      ],
-      "surface_prep": [
-        "clean",
-        "flat",
-        "moisture check"
-      ],
-      "curing_time": "24 hours to 7 days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Wallpaper adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "paper"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Designed for interior surfaces; removable with effort"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "paste brush or roller"
-      ],
-      "surface_prep": [
-        "clean",
-        "smooth wall"
-      ],
-      "curing_time": "24 hours to several days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "PVC pipe cement",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "moderate",
-        "water_resistance": "excellent",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Solvent-welds PVC pipes; requires correct primer in some systems"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "applicator brush"
-      ],
-      "surface_prep": [
-        "clean",
-        "degrease",
-        "apply primer if required"
-      ],
-      "curing_time": "minutes to 24 hours (initial set then full cure)",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "ABS pipe cement",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "moderate",
-        "water_resistance": "excellent",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Formulated for ABS solvent-welding"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "applicator"
-      ],
-      "surface_prep": [
-        "clean",
-        "degrease"
-      ],
-      "curing_time": "minutes to 24 hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "CPVC pipe cement",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "moderate",
-        "water_resistance": "excellent",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "High temperature CPVC variants available"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "applicator"
-      ],
-      "surface_prep": [
-        "clean",
-        "degrease"
-      ],
-      "curing_time": "minutes to 24 hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "High-temperature adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "ceramic",
-          "plastic"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Formulated to remain stable at elevated temperatures"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "degrease",
-        "abrade if metal"
-      ],
-      "curing_time": "varies by formulation",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Gasket adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "metal"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Designed to hold gaskets in place during assembly"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "degrease"
-      ],
-      "curing_time": "minutes to hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Glass adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "glass",
-          "ceramic",
-          "metal"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "moderate",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Special formulations for optical clarity and thermal stress"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "degrease",
-        "use primer for some glass types"
-      ],
-      "curing_time": "hours to days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Metal epoxy",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "metal"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "very_high",
-        "water_resistance": "excellent",
-        "weather_resistance": "excellent",
-        "chemical_resistance": "excellent",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Formulated for metal repair and bonding"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "mixing tools"
-      ],
-      "surface_prep": [
-        "clean",
-        "abrade",
-        "degrease"
-      ],
-      "curing_time": "minutes to hours depending on formula",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Fabric adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "fabric"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Formulated to remain flexible on textiles"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "minutes to hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Foam adhesive",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "fabric",
-          "plastic"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "very_low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Low mechanical strength; used for cushioning assemblies"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "minutes to hours",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Pressure-sensitive adhesive (PSA)",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "paper",
-          "plastic",
-          "metal"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Bond forms on applied pressure; includes tapes and labels"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "immediate tack; full ageing over days",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Duct tape",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "plastic",
-          "fabric",
-          "metal"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "General-purpose; leaves residue on removal"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "immediate",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Double-sided tape",
-      "category": "adhesive",
-      "properties": {
-        "compatible_materials": [
-          "paper",
-          "plastic",
-          "metal",
-          "glass"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Good for mounting lightweight items; some high-bond variants exist"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "clean",
-        "dry"
-      ],
-      "curing_time": "immediate",
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Hex bolt",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "wood",
-          "plastic"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "High strength, reversible; performance depends on material and coating"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "wrench",
-        "socket"
-      ],
-      "surface_prep": [
-        "clean",
-        "correct hole sizing"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Wood screw",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Threads designed for wood gripping; pilot hole often recommended"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "screwdriver",
-        "drill"
-      ],
-      "surface_prep": [
-        "clean",
-        "pilot hole for hardwoods"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Common nail",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Simple fastening for wood; limited tensile capacity"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "hammer"
-      ],
-      "surface_prep": [
-        "clean wood surface"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Rivet",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "high",
-        "compressive_strength": "moderate",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Permanent mechanical fastener for sheet materials"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "rivet gun"
-      ],
-      "surface_prep": [
-        "clean",
-        "correct hole size"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Dowel pin",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Alignment pins; often used with glue for strength"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "drill",
-        "press (for metal)"
-      ],
-      "surface_prep": [
-        "clean",
-        "precise hole drilling"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Plastic welding",
-      "category": "thermal",
-      "properties": {
-        "compatible_materials": [
-          "plastic"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "good",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Fuses plastic; strong when correctly performed"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "welding gun",
-        "preparatory tools"
-      ],
-      "surface_prep": [
-        "clean",
-        "remove contaminants"
-      ],
-      "curing_time": null,
-      "special_conditions": [
-        "temperature control required"
-      ],
-      "requires_materials": []
-    },
-    {
-      "name": "Metal welding",
-      "category": "thermal",
-      "properties": {
-        "compatible_materials": [
-          "metal"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "very_high",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "good",
-        "temperature_resistance": "excellent",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "permanent",
-        "notes": [
-          "Structural joining method; requires skilled operator"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "welding equipment",
-        "safety gear"
-      ],
-      "surface_prep": [
-        "clean",
-        "remove oxides and coatings"
-      ],
-      "curing_time": null,
-      "special_conditions": [
-        "Skilled procedure; heat effects on materials"
-      ],
-      "requires_materials": []
-    },
-    {
-      "name": "Soldering",
-      "category": "thermal",
-      "properties": {
-        "compatible_materials": [
-          "metal"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "poor",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Electrical/mechanical joints but low structural strength; requires flux"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "soldering iron",
-        "flux"
-      ],
-      "surface_prep": [
-        "clean",
-        "flux application"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Carriage bolt",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "moderate",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Square neck prevents rotation when embedded in wood"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "wrench"
-      ],
-      "surface_prep": [
-        "clean",
-        "correct hole sizing"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Lag bolt",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Large structural screw for heavy wood connections"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "socket",
-        "wrench"
-      ],
-      "surface_prep": [
-        "clean",
-        "pilot hole recommended"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Hex nut",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "very_high",
-        "shear_strength": "very_high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Paired with bolts to clamp materials"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "wrench"
-      ],
-      "requires_materials": [
-        "bolt"
-      ],
-      "surface_prep": [
-        "clean threads"
-      ],
-      "curing_time": null,
-      "special_conditions": []
-    },
-    {
-      "name": "Lock nut",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Resists loosening under vibration"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "wrench"
-      ],
-      "requires_materials": [
-        "bolt"
-      ],
-      "surface_prep": [
-        "clean threads"
-      ],
-      "curing_time": null,
-      "special_conditions": []
-    },
-    {
-      "name": "Sheet metal screw",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Self-tapping threads for thin metal"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screwdriver",
-        "drill"
-      ],
-      "surface_prep": [
-        "clean",
-        "pilot hole optional"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Drywall screw",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Brittle steel; not for structural loads"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "screwdriver",
-        "drill"
-      ],
-      "surface_prep": [
-        "clean"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Deck screw",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Coated for outdoor weather resistance"
-        ],
-        "area": "large"
-      },
-      "requires_tools": [
-        "screwdriver",
-        "drill"
-      ],
-      "surface_prep": [
-        "clean",
-        "pilot hole optional"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Self-tapping screw",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Forms its own threads in metal or plastic"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "screwdriver",
-        "drill"
-      ],
-      "surface_prep": [
-        "clean"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Finishing nail",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Small head for aesthetic finishes"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "hammer"
-      ],
-      "surface_prep": [
-        "clean wood"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Brad nail",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "very_low",
-        "shear_strength": "very_low",
-        "compressive_strength": "low",
-        "water_resistance": "poor",
-        "weather_resistance": "poor",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Used for trim and light woodworking"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "hammer",
-        "nail gun"
-      ],
-      "surface_prep": [
-        "clean"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Roofing nail",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "low",
-        "compressive_strength": "low",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Large head for securing shingles outdoors"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "hammer"
-      ],
-      "surface_prep": [
-        "clean substrate"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Masonry nail",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "stone",
-          "masonry"
-        ],
-        "tensile_strength": "low",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "poor",
-        "rigidity": "rigid",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Hardened steel for driving into masonry"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "hammer"
-      ],
-      "surface_prep": [
-        "clean masonry"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Wall plug",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "stone"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "moderate",
-        "compressive_strength": "low",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "semi_flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Expands to grip holes in masonry"
-        ],
-        "area": "medium"
-      },
-      "requires_tools": [
-        "drill"
-      ],
-      "requires_materials": [
-        "screw"
-      ],
-      "surface_prep": [
-        "clean",
-        "correct hole sizing"
-      ],
-      "curing_time": null,
-      "special_conditions": []
-    },
-    {
-      "name": "Angle bracket",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Provides right-angle reinforcement"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screws",
-        "screwdriver"
-      ],
-      "surface_prep": [
-        "clean surfaces"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Flat bracket",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood",
-          "metal"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Used for flat reinforcement and joining"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screws",
-        "screwdriver"
-      ],
-      "requires_materials": [
-        "screw"
-      ],
-      "surface_prep": [
-        "clean"
-      ],
-      "curing_time": null,
-      "special_conditions": []
-    },
-    {
-      "name": "Corner brace",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "wood"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "high",
-        "compressive_strength": "high",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "good",
-        "vibration_resistance": "fair",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Strengthens internal corners in frames or boxes"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screws",
-        "screwdriver"
-      ],
-      "requires_materials": [
-        "screw"
-      ],
-      "surface_prep": [
-        "clean"
-      ],
-      "curing_time": null,
-      "special_conditions": []
-    },
-    {
-      "name": "Cable tie",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "plastic",
-          "metal"
-        ],
-        "tensile_strength": "moderate",
-        "shear_strength": "very_low",
-        "compressive_strength": "none",
-        "water_resistance": "fair",
-        "weather_resistance": "fair",
-        "chemical_resistance": "poor",
-        "temperature_resistance": "fair",
-        "vibration_resistance": "fair",
-        "rigidity": "flexible",
-        "permanence": "semi_permanent",
-        "notes": [
-          "Nylon loop fastener; cut to remove"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [],
-      "surface_prep": [
-        "ensure clean anchor point"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Pipe clamp",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [
-          "metal",
-          "plastic"
-        ],
-        "tensile_strength": "high",
-        "shear_strength": "moderate",
-        "compressive_strength": "moderate",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "rigid",
-        "permanence": "removable",
-        "notes": [
-          "Holds pipes securely to surfaces or fixtures"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screwdriver"
-      ],
-      "surface_prep": [
-        "clean mounting surface"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    },
-    {
-      "name": "Hose clamp",
-      "category": "mechanical",
-      "properties": {
-        "compatible_materials": [],
-        "tensile_strength": "low",
-        "shear_strength": "none",
-        "compressive_strength": "moderate",
-        "water_resistance": "good",
-        "weather_resistance": "good",
-        "chemical_resistance": "fair",
-        "temperature_resistance": "good",
-        "vibration_resistance": "good",
-        "rigidity": "semi_flexible",
-        "permanence": "removable",
-        "notes": [
-          "Ensures tight seal around hoses"
-        ],
-        "area": "small"
-      },
-      "requires_tools": [
-        "screwdriver"
-      ],
-      "surface_prep": [
-        "clean hose"
-      ],
-      "curing_time": null,
-      "special_conditions": [],
-      "requires_materials": []
-    }
-  ],
-  "questions": [
-    {
-      "id": "material_type",
-      "text": "What is the first surface it is intended for?",
-      "answer_type": "choice",
-      "choices": [
-        "wood",
-        "metal",
-        "masonry",
-        "plastic",
-        "glass",
-        "ceramic",
-        "fabric",
-        "paper",
-        "stone"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "material_type_2",
-      "text": "What is the second surface it is intended for?",
-      "answer_type": "choice",
-      "choices": [
-        "wood",
-        "metal",
-        "masonry",
-        "plastic",
-        "glass",
-        "ceramic",
-        "fabric",
-        "paper",
-        "stone"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "mechanical_strength",
-      "text": "What type of mechanical strength is required?",
-      "answer_type": "choice",
-      "choices": [
-        "none",
-        "very_low",
-        "low",
-        "moderate",
-        "high",
-        "very_high"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "moisture_exposure",
-      "text": "Will the connection be exposed to weather or moisture?",
-      "answer_type": "choice",
-      "choices": [
-        "no",
-        "splash",
-        "outdoor",
-        "submerged"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "permanence",
-      "text": "Does the connection need to be permanent or removable?",
-      "answer_type": "choice",
-      "choices": [
-        "removable",
-        "semi_permanent",
-        "permanent"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "curing_time",
-      "text": "What is the acceptable curing/drying time?",
-      "answer_type": "choice",
-      "choices": [
-        "immediate",
-        "minutes",
-        "hours",
-        "days"
-      ],
-      "applicable_to": [
-        "adhesive"
-      ]
-    },
-    {
-      "id": "load_type",
-      "text": "What load will the connection experience?",
-      "answer_type": "choice",
-      "choices": [
-        "static",
-        "light_dynamic",
-        "heavy_dynamic",
-        "vibration"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "chemical_corrosion_resistance",
-      "text": "Does it require chemical or corrosion resistance?",
-      "answer_type": "boolean",
-      "choices": null,
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "flexibility",
-      "text": "Is flexibility required in the cured state?",
-      "answer_type": "boolean",
-      "choices": null,
-      "applicable_to": [
-        "adhesive"
-      ]
-    },
-    {
-      "id": "orientation",
-      "text": "Is the application vertical or overhead?",
-      "answer_type": "boolean",
-      "choices": null,
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    },
-    {
-      "id": "health_concerns",
-      "text": "Are there health concerns (fumes, food safety)?",
-      "answer_type": "boolean",
-      "choices": null,
-      "applicable_to": [
-        "adhesive",
-        "thermal"
-      ]
-    },
-    {
-      "id": "area",
-      "text": "What is the size of the area to be joined?\n(small <20 cm\u00b2, medium <1 m\u00b2, large >1 m\u00b2)",
-      "answer_type": "choice",
-      "choices": [
-        "small",
-        "medium",
-        "large"
-      ],
-      "applicable_to": [
-        "adhesive",
-        "mechanical",
-        "thermal"
-      ]
-    }
-  ],
-  "rules": [
-    {
-      "id": "high_strength_metal",
-      "conditions": {
-        "material_type": "metal",
-        "mechanical_strength": [
-          "high",
-          "very_high"
-        ]
-      },
-      "conclusion": {
-        "recommended_categories": [
-          "mechanical",
-          "thermal"
-        ]
-      },
-      "priority": 13
-    },
-    {
-      "id": "outdoorproof",
-      "conditions": {
-        "moisture_exposure": "outdoor"
-      },
-      "conclusion": {
-        "required_properties": [
-          "water_resistance:good"
-        ]
-      },
-      "priority": 11
-    },
-    {
-      "id": "removable_connection",
-      "conditions": {
-        "permanence": "removable"
-      },
-      "conclusion": {
-        "required_properties": [
-          "permanence:removable"
-        ]
-      },
-      "priority": 10
-    },
-    {
-      "id": "immediate_use",
-      "conditions": {
-        "curing_time": "immediate"
-      },
-      "conclusion": {
-        "exclude_categories": [
-          "adhesive"
-        ]
-      },
-      "priority": 9
-    },
-    {
-      "id": "health_sensitive_application",
-      "conditions": {
-        "health_concerns": true
-      },
-      "conclusion": {
-        "exclude_categories": [
-          "thermal"
-        ]
-      },
-      "priority": 8
-    },
-    {
-      "id": "vertical_application_constraints",
-      "conditions": {
-        "orientation": true
-      },
-      "conclusion": {
-        "recommended_categories": [
-          "mechanical"
-        ]
-      },
-      "priority": 7
-    },
-    {
-      "id": "chemical_resistance_required",
-      "conditions": {
-        "chemical_corrosion_resistance": true
-      },
-      "conclusion": {
-        "required_properties": [
-          "chemical_resistance:good"
-        ]
-      },
-      "priority": 6
-    },
-    {
-      "id": "wood_to_wood",
-      "conditions": {
-        "material_type": "wood",
-        "material_type_2": "wood",
-        "mechanical_strength": [
-          "low",
-          "moderate"
-        ]
-      },
-      "conclusion": {
-        "recommended_categories": [
-          "adhesive",
-          "mechanical"
-        ]
-      },
-      "priority": 5
-    },
-    {
-      "id": "glass_ceramic_applications",
-      "conditions": {
-        "material_type": [
-          "glass",
-          "ceramic"
-        ],
-        "material_type_2": [
-          "glass",
-          "ceramic"
-        ]
-      },
-      "conclusion": {
-        "recommended_categories": [
-          "adhesive"
-        ]
-      },
-      "priority": 4
-    },
-    {
-      "id": "high_vibration",
-      "conditions": {
-        "load_type": [
-          "vibration",
-          "heavy_dynamic"
-        ]
-      },
-      "conclusion": {
-        "required_properties": [
-          "vibration_resistance:good"
-        ]
-      },
-      "priority": 3
-    },
-    {
-      "id": "flexible",
-      "conditions": {
-        "flexibility": true
-      },
-      "conclusion": {
-        "required_properties": [
-          "rigidity:flexible"
-        ]
-      },
-      "priority": 2
-    },
-    {
-      "id": "inflexible",
-      "conditions": {
-        "flexibility": false
-      },
-      "conclusion": {
-        "required_properties": [
-          "rigidity:rigid"
-        ]
-      },
-      "priority": 1
-    }
-  ],
-  "suggestion_rules": [
-    {
-      "id": "bolts_outdoor_corrosion",
-      "applies_to_fasteners": [
-        "bolts",
-        "nuts"
-      ],
-      "conditions": {
-        "moisture_exposure": [
-          "outdoor",
-          "submerged"
-        ]
-      },
-      "suggestion": "Consider stainless steel bolts for superior corrosion resistance"
-    },
-    {
-      "id": "bolts_marine_grade",
-      "applies_to_fasteners": [
-        "bolts",
-        "nuts"
-      ],
-      "conditions": {
-        "moisture_exposure": "submerged"
-      },
-      "suggestion": "Use marine-grade (316) stainless steel for saltwater applications"
-    },
-    {
-      "id": "bolts_splash_protection",
-      "applies_to_fasteners": [
-        "bolts",
-        "nuts"
-      ],
-      "conditions": {
-        "moisture_exposure": "splash"
-      },
-      "suggestion": "Zinc-plated or galvanized fasteners recommended for moisture protection"
-    },
-    {
-      "id": "bolts_vibration_locking",
-      "applies_to_fasteners": [
-        "bolts",
-        "nuts"
-      ],
-      "conditions": {
-        "load_type": [
-          "vibration",
-          "heavy_dynamic"
-        ]
-      },
-      "suggestion": "Use lock washers, lock nuts, or threadlocker to prevent loosening"
-    },
-    {
-      "id": "bolts_chemical_resistance",
-      "applies_to_fasteners": [
-        "bolts",
-        "nuts",
-        "screws"
-      ],
-      "conditions": {
-        "chemical_corrosion_resistance": true
-      },
-      "suggestion": "Consider coated or stainless steel fasteners for chemical resistance"
-    },
-    {
-      "id": "screws_outdoor_coating",
-      "applies_to_fasteners": [
-        "screws"
-      ],
-      "conditions": {
-        "moisture_exposure": [
-          "outdoor",
-          "submerged"
-        ]
-      },
-      "suggestion": "Use stainless steel or coated screws for outdoor applications"
-    },
-    {
-      "id": "wood_screws_pilot_holes",
-      "applies_to_fasteners": [
-        "Wood screws"
-      ],
-      "conditions": {
-        "material_type": "wood"
-      },
-      "suggestion": "Pre-drill pilot holes to prevent splitting, especially near edges"
-    },
-    {
-      "id": "adhesive_vertical_application",
-      "applies_to_fasteners": [
-        "adhesive"
-      ],
-      "conditions": {
-        "orientation": true
-      },
-      "suggestion": "For vertical/overhead application, consider using tape or clamps during curing"
-    },
-    {
-      "id": "adhesive_health_ventilation",
-      "applies_to_fasteners": [
-        "adhesive"
-      ],
-      "conditions": {
-        "health_concerns": true
-      },
-      "suggestion": "Ensure adequate ventilation and consider low-VOC or food-safe options"
-    },
-    {
-      "id": "adhesive_curing_time_note",
-      "applies_to_fasteners": [
-        "adhesive"
-      ],
-      "conditions": {
-        "curing_time": "immediate"
-      },
-      "suggestion": "Note: Most adhesives require curing time. Consider mechanical fasteners for immediate use"
-    },
-    {
-      "id": "welding_equipment_requirement",
-      "applies_to_fasteners": [
-        "welding"
-      ],
-      "conditions": {},
-      "suggestion": "Requires specialized equipment and trained operator"
-    },
-    {
-      "id": "welding_joint_design",
-      "applies_to_fasteners": [
-        "welding"
-      ],
-      "conditions": {},
-      "suggestion": "Consider joint design and material thickness for optimal weld strength"
-    },
-    {
-      "id": "welding_safety",
-      "applies_to_fasteners": [
-        "welding"
-      ],
-      "conditions": {
-        "health_concerns": true
-      },
-      "suggestion": "Welding produces fumes - ensure proper ventilation and PPE"
-    }
+"questions": [
+{
+  "id": "material_a_type",
+  "text": "What is the first material?",
+  "attribute": "materials.material_a.material_type",
+  "type": "enum",
+  "options": ["wood", "metal", "paper", "plastic", "glass", "ceramic", "stone", "masonry", "fabric"],
+  "helps_rules": [
+    "paper_to_paper",
+    "brittle_material_present",
+    "fabric_involved",
+    "metal_to_metal",
+    "wood_to_wood"
   ]
+},
+{
+  "id": "material_b_type",
+  "text": "What is the second material?",
+  "attribute": "materials.material_b.material_type",
+  "type": "enum",
+  "options": ["wood", "metal", "paper", "plastic", "glass", "ceramic", "stone", "masonry", "fabric"],
+  "helps_rules": [
+    "paper_to_paper",
+    "brittle_material_present",
+    "fabric_involved",
+    "metal_to_metal",
+    "wood_to_wood"
+  ]
+},
+{
+  "id": "environment_moisture",
+  "text": "What is the moisture exposure?",
+  "attribute": "environment.moisture",
+  "type": "enum",
+  "options": ["none", "splash", "outdoor", "submerged"],
+  "helps_rules": [
+    "outdoor_environment",
+    "submerged_environment"
+  ]
+},
+{
+  "id": "load_type",
+  "text": "What type of load is applied?",
+  "attribute": "load.load_type",
+  "type": "enum",
+  "options": ["static", "light_dynamic", "heavy_dynamic"],
+  "helps_rules": [
+    "static_load",
+    "light_dynamic_load",
+    "heavy_dynamic_load"
+  ]
+},
+{
+  "id": "vibration",
+  "text": "Is there vibration?",
+  "attribute": "load.vibration",
+  "type": "boolean",
+  "ask_if": {
+    "load.load_type": ["light_dynamic", "heavy_dynamic"]
+  },
+  "helps_rules": [
+    "vibration_present",
+    "vibration_and_permanent"
+  ]
+},
+{
+  "id": "permanence",
+  "text": "How permanent should the connection be?",
+  "attribute": "constraints.permanence",
+  "type": "enum",
+  "options": ["removable", "semi_permanent", "permanent"],
+  "helps_rules": [
+    "removable_connection",
+    "permanent_connection",
+    "vibration_and_permanent"
+  ]
+},
+{
+  "id": "uv_exposure",
+  "text": "Will the connection be exposed to sunlight (UV)?",
+  "attribute": "environment.uv_exposure",
+  "type": "boolean",
+  "ask_if": {
+    "environment.moisture": ["outdoor", "submerged"]
+  },
+  "helps_rules": [
+    "uv_exposure_present"
+  ]
+},
+{
+  "id": "temperature_extremes",
+  "text": "Will the connection experience high or low temperature extremes?",
+  "attribute": "environment.temperature_extremes",
+  "type": "boolean",
+  "ask_if": {
+    "environment.moisture": ["outdoor", "submerged"]
+  },
+  "helps_rules": [
+    "temperature_extremes_present"
+  ]
+},
+{
+  "id": "load_direction",
+  "text": "Is the load primarily pulling (tension) rather than pressing (compression)?",
+  "attribute": "load.tension_dominant",
+  "type": "boolean",
+  "ask_if": {
+    "load.load_type": ["light_dynamic", "heavy_dynamic"]
+  },
+  "helps_rules": [
+    "tension_dominant_load"
+  ]
+},
+{
+  "id": "shock_loads",
+  "text": "Will the connection experience sudden impacts or shocks?",
+  "attribute": "load.shock_loads",
+  "type": "boolean",
+  "ask_if": {
+    "load.load_type": ["light_dynamic", "heavy_dynamic"]
+  },
+  "helps_rules": [
+    "shock_loads_present"
+  ]
+},
+{
+  "id": "access_one_side",
+  "text": "Is only one side of the materials accessible during installation?",
+  "attribute": "constraints.one_sided_access",
+  "type": "boolean",
+  "helps_rules": [
+    "one_sided_access"
+  ]
+},
+{
+  "id": "precision_required",
+  "text": "Is precise positioning of the materials required?",
+  "attribute": "constraints.precision_required",
+  "type": "boolean",
+  "helps_rules": [
+    "precision_required"
+  ]
+}
+],
+"materials": [
+{
+    "material_type": "wood",
+    "porosity": "medium",
+    "brittleness": "low",
+    "base_strength": "moderate",
+    "notes": [
+    "Porous natural material",
+    "Accepts both adhesives and mechanical fasteners"
+    ]
+},
+{
+    "material_type": "metal",
+    "porosity": "low",
+    "brittleness": "low",
+    "base_strength": "very_high",
+    "notes": [
+    "High strength and stiffness",
+    "Requires surface preparation for adhesives"
+    ]
+},
+{
+    "material_type": "paper",
+    "porosity": "high",
+    "brittleness": "high",
+    "base_strength": "very_low",
+    "notes": [
+    "Very weak and thin material",
+    "Unsuitable for most mechanical fasteners"
+    ]
+},
+{
+    "material_type": "plastic",
+    "porosity": "low",
+    "brittleness": "medium",
+    "base_strength": "low",
+    "notes": [
+    "Highly variable material class",
+    "May creep under load"
+    ]
+},
+{
+    "material_type": "glass",
+    "porosity": "none",
+    "brittleness": "very_high",
+    "base_strength": "low",
+    "notes": [
+    "Brittle material",
+    "Cannot tolerate point loads"
+    ]
+},
+{
+    "material_type": "ceramic",
+    "porosity": "low",
+    "brittleness": "very_high",
+    "base_strength": "low",
+    "notes": [
+    "Hard but brittle",
+    "Requires compliant or adhesive bonding"
+    ]
+},
+{
+    "material_type": "stone",
+    "porosity": "low",
+    "brittleness": "high",
+    "base_strength": "high",
+    "notes": [
+    "Strong in compression",
+    "Poor tensile performance"
+    ]
+},
+{
+    "material_type": "masonry",
+    "porosity": "medium",
+    "brittleness": "high",
+    "base_strength": "high",
+    "notes": [
+    "Composite material (brick, concrete)",
+    "Requires expansion or anchoring mechanisms"
+    ]
+},
+{
+    "material_type": "fabric",
+    "porosity": "high",
+    "brittleness": "low",
+    "base_strength": "very_low",
+    "notes": [
+    "Flexible and deformable",
+    "Requires flexible or surface-based fastening"
+    ]
+}
+],
+"rules": [
+{
+    "id": "paper_to_paper",
+    "conditions": {
+    "materials.same_material": true,
+    "materials.material_a.material_type": "paper"
+    },
+    "effects": {
+    "requirements.allowed_categories": ["adhesive"],
+    "requirements.excluded_categories": ["mechanical", "thermal"],
+    "requirements.min_tensile_strength": "very_low"
+    }
+},
+{
+    "id": "brittle_materials_present",
+    "conditions": {
+    "materials.any.brittleness": "very_high"
+    },
+    "effects": {
+    "requirements.excluded_categories": ["mechanical"]
+    }
+},
+{
+    "id": "metal_to_metal",
+    "conditions": {
+    "materials.material_a.material_type": "metal",
+    "materials.material_b.material_type": "metal"
+    },
+    "effects": {
+    "requirements.allowed_categories": ["mechanical", "thermal"],
+    "requirements.min_tensile_strength": "high"
+    }
+},
+{
+    "id": "wood_to_wood",
+    "conditions": {
+    "materials.material_a.material_type": "wood",
+    "materials.material_b.material_type": "wood"
+    },
+    "effects": {
+    "requirements.allowed_categories": ["adhesive", "mechanical"]
+    }
+},
+{
+    "id": "fabric_involved",
+    "conditions": {
+    "materials.any.material_type": "fabric"
+    },
+    "effects": {
+    "requirements.allowed_rigidities": ["flexible", "semi_flexible"],
+    "requirements.excluded_categories": ["thermal"]
+    }
+},
+{
+    "id": "masonry_involved",
+    "conditions": {
+    "materials.any.material_type": "masonry"
+    },
+    "effects": {
+    "requirements.min_shear_strength": "moderate"
+    }
+},
+{
+    "id": "outdoor_environment",
+    "conditions": {
+    "environment.moisture": "outdoor"
+    },
+    "effects": {
+    "requirements.min_water_resistance": "good"
+    }
+},
+{
+    "id": "submerged_environment",
+    "conditions": {
+    "environment.moisture": "submerged"
+    },
+    "effects": {
+    "requirements.min_water_resistance": "excellent",
+    "requirements.excluded_categories": ["mechanical"]
+    }
+},
+{
+    "id": "chemical_exposure",
+    "conditions": {
+    "environment.chemical_exposure": true
+    },
+    "effects": {
+    "requirements.min_chemical_resistance": "good"
+    }
+},
+{
+    "id": "static_load",
+    "conditions": {
+    "load.load_type": "static"
+    },
+    "effects": {
+    "load.required_strength": "low"
+    }
+},
+{
+    "id": "light_dynamic_load",
+    "conditions": {
+    "load.load_type": "light_dynamic"
+    },
+    "effects": {
+    "load.required_strength": "moderate"
+    }
+},
+{
+    "id": "heavy_dynamic_load",
+    "conditions": {
+    "load.load_type": "heavy_dynamic"
+    },
+    "effects": {
+    "load.required_strength": "high",
+    "requirements.min_vibration_resistance": "good"
+    }
+},
+{
+    "id": "vibration_present",
+    "conditions": {
+    "load.vibration": true
+    },
+    "effects": {
+    "requirements.min_vibration_resistance": "good",
+    "requirements.excluded_categories": ["adhesive"]
+    }
+},
+{
+    "id": "removable_connection",
+    "conditions": {
+    "constraints.permanence": "removable"
+    },
+    "effects": {
+    "requirements.excluded_categories": ["thermal"],
+    "requirements.allowed_permanence": ["removable", "semi_permanent"]
+    }
+},
+{
+    "id": "permanent_connection",
+    "conditions": {
+    "constraints.permanence": "permanent"
+    },
+    "effects": {
+    "requirements.allowed_permanence": ["permanent"]
+    }
+},
+{
+    "id": "flexibility_required",
+    "conditions": {
+    "constraints.flexibility_required": true
+    },
+    "effects": {
+    "requirements.allowed_rigidities": ["flexible", "semi_flexible"]
+    }
+},
+{
+    "id": "vertical_or_overhead",
+    "conditions": {
+    "constraints.orientation_vertical": true
+    },
+    "effects": {
+    "requirements.allowed_categories": ["mechanical"]
+    }
+},
+{
+    "id": "health_constraints",
+    "conditions": {
+    "constraints.health_constraints": true
+    },
+    "effects": {
+    "requirements.excluded_categories": ["thermal"]
+    }
+},
+{
+    "id": "immediate_use_required",
+    "conditions": {
+    "constraints.max_curing_time": "immediate"
+    },
+    "effects": {
+    "requirements.excluded_categories": ["adhesive"]
+    }
+},
+{
+  "id": "uv_exposure_present",
+  "conditions": {
+    "environment.uv_exposure": true
+  },
+  "effects": {
+    "requirements.min_uv_resistance": "good"
+  }
+},
+{
+  "id": "temperature_extremes_present",
+  "conditions": {
+    "environment.temperature_extremes": true
+  },
+  "effects": {
+    "requirements.min_temperature_resistance": "good"
+  }
+},
+{
+  "id": "tension_dominant_load",
+  "conditions": {
+    "load.tension_dominant": true
+  },
+  "effects": {
+    "requirements.min_tensile_strength": "moderate"
+  }
+},
+{
+  "id": "shock_loads_present",
+  "conditions": {
+    "load.shock_loads": true
+  },
+  "effects": {
+    "requirements.min_shear_strength": "high",
+    "requirements.excluded_categories": ["adhesive"]
+  }
+},
+{
+  "id": "one_sided_access",
+  "conditions": {
+    "constraints.one_sided_access": true
+  },
+  "effects": {
+    "requirements.excluded_categories": ["mechanical", "thermal"],
+    "requirements.allowed_categories": ["adhesive"]
+  }
+},
+{
+  "id": "precision_positioning_required",
+  "conditions": {
+    "constraints.precision_required": true
+  },
+  "effects": {
+    "requirements.allowed_categories": ["adhesive", "thermal"],
+    "requirements.excluded_categories": ["mechanical"]
+  }
+},
+{
+  "id": "vibration_and_permanent",
+  "conditions": {
+    "load.vibration": true,
+    "constraints.permanence": "permanent"
+  },
+  "effects": {
+    "requirements.excluded_categories": ["adhesive"],
+    "requirements.allowed_categories": ["mechanical", "thermal"]
+  }
+}
+],
+"fasteners": [
+  {
+    "name": "Wood glue (PVA)",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "paper"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "poor",
+    "temperature_resistance": "fair",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Polyurethane glue",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "metal", "plastic", "stone"],
+    "tensile_strength": "high",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "fair",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Two-component epoxy",
+    "category": "adhesive",
+    "compatible_materials": ["metal", "ceramic", "stone", "plastic"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "excellent",
+    "temperature_resistance": "good",
+    "uv_resistance": "fair",
+    "vibration_resistance": "good",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Marine epoxy",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "metal", "plastic", "stone"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "excellent",
+    "temperature_resistance": "good",
+    "uv_resistance": "fair",
+    "vibration_resistance": "good",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Metal epoxy",
+    "category": "adhesive",
+    "compatible_materials": ["metal"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "good",
+    "chemical_resistance": "excellent",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Superglue (cyanoacrylate)",
+    "category": "adhesive",
+    "compatible_materials": ["plastic", "metal", "ceramic", "glass"],
+    "tensile_strength": "high",
+    "shear_strength": "low",
+    "water_resistance": "fair",
+    "temperature_resistance": "poor",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Hot-melt glue",
+    "category": "adhesive",
+    "compatible_materials": ["paper", "fabric", "plastic", "wood"],
+    "tensile_strength": "low",
+    "shear_strength": "low",
+    "water_resistance": "poor",
+    "temperature_resistance": "poor",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "semi_flexible",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "High-temperature adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["metal", "ceramic", "stone"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "good",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "good",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Contact cement",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "plastic", "fabric", "paper"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "fair",
+    "temperature_resistance": "fair",
+    "uv_resistance": "poor",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "poor",
+    "rigidity": "flexible",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Silicone sealant",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "glass", "ceramic", "metal", "plastic", "masonry"],
+    "tensile_strength": "very_low",
+    "shear_strength": "very_low",
+    "water_resistance": "excellent",
+    "temperature_resistance": "good",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "excellent",
+    "chemical_resistance": "fair",
+    "rigidity": "flexible",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Glass adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["glass", "metal"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "excellent",
+    "temperature_resistance": "fair",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "fair",
+    "rigidity": "semi_flexible",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Flooring adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "stone", "masonry"],
+    "tensile_strength": "moderate",
+    "shear_strength": "high",
+    "water_resistance": "fair",
+    "temperature_resistance": "fair",
+    "uv_resistance": "poor",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "poor",
+    "rigidity": "semi_flexible",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Wallpaper adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["paper", "masonry"],
+    "tensile_strength": "very_low",
+    "shear_strength": "very_low",
+    "water_resistance": "poor",
+    "temperature_resistance": "poor",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "flexible",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Acrylic adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["metal", "plastic", "glass"],
+    "tensile_strength": "high",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Construction adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["wood", "metal", "stone", "masonry"],
+    "tensile_strength": "high",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "fair",
+    "uv_resistance": "fair",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "semi_flexible",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Fabric adhesive",
+    "category": "adhesive",
+    "compatible_materials": ["fabric", "paper"],
+    "tensile_strength": "low",
+    "shear_strength": "low",
+    "water_resistance": "poor",
+    "temperature_resistance": "poor",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "flexible",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Duct tape",
+    "category": "adhesive",
+    "compatible_materials": ["metal", "plastic", "fabric"],
+    "tensile_strength": "low",
+    "shear_strength": "very_low",
+    "water_resistance": "fair",
+    "temperature_resistance": "poor",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "flexible",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Wood screw",
+    "category": "mechanical",
+    "compatible_materials": ["wood"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "poor",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Deck screw",
+    "category": "mechanical",
+    "compatible_materials": ["wood"],
+    "tensile_strength": "high",
+    "shear_strength": "moderate",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Sheet metal screw",
+    "category": "mechanical",
+    "compatible_materials": ["metal", "plastic"],
+    "tensile_strength": "moderate",
+    "shear_strength": "moderate",
+    "water_resistance": "fair",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Hex bolt",
+    "category": "mechanical",
+    "compatible_materials": ["metal", "wood"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "fair",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": true
+  },
+  {
+    "name": "Lag bolt",
+    "category": "mechanical",
+    "compatible_materials": ["wood"],
+    "tensile_strength": "very_high",
+    "shear_strength": "high",
+    "water_resistance": "fair",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "rivet",
+    "category": "mechanical",
+    "compatible_materials": ["metal", "plastic"],
+    "tensile_strength": "moderate",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "good",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Concrete screw",
+    "category": "mechanical",
+    "compatible_materials": ["masonry", "stone"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "good",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "removable",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Common nail",
+    "category": "mechanical",
+    "compatible_materials": ["wood"],
+    "tensile_strength": "low",
+    "shear_strength": "moderate",
+    "water_resistance": "poor",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Brad nail",
+    "category": "mechanical",
+    "compatible_materials": ["wood"],
+    "tensile_strength": "very_low",
+    "shear_strength": "low",
+    "water_resistance": "poor",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Masonry nail",
+    "category": "mechanical",
+    "compatible_materials": ["masonry", "stone"],
+    "tensile_strength": "moderate",
+    "shear_strength": "high",
+    "water_resistance": "fair",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Staple",
+    "category": "mechanical",
+    "compatible_materials": ["fabric", "paper", "wood"],
+    "tensile_strength": "very_low",
+    "shear_strength": "very_low",
+    "water_resistance": "poor",
+    "temperature_resistance": "fair",
+    "uv_resistance": "poor",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": false
+  },
+  {
+    "name": "Dowel pin",
+    "category": "mechanical",
+    "compatible_materials": ["metal"],
+    "tensile_strength": "low",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "excellent",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": true
+  },
+  {
+    "name": "Metal welding",
+    "category": "thermal",
+    "compatible_materials": ["metal"],
+    "tensile_strength": "very_high",
+    "shear_strength": "very_high",
+    "water_resistance": "good",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "good",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": true
+  },
+  {
+    "name": "Plastic welding",
+    "category": "thermal",
+    "compatible_materials": ["plastic"],
+    "tensile_strength": "high",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "good",
+    "uv_resistance": "good",
+    "vibration_resistance": "good",
+    "chemical_resistance": "fair",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": true
+  },
+  {
+    "name": "Brazing",
+    "category": "thermal",
+    "compatible_materials": ["metal"],
+    "tensile_strength": "high",
+    "shear_strength": "high",
+    "water_resistance": "good",
+    "temperature_resistance": "excellent",
+    "uv_resistance": "excellent",
+    "vibration_resistance": "fair",
+    "chemical_resistance": "good",
+    "rigidity": "rigid",
+    "permanence": "permanent",
+    "requires_two_sided_access": true
+  },
+  {
+    "name": "Soldering",
+    "category": "thermal",
+    "compatible_materials": ["metal"],
+    "tensile_strength": "very_low",
+    "shear_strength": "very_low",
+    "water_resistance": "fair",
+    "temperature_resistance": "fair",
+    "uv_resistance": "fair",
+    "vibration_resistance": "poor",
+    "chemical_resistance": "poor",
+    "rigidity": "rigid",
+    "permanence": "semi_permanent",
+    "requires_two_sided_access": true
+  }
+]
 }
