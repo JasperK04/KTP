@@ -20,6 +20,7 @@ from domain_model import (
     Fastener,
     MaterialType,
     Permanence,
+    ResistanceLevel,
     Rigidity,
     StrengthLevel,
 )
@@ -136,13 +137,13 @@ def load_fasteners(fastener_specs):
                 ],
                 tensile_strength=StrengthLevel(spec["tensile_strength"]),
                 shear_strength=StrengthLevel(spec["shear_strength"]),
-                temperature_resistance=spec["temperature_resistance"],
-                uv_resistance=spec["uv_resistance"],
-                chemical_resistance=spec["chemical_resistance"],
+                temperature_resistance=ResistanceLevel(spec["temperature_resistance"]),
+                uv_resistance=ResistanceLevel(spec["uv_resistance"]),
+                chemical_resistance=ResistanceLevel(spec["chemical_resistance"]),
                 rigidity=Rigidity(spec["rigidity"]),
                 permanence=Permanence(spec["permanence"]),
-                water_resistance=spec["water_resistance"],
-                vibration_resistance=spec["vibration_resistance"],
+                water_resistance=ResistanceLevel(spec["water_resistance"]),
+                vibration_resistance=ResistanceLevel(spec["vibration_resistance"]),
                 requires_two_sided_access=spec["requires_two_sided_access"],
             )
         )
