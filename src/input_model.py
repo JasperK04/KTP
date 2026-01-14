@@ -45,7 +45,28 @@ class InputModel:
     # PUBLIC API
     # ─────────────────────────────────────────────
 
-    def _is_question_applicable(self, question: dict) -> bool:
+    def get_state(self) -> dict[str, Any]:
+        """
+        Serialize the input model state to a dictionary.
+
+        :return: A dictionary representation of the input model state.
+        """
+        return {
+            "answers": self.answers,
+        }
+
+    def restore_state(self, state: dict[str, Any]) -> None:
+        """
+        Restore the input model state from a dictionary.
+
+        :param state: A dictionary representation of the input model state.
+        """
+        self.answers = state.get("answers", {})
+        for question_id, value in self.answers.items():
+            question = self._get_question(question_id)
+            self._apply_answer(question["attribute"], value)
+
+    def is_question_applicable(self, question: dict) -> bool:
         """
         Determine whether a question is applicable given current answers.
 
@@ -80,7 +101,7 @@ class InputModel:
             if question["id"] in self.answers:
                 continue
 
-            if not self._is_question_applicable(question):
+            if not self.is_question_applicable(question):
                 continue
 
             return question
