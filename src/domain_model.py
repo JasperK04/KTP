@@ -118,6 +118,34 @@ class Material:
     brittleness: str
     base_strength: StrengthLevel
 
+    def to_dict(self) -> dict:
+        """
+        Convert the Material object to a dictionary representation.
+
+        :return: A dictionary containing the material's attributes.
+        """
+        return {
+            "material_type": self.material_type.value,
+            "porosity": self.porosity,
+            "brittleness": self.brittleness,
+            "base_strength": self.base_strength.value,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Material":
+        """
+        Create a Material object from a dictionary representation.
+
+        :param data: A dictionary containing the material's attributes.
+        :return: A Material object.
+        """
+        return cls(
+            material_type=MaterialType(data["material_type"]),
+            porosity=data["porosity"],
+            brittleness=data["brittleness"],
+            base_strength=StrengthLevel(data["base_strength"]),
+        )
+
 
 @dataclass
 class MaterialPair:
@@ -139,6 +167,30 @@ class MaterialPair:
         """
         return self.material_a.material_type == self.material_b.material_type
 
+    def to_dict(self) -> dict:
+        """
+        Convert the MaterialPair object to a dictionary representation.
+
+        :return: A dictionary containing the attributes of both materials.
+        """
+        return {
+            "material_a": self.material_a.to_dict(),
+            "material_b": self.material_b.to_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "MaterialPair":
+        """
+        Create a MaterialPair object from a dictionary representation.
+
+        :param data: A dictionary containing the attributes of both materials.
+        :return: A MaterialPair object.
+        """
+        return cls(
+            material_a=Material.from_dict(data["material_a"]),
+            material_b=Material.from_dict(data["material_b"]),
+        )
+
 
 # ─────────────────────────────────────────────
 # CONTEXT OBJECTS
@@ -153,6 +205,34 @@ class Environment:
     chemical_exposure: bool
     uv_exposure: bool
     temperature_extremes: bool
+
+    def to_dict(self) -> dict:
+        """
+        Convert the Environment object to a dictionary representation.
+
+        :return: A dictionary containing the environment's attributes.
+        """
+        return {
+            "moisture": self.moisture.value,
+            "chemical_exposure": self.chemical_exposure,
+            "uv_exposure": self.uv_exposure,
+            "temperature_extremes": self.temperature_extremes,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Environment":
+        """
+        Create an Environment object from a dictionary representation.
+
+        :param data: A dictionary containing the environment's attributes.
+        :return: An Environment object.
+        """
+        return cls(
+            moisture=MoistureExposure(data["moisture"]),
+            chemical_exposure=data["chemical_exposure"],
+            uv_exposure=data["uv_exposure"],
+            temperature_extremes=data["temperature_extremes"],
+        )
 
 
 @dataclass
@@ -170,6 +250,40 @@ class LoadCondition:
     shock_loads: bool
     required_strength: Optional[StrengthLevel] = None
 
+    def to_dict(self) -> dict:
+        """
+        Convert the LoadCondition object to a dictionary representation.
+
+        :return: A dictionary containing the load condition's attributes.
+        """
+        return {
+            "load_type": self.load_type.value,
+            "vibration": self.vibration,
+            "tension_dominant": self.tension_dominant,
+            "shock_loads": self.shock_loads,
+            "required_strength": self.required_strength.value
+            if self.required_strength
+            else None,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "LoadCondition":
+        """
+        Create a LoadCondition object from a dictionary representation.
+
+        :param data: A dictionary containing the load condition's attributes.
+        :return: A LoadCondition object.
+        """
+        return cls(
+            load_type=LoadType(data["load_type"]),
+            vibration=data["vibration"],
+            tension_dominant=data["tension_dominant"],
+            shock_loads=data["shock_loads"],
+            required_strength=StrengthLevel(data["required_strength"])
+            if data["required_strength"]
+            else None,
+        )
+
 
 @dataclass
 class UsageConstraints:
@@ -183,6 +297,38 @@ class UsageConstraints:
     health_constraints: bool
     one_side_accessible: bool
     max_curing_time: Optional[str]
+
+    def to_dict(self) -> dict:
+        """
+        Convert the UsageConstraints object to a dictionary representation.
+
+        :return: A dictionary containing the usage constraints' attributes.
+        """
+        return {
+            "permanence": self.permanence.value,
+            "flexibility_required": self.flexibility_required,
+            "orientation_vertical": self.orientation_vertical,
+            "health_constraints": self.health_constraints,
+            "one_side_accessible": self.one_side_accessible,
+            "max_curing_time": self.max_curing_time,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "UsageConstraints":
+        """
+        Create a UsageConstraints object from a dictionary representation.
+
+        :param data: A dictionary containing the usage constraints' attributes.
+        :return: A UsageConstraints object.
+        """
+        return cls(
+            permanence=Permanence(data["permanence"]),
+            flexibility_required=data["flexibility_required"],
+            orientation_vertical=data["orientation_vertical"],
+            health_constraints=data["health_constraints"],
+            one_side_accessible=data["one_side_accessible"],
+            max_curing_time=data["max_curing_time"],
+        )
 
 
 # ─────────────────────────────────────────────
@@ -211,6 +357,48 @@ class DerivedRequirements:
     allowed_categories: set[str] = field(default_factory=set)
     excluded_categories: set[str] = field(default_factory=set)
 
+    def to_dict(self) -> dict:
+        """
+        Convert the DerivedRequirements object to a dictionary representation.
+
+        :return: A dictionary containing the derived requirements' attributes.
+        """
+        return {
+            "min_tensile_strength": self.min_tensile_strength.value,
+            "min_shear_strength": self.min_shear_strength.value,
+            "min_water_resistance": self.min_water_resistance.value,
+            "min_temperature_resistance": self.min_temperature_resistance.value,
+            "min_uv_resistance": self.min_uv_resistance.value,
+            "min_vibration_resistance": self.min_vibration_resistance.value,
+            "min_chemical_resistance": self.min_chemical_resistance.value,
+            "allowed_rigidities": [r.value for r in self.allowed_rigidities],
+            "allowed_categories": list(self.allowed_categories),
+            "excluded_categories": list(self.excluded_categories),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "DerivedRequirements":
+        """
+        Create a DerivedRequirements object from a dictionary representation.
+
+        :param data: A dictionary containing the derived requirements' attributes.
+        :return: A DerivedRequirements object.
+        """
+        return cls(
+            min_tensile_strength=StrengthLevel(data["min_tensile_strength"]),
+            min_shear_strength=StrengthLevel(data["min_shear_strength"]),
+            min_water_resistance=ResistanceLevel(data["min_water_resistance"]),
+            min_temperature_resistance=ResistanceLevel(
+                data["min_temperature_resistance"]
+            ),
+            min_uv_resistance=ResistanceLevel(data["min_uv_resistance"]),
+            min_vibration_resistance=ResistanceLevel(data["min_vibration_resistance"]),
+            min_chemical_resistance=ResistanceLevel(data["min_chemical_resistance"]),
+            allowed_rigidities={Rigidity(r) for r in data["allowed_rigidities"]},
+            allowed_categories=set(data["allowed_categories"]),
+            excluded_categories=set(data["excluded_categories"]),
+        )
+
 
 # ─────────────────────────────────────────────
 # CENTRAL DOMAIN OBJECT
@@ -230,6 +418,36 @@ class FasteningTask:
     load: LoadCondition
     constraints: UsageConstraints
     requirements: DerivedRequirements = field(default_factory=DerivedRequirements)
+
+    def to_dict(self) -> dict:
+        """
+        Convert the FasteningTask object to a dictionary representation.
+
+        :return: A dictionary containing the fastening task's attributes.
+        """
+        return {
+            "materials": self.materials.to_dict(),
+            "environment": self.environment.to_dict(),
+            "load": self.load.to_dict(),
+            "constraints": self.constraints.to_dict(),
+            "requirements": self.requirements.to_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "FasteningTask":
+        """
+        Create a FasteningTask object from a dictionary representation.
+
+        :param data: A dictionary containing the fastening task's attributes.
+        :return: A FasteningTask object.
+        """
+        return cls(
+            materials=MaterialPair.from_dict(data["materials"]),
+            environment=Environment.from_dict(data["environment"]),
+            load=LoadCondition.from_dict(data["load"]),
+            constraints=UsageConstraints.from_dict(data["constraints"]),
+            requirements=DerivedRequirements.from_dict(data["requirements"]),
+        )
 
 
 # ─────────────────────────────────────────────
@@ -258,3 +476,51 @@ class Fastener:
     permanence: Permanence
 
     requires_two_sided_access: bool
+
+    def to_dict(self) -> dict:
+        """
+        Convert the Fastener object to a dictionary representation.
+
+        :return: A dictionary containing the fastener's attributes.
+        """
+        return {
+            "name": self.name,
+            "category": self.category,
+            "compatible_materials": [m.value for m in self.compatible_materials],
+            "tensile_strength": self.tensile_strength.value,
+            "shear_strength": self.shear_strength.value,
+            "water_resistance": self.water_resistance.value,
+            "temperature_resistance": self.temperature_resistance.value,
+            "uv_resistance": self.uv_resistance.value,
+            "vibration_resistance": self.vibration_resistance.value,
+            "chemical_resistance": self.chemical_resistance.value,
+            "rigidity": self.rigidity.value,
+            "permanence": self.permanence.value,
+            "requires_two_sided_access": self.requires_two_sided_access,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Fastener":
+        """
+        Create a Fastener object from a dictionary representation.
+
+        :param data: A dictionary containing the fastener's attributes.
+        :return: A Fastener object.
+        """
+        return cls(
+            name=data["name"],
+            category=data["category"],
+            compatible_materials=[
+                MaterialType(m) for m in data["compatible_materials"]
+            ],
+            tensile_strength=StrengthLevel(data["tensile_strength"]),
+            shear_strength=StrengthLevel(data["shear_strength"]),
+            water_resistance=ResistanceLevel(data["water_resistance"]),
+            temperature_resistance=ResistanceLevel(data["temperature_resistance"]),
+            uv_resistance=ResistanceLevel(data["uv_resistance"]),
+            vibration_resistance=ResistanceLevel(data["vibration_resistance"]),
+            chemical_resistance=ResistanceLevel(data["chemical_resistance"]),
+            rigidity=Rigidity(data["rigidity"]),
+            permanence=Permanence(data["permanence"]),
+            requires_two_sided_access=data["requires_two_sided_access"],
+        )
