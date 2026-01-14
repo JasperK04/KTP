@@ -79,6 +79,24 @@ class ForwardChainingEngine:
         self.rule_base = rule_base
         self.fired_rules: set[str] = set()
 
+    def get_state(self) -> dict[str, Any]:
+        """
+        Serialize the engine state to a dictionary.
+
+        :return: A dictionary representation of the engine state.
+        """
+        return {
+            "fired_rules": list(self.fired_rules),
+        }
+
+    def restore_state(self, state: dict[str, Any]) -> None:
+        """
+        Restore the engine state from a dictionary.
+
+        :param state: A dictionary representation of the engine state.
+        """
+        self.fired_rules = set(state.get("fired_rules", []))
+
     def infer(self, task: FasteningTask) -> None:
         """
         Perform forward-chaining inference on a fastening task.
