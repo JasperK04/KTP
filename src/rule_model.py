@@ -20,7 +20,7 @@ explicit, expert-verifiable, and independent from the inference mechanism.
 from dataclasses import dataclass
 from typing import Any, Callable
 
-from domain_model import FasteningTask, Rigidity, StrengthLevel
+from domain_model import FasteningTask, ResistanceLevel, Rigidity, StrengthLevel
 
 
 @dataclass
@@ -211,15 +211,23 @@ class RuleFactory:
         def action(task: FasteningTask) -> None:
             for path, value in effect_spec.items():
                 target, attr = self._resolve_parent(task, path)
+                current = getattr(target, attr)
 
-                if isinstance(value, list):
-                    current = getattr(target, attr)
-                    if isinstance(current, set):
-                        current.update(self._coerce_values(value))
-                    else:
-                        setattr(target, attr, value)
+                new_value = self._coerce_value(value)
+
+                if isinstance(current, StrengthLevel):
+                    if current.value < new_value.value:
+                        setattr(target, attr, new_value)
+
+                elif isinstance(current, ResistanceLevel):
+                    if current.value < new_value.value:
+                        setattr(target, attr, new_value)
+
+                elif isinstance(current, set):
+                    current.update(self._coerce_values(value))
+
                 else:
-                    setattr(target, attr, self._coerce_value(value))
+                    setattr(target, attr, new_value)
 
         return action
 
