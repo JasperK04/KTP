@@ -127,7 +127,7 @@ class InputModel:
         """
         return self.task
 
-    def get_question_explanation(self, question_id: str) -> str:
+    def get_question_explanation(self, question_id: str) -> list[str]:
         """
         Return a human-readable explanation of why a question is asked.
         """
@@ -135,13 +135,9 @@ class InputModel:
         rules = question.get("helps_rules", [])
 
         if not rules:
-            return "This question helps specify the fastening task."
+            return ["This question helps specify the fastening task."]
 
-        rule_list = ", ".join(rules)
-        return (
-            "This question helps determine whether the following rules apply: "
-            f"{rule_list}."
-        )
+        return rules
 
     # ─────────────────────────────────────────────
     # INTERNAL METHODS
@@ -195,9 +191,9 @@ class InputModel:
         Create an empty FasteningTask with placeholder sub-objects.
         """
         material_placeholder = Material(
-            material_type=MaterialType.WOOD,
-            porosity="medium",
-            brittleness="medium",
+            material_type=None,  # pyright: ignore[reportArgumentType]
+            porosity="none",
+            brittleness="none",
             base_strength=None,  # pyright: ignore[reportArgumentType]
         )
 

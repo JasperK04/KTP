@@ -37,6 +37,7 @@ class Rule:
     """
 
     id: str
+    context: str
     condition: Callable[[FasteningTask], bool]
     action: Callable[[FasteningTask], None]
 
@@ -156,13 +157,14 @@ class RuleFactory:
         :return: A Rule object.
         """
         rule_id = spec["id"]
+        context = spec.get("context", "")
         condition_spec = spec["conditions"]
         effect_spec = spec["effects"]
 
         condition = self._build_condition(condition_spec)
         action = self._build_action(effect_spec)
 
-        return Rule(rule_id, condition, action)
+        return Rule(rule_id, context, condition, action)
 
     def _build_condition(
         self, condition_spec: dict[str, Any]

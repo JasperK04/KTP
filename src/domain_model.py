@@ -125,10 +125,10 @@ class Material:
         :return: A dictionary containing the material's attributes.
         """
         return {
-            "material_type": self.material_type.value,
+            "material_type": self.material_type.value if self.material_type else None,
             "porosity": self.porosity,
             "brittleness": self.brittleness,
-            "base_strength": self.base_strength.value,
+            "base_strength": self.base_strength.value if self.base_strength else None,
         }
 
     @classmethod
@@ -140,10 +140,14 @@ class Material:
         :return: A Material object.
         """
         return cls(
-            material_type=MaterialType(data["material_type"]),
+            material_type=MaterialType(data["material_type"])
+            if data["material_type"] is not None
+            else None,  # pyright: ignore[reportArgumentType]
             porosity=data["porosity"],
             brittleness=data["brittleness"],
-            base_strength=StrengthLevel(data["base_strength"]),
+            base_strength=StrengthLevel(data["base_strength"])
+            if data["base_strength"] is not None
+            else None,  # pyright: ignore[reportArgumentType]
         )
 
 

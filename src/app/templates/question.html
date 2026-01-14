@@ -2,20 +2,22 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Question {{ qid }}</title>
+  <title>Question</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<body><div class="modal question-modal">
+</head>
 
-    <h2>Question {{ count }}</h2>
+<body>
+<div class="modal question-modal">
+
+    <h2>Question</h2>
 
     {% for line in question.text.split('\n') %}
         <p class="question-text">{{ line }}</p>
     {% endfor %}
 
-
     <form method="post">
 
-        {% if question_type == "boolean" %}
+        {% if question.type == "boolean" %}
             <label>
                 <input type="radio" name="answer" value="true" required>
                 Yes
@@ -26,20 +28,13 @@
                 No
             </label>
 
-        {% elif question_type == "choice" %}
-            {% for choice in question.choices %}
+        {% elif question.type == "enum" %}
+            {% for choice in question.options %}
                 <label>
                     <input type="radio" name="answer" value="{{ choice }}" required>
-                    {{ choice[0].upper() + choice[1:].lower().replace('_', ' ') }}
+                    {{ choice.replace("_", " ").capitalize() }}
                 </label>
             {% endfor %}
-        {% endif %}
-
-        {% if question.id not in ["material_type", "material_type_2"]: %}
-            <label>
-                <input type="radio" name="answer" value="skip">
-                Skip
-            </label>
         {% endif %}
 
         <div class="button">
@@ -47,11 +42,25 @@
         </div>
 
     </form>
+
+
+    {% if explanations %}
+        <div class="explanations">
+            <p>Why this question is asked:</p>
+            {% for line in explanations %}
+            <p class="question-explanation">
+                {{ line }}
+            </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form action="{{ url_for('routes.questions_overview') }}" method="get">
-        <div class="button">
+        <div class="button secondary">
             <button type="submit">Show current overview</button>
         </div>
     </form>
 
-</div></body>
+</div>
+</body>
 </html>

@@ -5,97 +5,105 @@
     <title>Fastener Recommendations</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body><div class="modal">
+
+<body>
+<div class="modal">
 
     <h1>Fastener Recommendations</h1>
 
     {% if recommendations|length == 0 %}
         <p>
-            No fastening methods match your requirements.
-            Consider adjusting your answers or restarting the process.
+            No fastening methods match the derived requirements.
+            You may revise your answers or restart the process.
         </p>
     {% else %}
         <p>
-            Found {{ recommendations|length }} matching fastening method(s).
+            Found {{ recommendations|length }} suitable fastening method(s)
+            based on the inferred requirements.
         </p>
 
         <hr>
 
-        {% for fastener, suggestions in recommendations %}
-            <section>
+        {% for fastener in recommendations %}
+            <section class="fastener">
+
                 <h2>{{ fastener.name }}</h2>
 
-                <p><strong>Category:</strong> {{ fastener.category.value }}</p>
+                <p><strong>Category:</strong> {{ fastener.category }}</p>
 
                 <p>
                     <strong>Compatible Materials:</strong>
-                    {{ fastener.properties.compatible_materials | join(", ") }}
+                    {{ fastener.compatible_materials
+                        | map(attribute="value")
+                        | join(", ")
+                    }}
                 </p>
 
-                <p><strong>Tensile Strength:</strong> {{ fastener.properties.tensile_strength.value }}</p>
-                <p><strong>Water Resistance:</strong> {{ fastener.properties.water_resistance.value }}</p>
-                <p><strong>Permanence:</strong> {{ fastener.properties.permanence.value }}</p>
-                <p><strong>Rigidity:</strong> {{ fastener.properties.rigidity.value }}</p>
+                <h3>Mechanical Properties</h3>
+                <ul>
+                    <li><strong>Tensile Strength:</strong> {{ fastener.tensile_strength.value }}</li>
+                    <li><strong>Shear Strength:</strong> {{ fastener.shear_strength.value }}</li>
+                    <li><strong>Rigidity:</strong> {{ fastener.rigidity.value }}</li>
+                    <li><strong>Permanence:</strong> {{ fastener.permanence.value }}</li>
+                </ul>
 
-                {% if fastener.curing_time %}
-                    <p><strong>Curing Time:</strong> {{ fastener.curing_time }}</p>
-                {% endif %}
+                <h3>Resistance Properties</h3>
+                <ul>
+                    <li><strong>Water Resistance:</strong> {{ fastener.water_resistance.value }}</li>
+                    <li><strong>Temperature Resistance:</strong> {{ fastener.temperature_resistance.value }}</li>
+                    <li><strong>UV Resistance:</strong> {{ fastener.uv_resistance.value }}</li>
+                    <li><strong>Vibration Resistance:</strong> {{ fastener.vibration_resistance.value }}</li>
+                    <li><strong>Chemical Resistance:</strong> {{ fastener.chemical_resistance.value }}</li>
+                </ul>
 
-                {% if fastener.requires_tools %}
+                {% if fastener.requires_two_sided_access %}
                     <p>
-                        <strong>Required Tools:</strong>
-                        {{ fastener.requires_tools | join(", ") }}
+                        <strong>Installation constraint:</strong>
+                        Requires access from both sides.
+                    </p>
+                {% else %}
+                    <p>
+                        <strong>Installation constraint:</strong>
+                        Suitable for one-sided access.
                     </p>
                 {% endif %}
 
-                {% if fastener.requires_materials %}
-                    <p>
-                        <strong>Required Materials:</strong>
-                        {{ fastener.requires_materials | join(", ") }}
-                    </p>
-                {% endif %}
-
-                {% if fastener.surface_prep %}
-                    <p>
-                        <strong>Surface Preparation:</strong>
-                        {{ fastener.surface_prep | join(", ") }}
-                    </p>
-                {% endif %}
-
-                {% if suggestions %}
-                    <h3>Suggestions</h3>
-                    <ul>
-                        {% for suggestion in suggestions %}
-                            <li>{{ suggestion }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-
-                {% if fastener.properties.notes %}
-                    <h3>Notes</h3>
-                    <ul>
-                        {% for note in fastener.properties.notes %}
-                            <li>{{ note }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
             </section>
 
             <hr>
         {% endfor %}
     {% endif %}
 
+    <hr>
+
+    <h2>Derived Requirements (Explanation)</h2>
+    <pre>{{ task.requirements | tojson(indent=2) }}</pre>
+
+    <h2>Rules Applied</h2>
+    {% if fired_rules|length == 0 %}
+        <p>No inference rules were triggered.</p>
+    {% else %}
+        <ul>
+            {% for rule in fired_rules %}
+                <li>{{ rule }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
     <form action="{{ url_for('routes.questions_overview') }}" method="get">
         <div class="button">
-            <button type="submit">Check your answers</button>
+            <button type="submit">Review Answers & Reasoning</button>
         </div>
     </form>
 
     <form action="{{ url_for('routes.reset') }}" method="post">
-        <div class="button">
+        <div class="button danger">
             <button type="submit">Start Over</button>
         </div>
     </form>
 
-</div></body>
+</div>
+</body>
 </html>

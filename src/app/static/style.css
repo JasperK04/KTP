@@ -31,6 +31,23 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.explanations {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+
+  > p {
+    margin: 0.7rem 0 0.3rem;
+  }
+
+  > .question-explanation {
+    font-size: 0.7rem;
+    margin: 0rem;
+    margin-bottom: 0.3rem;
+    padding: 0rem;
+  }
+}
+
 h1,
 h2 {
   margin-top: 0;
