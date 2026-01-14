@@ -129,8 +129,8 @@ class ProblemSolvingModel:
         if fastener.chemical_resistance.value < req.min_chemical_resistance.value:
             return False
 
-        # One-sided access constraint (DIRECT, not via rule)
-        if task.constraints.one_side_accessible and fastener.requires_two_sided_access:
+        # One-sided access constraint
+        if task.constraints.one_side_accessable and fastener.requires_two_sided_access:
             return False
 
         return True

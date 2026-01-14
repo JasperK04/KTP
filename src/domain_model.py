@@ -294,8 +294,9 @@ class UsageConstraints:
     permanence: Permanence
     flexibility_required: bool
     orientation_vertical: bool
+    precision_required: bool
     health_constraints: bool
-    one_side_accessible: bool
+    one_side_accessable: bool
     max_curing_time: Optional[str]
 
     def to_dict(self) -> dict:
@@ -308,8 +309,9 @@ class UsageConstraints:
             "permanence": self.permanence.value,
             "flexibility_required": self.flexibility_required,
             "orientation_vertical": self.orientation_vertical,
+            "precision_required": self.precision_required,
             "health_constraints": self.health_constraints,
-            "one_side_accessible": self.one_side_accessible,
+            "one_side_accessable": self.one_side_accessable,
             "max_curing_time": self.max_curing_time,
         }
 
@@ -325,8 +327,9 @@ class UsageConstraints:
             permanence=Permanence(data["permanence"]),
             flexibility_required=data["flexibility_required"],
             orientation_vertical=data["orientation_vertical"],
+            precision_required=data["precision_required"],
             health_constraints=data["health_constraints"],
-            one_side_accessible=data["one_side_accessible"],
+            one_side_accessable=data["one_side_accessable"],
             max_curing_time=data["max_curing_time"],
         )
 

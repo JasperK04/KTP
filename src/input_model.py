@@ -219,8 +219,9 @@ class InputModel:
                 permanence=Permanence.SEMI_PERMANENT,
                 flexibility_required=False,
                 orientation_vertical=False,
+                precision_required=False,
                 health_constraints=False,
-                one_side_accessible=False,
+                one_side_accessable=False,
                 max_curing_time=None,
             ),
         )
