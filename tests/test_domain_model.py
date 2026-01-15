@@ -1,4 +1,4 @@
-# tests/test_domain_model.py
+import pytest
 
 from domain_model import (
     DerivedRequirements,
