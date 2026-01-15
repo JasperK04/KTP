@@ -361,6 +361,7 @@ class DerivedRequirements:
     min_chemical_resistance: ResistanceLevel = ResistanceLevel.NONE
 
     allowed_rigidities: set[Rigidity] = field(default_factory=set)
+    allowed_permanence: set[Permanence] = field(default_factory=set)
     allowed_categories: set[str] = field(default_factory=set)
     excluded_categories: set[str] = field(default_factory=set)
 
@@ -379,6 +380,7 @@ class DerivedRequirements:
             "min_vibration_resistance": self.min_vibration_resistance.value,
             "min_chemical_resistance": self.min_chemical_resistance.value,
             "allowed_rigidities": [r.value for r in self.allowed_rigidities],
+            "allowed_permanence": [p.value for p in self.allowed_permanence],
             "allowed_categories": list(self.allowed_categories),
             "excluded_categories": list(self.excluded_categories),
         }
@@ -402,6 +404,7 @@ class DerivedRequirements:
             min_vibration_resistance=ResistanceLevel(data["min_vibration_resistance"]),
             min_chemical_resistance=ResistanceLevel(data["min_chemical_resistance"]),
             allowed_rigidities={Rigidity(r) for r in data["allowed_rigidities"]},
+            allowed_permanence={Permanence(p) for p in data["allowed_permanence"]},
             allowed_categories=set(data["allowed_categories"]),
             excluded_categories=set(data["excluded_categories"]),
         )

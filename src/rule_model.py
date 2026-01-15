@@ -21,7 +21,13 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable
 
-from domain_model import FasteningTask, ResistanceLevel, Rigidity, StrengthLevel
+from domain_model import (
+    FasteningTask,
+    Permanence,
+    ResistanceLevel,
+    Rigidity,
+    StrengthLevel,
+)
 
 # ─────────────────────────────────────────────
 # ORDINAL SCALES DEFINITION
@@ -356,7 +362,7 @@ class RuleFactory:
         :param value: Value to coerce.
         :return: Coerced value or original value.
         """
-        for enum_cls in (StrengthLevel, Rigidity):
+        for enum_cls in (StrengthLevel, ResistanceLevel, Permanence, Rigidity):
             try:
                 return enum_cls(value)
             except ValueError:

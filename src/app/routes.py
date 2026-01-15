@@ -159,7 +159,7 @@ def results():
 # ─────────────────────────────────────────────
 
 
-@routes.route("/reset", methods=["POST"])
+@routes.route("/reset", methods=["GET", "POST"])
 def reset():
     session.clear()
     return redirect(url_for("routes.index"))
