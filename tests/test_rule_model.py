@@ -191,17 +191,3 @@ def test_rule_isolation_independent_effects():
 
     assert task.requirements.min_water_resistance is ResistanceLevel.GOOD
     assert task.requirements.min_chemical_resistance is ResistanceLevel.EXCELLENT
-
-
-def main():
-    test_rule_factory_builds_rule_base()
-    test_condition_evaluation_true_when_conditions_match()
-    test_condition_evaluation_false_when_conditions_do_not_match()
-    test_action_execution_is_monotonic_for_strength_levels()
-    test_action_does_not_weaken_existing_requirement()
-    test_rule_fires_only_once()
-    test_rule_isolation_independent_effects()
-
-
-if __name__ == "__main__":
-    main()
