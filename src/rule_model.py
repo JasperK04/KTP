@@ -23,27 +23,13 @@ from typing import Any, Callable
 
 from domain_model import FasteningTask, ResistanceLevel, Rigidity, StrengthLevel
 
-
 # ─────────────────────────────────────────────
 # ORDINAL SCALES DEFINITION
 # ─────────────────────────────────────────────
 
-STRENGTH_ORDER = [
-    "none",
-    "very_low",
-    "low",
-    "moderate",
-    "high",
-    "very_high"
-]
+STRENGTH_ORDER = ["none", "very_low", "low", "moderate", "high", "very_high"]
 
-RESISTANCE_ORDER = [
-    "none",
-    "poor",
-    "fair",
-    "good",
-    "excellent"
-]
+RESISTANCE_ORDER = ["none", "poor", "fair", "good", "excellent"]
 
 
 def get_strength_idx(level: StrengthLevel) -> int:
@@ -73,6 +59,13 @@ class Rule:
     context: str
     condition: Callable[[FasteningTask], bool]
     action: Callable[[FasteningTask], None]
+    spec: dict[str, Any]
+
+    def __repr__(self) -> str:
+        cond = ", ".join(f"{k} = {v}" for k, v in self.spec["conditions"].items())
+        eff = ", ".join(f"{k} := {v}" for k, v in self.spec["effects"].items())
+
+        return f"Rule({self.id}: IF {cond} THEN {eff})"
 
 
 class RuleBase:
@@ -91,6 +84,13 @@ class RuleBase:
         :param rules: A list of Rule objects.
         """
         self.rules = rules
+
+    def __repr__(self) -> str:
+        repr_str = "RuleBase([\n"
+        for rule in self.rules:
+            repr_str += "\t" + repr(rule) + ",\n"
+        repr_str += "])"
+        return repr_str
 
 
 class ForwardChainingEngine:
@@ -197,7 +197,7 @@ class RuleFactory:
         condition = self._build_condition(condition_spec)
         action = self._build_action(effect_spec)
 
-        return Rule(rule_id, context, condition, action)
+        return Rule(rule_id, context, condition, action, spec=spec)
 
     def _build_condition(
         self, condition_spec: dict[str, Any]
@@ -361,11 +361,11 @@ class RuleFactory:
                 return enum_cls(value)
             except ValueError:
                 pass
-        
+
         try:
-             return ResistanceLevel(value)
+            return ResistanceLevel(value)
         except ValueError:
-             pass
+            pass
 
         return value
 
