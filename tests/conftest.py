@@ -1,4 +1,5 @@
 """Shared fixtures for the test suite"""
+
 import json
 import sys
 from pathlib import Path
@@ -6,11 +7,11 @@ from pathlib import Path
 import pytest
 
 # Add src directory to path so imports work
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from domain_model import Fastener
-from input_model import InputModel
-from rule_model import ForwardChainingEngine, RuleFactory
+from src.domain_model import Fastener
+from src.input_model import InputModel
+from src.rule_model import ForwardChainingEngine, RuleFactory
 
 
 @pytest.fixture
@@ -24,7 +25,7 @@ def kb_data(kb_path):
     """Fixture to provide the raw dictionary content of kb.json"""
     if not kb_path.exists():
         pytest.fail(f"Knowledge base file not found at: {kb_path}")
-    
+
     with open(kb_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -38,7 +39,7 @@ def loaded_fasteners(kb_data):
 @pytest.fixture
 def loaded_input_model(kb_data):
     """Fixture to provide an InputModel initialized with real questions"""
-    return InputModel(kb_data["questions"])
+    return InputModel(kb_data["questions"], kb_data["materials"])
 
 
 @pytest.fixture

@@ -7,29 +7,30 @@ import pytest
 # Add source directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.solving_model import ProblemSolvingModel
-from src.rule_model import ForwardChainingEngine
 from src.domain_model import (
+    DerivedRequirements,
+    Environment,
     Fastener,
     FasteningTask,
-    MaterialPair,
-    Material,
-    Environment,
     LoadCondition,
-    UsageConstraints,
-    DerivedRequirements,
-    StrengthLevel,
-    ResistanceLevel,
-    Rigidity,
-    Permanence,
+    LoadType,
+    Material,
+    MaterialPair,
     MaterialType,
     MoistureExposure,
-    LoadType,
+    Permanence,
+    ResistanceLevel,
+    Rigidity,
+    StrengthLevel,
+    UsageConstraints,
 )
+from src.rule_model import ForwardChainingEngine
+from src.solving_model import ProblemSolvingModel
 
 # ─────────────────────────────────────────────
 # FIXTURES
 # ─────────────────────────────────────────────
+
 
 @pytest.fixture
 def mock_rule_engine():
@@ -37,6 +38,7 @@ def mock_rule_engine():
     engine = MagicMock(spec=ForwardChainingEngine)
     engine.infer = MagicMock()
     return engine
+
 
 @pytest.fixture
 def standard_fastener():
@@ -54,8 +56,9 @@ def standard_fastener():
         chemical_resistance=ResistanceLevel.FAIR,
         rigidity=Rigidity.RIGID,
         permanence=Permanence.REMOVABLE,
-        requires_two_sided_access=False
+        requires_two_sided_access=False,
     )
+
 
 @pytest.fixture
 def empty_task():
@@ -65,9 +68,12 @@ def empty_task():
         materials=MaterialPair(mat, mat),
         environment=Environment(MoistureExposure.NONE, False, False, False),
         load=LoadCondition(LoadType.STATIC, False, False, False),
-        constraints=UsageConstraints(Permanence.REMOVABLE, False, False, False, False, False, None),
-        requirements=DerivedRequirements()
+        constraints=UsageConstraints(
+            Permanence.REMOVABLE, False, False, False, False, False, None
+        ),
+        requirements=DerivedRequirements(),
     )
+
 
 @pytest.fixture
 def solver(mock_rule_engine, standard_fastener):
@@ -79,8 +85,8 @@ def solver(mock_rule_engine, standard_fastener):
 # 1. CANDIDATE FILTERING
 # ─────────────────────────────────────────────
 
+
 class TestCandidateFiltering:
-    
     def test_category_filtering(self, solver, empty_task, standard_fastener):
         """Test that fasteners are filtered by allowed/excluded categories."""
         # Case 1: Category allowed -> Pass
@@ -99,7 +105,7 @@ class TestCandidateFiltering:
     def test_rigidity_filtering(self, solver, empty_task, standard_fastener):
         """Test filtering by rigidity (e.g. Flexible vs Rigid)."""
         # Fastener is RIGID
-        
+
         # Case 1: Allowed Rigidities includes Rigid -> Pass
         empty_task.requirements.allowed_rigidities = {Rigidity.RIGID}
         assert solver.evaluate_candidates(empty_task) == [standard_fastener]
@@ -111,7 +117,7 @@ class TestCandidateFiltering:
     def test_strength_filtering(self, solver, empty_task, standard_fastener):
         """Test filtering by ordinal strength thresholds."""
         # Fastener is MODERATE strength
-        
+
         # Case 1: Requirement is LOWER than fastener (Low) -> Pass
         empty_task.requirements.min_tensile_strength = StrengthLevel.LOW
         assert solver.evaluate_candidates(empty_task) == [standard_fastener]
@@ -127,7 +133,7 @@ class TestCandidateFiltering:
     def test_resistance_filtering(self, solver, empty_task, standard_fastener):
         """Test filtering by various resistance types."""
         # Fastener has FAIR resistance across the board
-        
+
         # Test Water Resistance
         empty_task.requirements.min_water_resistance = ResistanceLevel.GOOD
         assert solver.evaluate_candidates(empty_task) == []
@@ -145,60 +151,78 @@ class TestCandidateFiltering:
 # 2. ACCESS CONSTRAINTS
 # ─────────────────────────────────────────────
 
+
 class TestAccessConstraints:
-    
     def test_one_sided_access_constraint(self, mock_rule_engine, empty_task):
         """Test that one-sided access excludes fasteners requiring two sides."""
-        
+
         # Setup two fasteners: one needs 2 sides (Bolt), one needs 1 side (Screw)
         bolt = Fastener(
-            name="Bolt", category="mechanical", compatible_materials=[],
-            tensile_strength=StrengthLevel.MODERATE, shear_strength=StrengthLevel.MODERATE,
-            water_resistance=ResistanceLevel.FAIR, temperature_resistance=ResistanceLevel.FAIR,
-            uv_resistance=ResistanceLevel.FAIR, vibration_resistance=ResistanceLevel.FAIR,
-            chemical_resistance=ResistanceLevel.FAIR, rigidity=Rigidity.RIGID,
+            name="Bolt",
+            category="mechanical",
+            compatible_materials=[],
+            tensile_strength=StrengthLevel.MODERATE,
+            shear_strength=StrengthLevel.MODERATE,
+            water_resistance=ResistanceLevel.FAIR,
+            temperature_resistance=ResistanceLevel.FAIR,
+            uv_resistance=ResistanceLevel.FAIR,
+            vibration_resistance=ResistanceLevel.FAIR,
+            chemical_resistance=ResistanceLevel.FAIR,
+            rigidity=Rigidity.RIGID,
             permanence=Permanence.REMOVABLE,
-            requires_two_sided_access=True
+            requires_two_sided_access=True,
         )
         screw = Fastener(
-            name="Screw", category="mechanical", compatible_materials=[],
-            tensile_strength=StrengthLevel.MODERATE, shear_strength=StrengthLevel.MODERATE,
-            water_resistance=ResistanceLevel.FAIR, temperature_resistance=ResistanceLevel.FAIR,
-            uv_resistance=ResistanceLevel.FAIR, vibration_resistance=ResistanceLevel.FAIR,
-            chemical_resistance=ResistanceLevel.FAIR, rigidity=Rigidity.RIGID,
+            name="Screw",
+            category="mechanical",
+            compatible_materials=[],
+            tensile_strength=StrengthLevel.MODERATE,
+            shear_strength=StrengthLevel.MODERATE,
+            water_resistance=ResistanceLevel.FAIR,
+            temperature_resistance=ResistanceLevel.FAIR,
+            uv_resistance=ResistanceLevel.FAIR,
+            vibration_resistance=ResistanceLevel.FAIR,
+            chemical_resistance=ResistanceLevel.FAIR,
+            rigidity=Rigidity.RIGID,
             permanence=Permanence.REMOVABLE,
-            requires_two_sided_access=False
+            requires_two_sided_access=False,
         )
 
         solver = ProblemSolvingModel(mock_rule_engine, [bolt, screw])
 
         # Scenario: User only has access to ONE side
         empty_task.constraints.one_side_accessable = True
-        
+
         results = solver.evaluate_candidates(empty_task)
-        
+
         # Should only contain the screw, not the bolt
         assert len(results) == 1
         assert results[0].name == "Screw"
 
     def test_two_sided_access_available(self, mock_rule_engine, empty_task):
         """Test that having two-sided access allows all fasteners."""
-        
+
         bolt = Fastener(
-             name="Bolt", category="mechanical", compatible_materials=[],
-             tensile_strength=StrengthLevel.MODERATE, shear_strength=StrengthLevel.MODERATE,
-             water_resistance=ResistanceLevel.FAIR, temperature_resistance=ResistanceLevel.FAIR,
-             uv_resistance=ResistanceLevel.FAIR, vibration_resistance=ResistanceLevel.FAIR,
-             chemical_resistance=ResistanceLevel.FAIR, rigidity=Rigidity.RIGID,
-             permanence=Permanence.REMOVABLE,
-             requires_two_sided_access=True
-         )
-        
+            name="Bolt",
+            category="mechanical",
+            compatible_materials=[],
+            tensile_strength=StrengthLevel.MODERATE,
+            shear_strength=StrengthLevel.MODERATE,
+            water_resistance=ResistanceLevel.FAIR,
+            temperature_resistance=ResistanceLevel.FAIR,
+            uv_resistance=ResistanceLevel.FAIR,
+            vibration_resistance=ResistanceLevel.FAIR,
+            chemical_resistance=ResistanceLevel.FAIR,
+            rigidity=Rigidity.RIGID,
+            permanence=Permanence.REMOVABLE,
+            requires_two_sided_access=True,
+        )
+
         solver = ProblemSolvingModel(mock_rule_engine, [bolt])
-        
+
         # Scenario: User has access to BOTH sides (one_side_accessable = False)
         empty_task.constraints.one_side_accessable = False
-        
+
         results = solver.evaluate_candidates(empty_task)
         assert len(results) == 1
         assert results[0].name == "Bolt"
@@ -208,14 +232,14 @@ class TestAccessConstraints:
 # 3. FULL PIPELINE
 # ─────────────────────────────────────────────
 
+
 class TestFullPipeline:
-    
     def test_recommend_method_flow(self, solver, empty_task, mock_rule_engine):
         """
         Tests the full 'recommend' pipeline:
         Specify -> Derive (via Mock Engine) -> Evaluate -> Output
         """
-        
+
         # 1. Setup the behavior of the mock engine.
         def simulate_inference(task):
             # Simulate a rule saying: "We need High Strength"
@@ -228,13 +252,13 @@ class TestFullPipeline:
 
         # 3. Assertions
         mock_rule_engine.infer.assert_called_once_with(empty_task)
-        
+
         # Verify the candidate was filtered out based on the inferred requirement
         assert len(results) == 0
 
     def test_recommend_success_flow(self, solver, empty_task, mock_rule_engine):
         """Tests a successful run of the pipeline."""
-        
+
         def simulate_inference(task):
             # Simulate a rule setting a requirement the fastener CAN meet
             task.requirements.min_tensile_strength = StrengthLevel.LOW

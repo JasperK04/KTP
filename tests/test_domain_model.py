@@ -1,6 +1,6 @@
 import pytest
 
-from domain_model import (
+from src.domain_model import (
     DerivedRequirements,
     Environment,
     Fastener,

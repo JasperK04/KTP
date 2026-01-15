@@ -1,6 +1,6 @@
 import pytest
 
-from domain_model import (
+from src.domain_model import (
     Environment,
     FasteningTask,
     LoadCondition,
@@ -14,7 +14,7 @@ from domain_model import (
     StrengthLevel,
     UsageConstraints,
 )
-from rule_model import ForwardChainingEngine, RuleBase, RuleFactory
+from src.rule_model import ForwardChainingEngine, RuleBase, RuleFactory
 
 
 def make_empty_task():

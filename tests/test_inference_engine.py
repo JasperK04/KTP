@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from rule_model import ForwardChainingEngine, RuleBase
+from src.rule_model import ForwardChainingEngine, RuleBase
 
 
 def make_rule(rule_id, condition_returns):
