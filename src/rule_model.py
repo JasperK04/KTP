@@ -18,9 +18,42 @@ explicit, expert-verifiable, and independent from the inference mechanism.
 """
 
 from dataclasses import dataclass
+from enum import Enum
 from typing import Any, Callable
 
 from domain_model import FasteningTask, ResistanceLevel, Rigidity, StrengthLevel
+
+
+# ─────────────────────────────────────────────
+# ORDINAL SCALES DEFINITION
+# ─────────────────────────────────────────────
+
+STRENGTH_ORDER = [
+    "none",
+    "very_low",
+    "low",
+    "moderate",
+    "high",
+    "very_high"
+]
+
+RESISTANCE_ORDER = [
+    "none",
+    "poor",
+    "fair",
+    "good",
+    "excellent"
+]
+
+
+def get_strength_idx(level: StrengthLevel) -> int:
+    """Return the ordinal index of a StrengthLevel."""
+    return STRENGTH_ORDER.index(level.value)
+
+
+def get_resistance_idx(level: ResistanceLevel) -> int:
+    """Return the ordinal index of a ResistanceLevel."""
+    return RESISTANCE_ORDER.index(level.value)
 
 
 @dataclass
@@ -186,12 +219,35 @@ class RuleFactory:
                 if callable(value):
                     value = value()
 
+                # Normalize Actual Value
+                if isinstance(value, Enum):
+                    value = value.value
+                elif isinstance(value, list):
+                    value = [v.value if isinstance(v, Enum) else v for v in value]
+
+                # Normalize Expected Value (Fix for tests using Enums)
+                if isinstance(expected, Enum):
+                    expected = expected.value
+                elif isinstance(expected, list):
+                    expected = [v.value if isinstance(v, Enum) else v for v in expected]
+
+                # Comparison Logic
                 if isinstance(value, list):
+                    # Check if 'expected' is in the list of values (Exists quantifier)
+                    # NOTE: If 'expected' is also a list, this checks if the LIST is in the LIST (nested),
+                    # which is usually not what we want for KB rules.
+                    # KB Rules typically imply: value=[a,b], expected=a -> True.
                     if expected not in value:
                         return False
                 else:
-                    if value != expected:
-                        return False
+                    # Value is scalar.
+                    # If expected is a list, check if value is IN expected (OR logic)
+                    if isinstance(expected, list):
+                        if value not in expected:
+                            return False
+                    else:
+                        if value != expected:
+                            return False
 
             return True
 
@@ -217,12 +273,14 @@ class RuleFactory:
 
                 new_value = self._coerce_value(value)
 
+                # Monotonic update logic for ordinal scales:
+                # Only update if the new value is STRICTLY GREATER than current.
                 if isinstance(current, StrengthLevel):
-                    if current.value < new_value.value:
+                    if get_strength_idx(current) < get_strength_idx(new_value):
                         setattr(target, attr, new_value)
 
                 elif isinstance(current, ResistanceLevel):
-                    if current.value < new_value.value:
+                    if get_resistance_idx(current) < get_resistance_idx(new_value):
                         setattr(target, attr, new_value)
 
                 elif isinstance(current, set):
@@ -303,6 +361,12 @@ class RuleFactory:
                 return enum_cls(value)
             except ValueError:
                 pass
+        
+        try:
+             return ResistanceLevel(value)
+        except ValueError:
+             pass
+
         return value
 
     def _coerce_values(self, values: list[Any]) -> set[Any]:

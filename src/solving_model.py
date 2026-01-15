@@ -1,24 +1,42 @@
-"""
-Problem-Solving Model for the Fastener Recommendation Knowledge System.
-
-This module implements the Problem-Solving Model as defined in the Knowledge
-Technology Practical (KTP). The problem-solving model describes *how* the system
-solves a problem in terms of conceptual stages, independently of the domain
-knowledge and inference rules.
-
-The model structures the solution process into clearly defined phases:
-1. Problem specification
-2. Requirement derivation
-3. Candidate evaluation
-4. Recommendation
-
-This module does not contain domain knowledge or rules. Instead, it coordinates
-the interaction between the domain model and the rule model.
-"""
-
-from domain_model import Fastener, FasteningTask
+from domain_model import Fastener, FasteningTask, StrengthLevel, ResistanceLevel
 from rule_model import ForwardChainingEngine
 
+
+# ─────────────────────────────────────────────
+# ORDINAL SCALES DEFINITION
+# ─────────────────────────────────────────────
+
+STRENGTH_ORDER = [
+    "none",
+    "very_low",
+    "low",
+    "moderate",
+    "high",
+    "very_high"
+]
+
+RESISTANCE_ORDER = [
+    "none",
+    "poor",
+    "fair",
+    "good",
+    "excellent"
+]
+
+
+def get_strength_idx(level: StrengthLevel) -> int:
+    """Return the ordinal index of a StrengthLevel."""
+    return STRENGTH_ORDER.index(level.value)
+
+
+def get_resistance_idx(level: ResistanceLevel) -> int:
+    """Return the ordinal index of a ResistanceLevel."""
+    return RESISTANCE_ORDER.index(level.value)
+
+
+# ─────────────────────────────────────────────
+# PROBLEM SOLVING MODEL
+# ─────────────────────────────────────────────
 
 class ProblemSolvingModel:
     """
@@ -111,22 +129,22 @@ class ProblemSolvingModel:
         if req.allowed_rigidities and fastener.rigidity not in req.allowed_rigidities:
             return False
 
-        # Strength constraints
-        if fastener.tensile_strength.value < req.min_tensile_strength.value:
+        # Strength constraints (Ordinal Comparison)
+        if get_strength_idx(fastener.tensile_strength) < get_strength_idx(req.min_tensile_strength):
             return False
-        if fastener.shear_strength.value < req.min_shear_strength.value:
+        if get_strength_idx(fastener.shear_strength) < get_strength_idx(req.min_shear_strength):
             return False
 
-        # Resistance constraints
-        if fastener.water_resistance.value < req.min_water_resistance.value:
+        # Resistance constraints (Ordinal Comparison)
+        if get_resistance_idx(fastener.water_resistance) < get_resistance_idx(req.min_water_resistance):
             return False
-        if fastener.temperature_resistance.value < req.min_temperature_resistance.value:
+        if get_resistance_idx(fastener.temperature_resistance) < get_resistance_idx(req.min_temperature_resistance):
             return False
-        if fastener.uv_resistance.value < req.min_uv_resistance.value:
+        if get_resistance_idx(fastener.uv_resistance) < get_resistance_idx(req.min_uv_resistance):
             return False
-        if fastener.vibration_resistance.value < req.min_vibration_resistance.value:
+        if get_resistance_idx(fastener.vibration_resistance) < get_resistance_idx(req.min_vibration_resistance):
             return False
-        if fastener.chemical_resistance.value < req.min_chemical_resistance.value:
+        if get_resistance_idx(fastener.chemical_resistance) < get_resistance_idx(req.min_chemical_resistance):
             return False
 
         # One-sided access constraint
