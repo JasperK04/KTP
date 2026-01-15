@@ -21,6 +21,7 @@ from domain_model import (
     MaterialType,
     MoistureExposure,
     Permanence,
+    StrengthLevel,
     UsageConstraints,
 )
 
@@ -30,13 +31,18 @@ class InputModel:
     API-style input model that manages question asking and answer storage.
     """
 
-    def __init__(self, questions: list[dict[str, Any]]):
+    def __init__(
+        self, questions: list[dict[str, Any]], materials: list[dict[str, Any]]
+    ):
         """
         Initialize the input model.
 
         :param questions: List of question specifications from the KB.
         """
         self.questions = questions
+        self.materials: dict[str, dict[str, Any]] = {
+            mat["material_type"]: mat for mat in materials
+        }
         self.answers: dict[str, Any] = {}
 
         self.task = self._create_empty_task()
@@ -162,7 +168,18 @@ class InputModel:
         :param value: Answer value.
         """
         target, attr = self._resolve_parent(self.task, attribute_path)
+        if attribute_path.endswith("material_type"):
+            self._apply_material(target, value)
+
         setattr(target, attr, self._coerce_value(attr, value))
+
+    def _apply_material(self, material_obj: Material, material_type: str):
+        spec = self.materials[material_type]
+
+        material_obj.material_type = MaterialType(material_type)
+        material_obj.porosity = spec["porosity"]
+        material_obj.brittleness = spec["brittleness"]
+        material_obj.base_strength = StrengthLevel(spec["base_strength"])
 
     def _resolve_parent(self, obj: Any, path: str):
         parts = path.split(".")

@@ -25,7 +25,7 @@ def load_kb():
 def load_models():
     kb = load_kb()
 
-    input_model = InputModel(kb["questions"])
+    input_model = InputModel(kb["questions"], kb["materials"])
 
     rule_factory = RuleFactory(kb["rules"])
     rule_engine = ForwardChainingEngine(rule_factory.build_rule_base())
