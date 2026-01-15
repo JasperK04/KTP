@@ -31,14 +31,7 @@ def load_models():
     rule_engine = ForwardChainingEngine(rule_factory.build_rule_base())
 
     problem_solver = ProblemSolvingModel(
-        rule_engine=rule_engine,
-        fasteners=[  # load from KB
-            f
-            for f in map(
-                lambda x: __import__("domain_model").Fastener.from_dict(x),
-                kb["fasteners"],
-            )
-        ],
+        rule_engine=rule_engine, fasteners=kb["fasteners"]
     )
 
     if "input_state" in session:
