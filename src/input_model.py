@@ -188,9 +188,12 @@ class InputModel:
         return obj, parts[-1]
 
     def _coerce_value(self, attr: str, value: Any) -> Any:
-        """
-        Convert string values to appropriate Enum types when needed.
-        """
+        if isinstance(value, str):
+            if value.lower() == "true":
+                return True
+            if value.lower() == "false":
+                return False
+
         enum_map = {
             "material_type": MaterialType,
             "moisture": MoistureExposure,
