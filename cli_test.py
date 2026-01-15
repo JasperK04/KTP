@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-CLI Interface for the Fastener Recommendation Knowledge System.
-
-This CLI acts purely as a frontend. It retrieves questions from the InputModel,
-displays them to the user, forwards answers back to the InputModel, and finally
-displays fastener recommendations.
-
-The CLI contains no domain knowledge, no inference logic, and no rules.
-"""
-
 import json
 import sys
 from datetime import datetime
@@ -27,10 +17,6 @@ from src.domain_model import (
 from src.input_model import InputModel
 from src.rule_model import ForwardChainingEngine, RuleFactory
 from src.solving_model import ProblemSolvingModel
-
-# ─────────────────────────────────────────────
-# SERIALIZATION FOR DEBUG OUTPUT
-# ─────────────────────────────────────────────
 
 
 def serialize_value(value):
@@ -53,7 +39,7 @@ def save_debug_state(input_model, task, recommendations, question_history):
             k: serialize_value(v) for k, v in vars(task.requirements).items()
         },
         "recommendation_count": len(recommendations),
-        "question_history": question_history,
+        "question_history": list(question_history),
         "recommendations": [],
     }
 
@@ -69,15 +55,11 @@ def save_debug_state(input_model, task, recommendations, question_history):
             }
         )
 
-    with open("debug_state.yaml", "w") as f:
+    filename = "debug_state.yaml"
+    with open(filename, "w") as f:
         yaml.dump(debug_data, f, sort_keys=False)
 
-    return "debug_state.yaml"
-
-
-# ─────────────────────────────────────────────
-# QUESTION INTERACTION
-# ─────────────────────────────────────────────
+    return filename
 
 
 def ask_question(question):
@@ -119,11 +101,6 @@ def ask_question(question):
     return None
 
 
-# ─────────────────────────────────────────────
-# FASTENER LOADING
-# ─────────────────────────────────────────────
-
-
 def load_fasteners(fastener_specs):
     fasteners = []
 
@@ -151,17 +128,12 @@ def load_fasteners(fastener_specs):
     return fasteners
 
 
-# ─────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────
-
-
 def main():
     print("=" * 80)
     print(" Fastener Recommendation System (CLI)")
     print("=" * 80)
 
-    kb_path = Path("kb.json")
+    kb_path = Path(__file__).resolve().parent / "src" / "kb.json"
     if not kb_path.exists():
         print("Error: kb.json not found")
         sys.exit(1)
@@ -169,7 +141,7 @@ def main():
     with open(kb_path) as f:
         kb = json.load(f)
 
-    input_model = InputModel(kb["questions"])
+    input_model = InputModel(kb["questions"], kb["materials"])
 
     rule_factory = RuleFactory(kb["rules"])
     rule_base = rule_factory.build_rule_base()
@@ -178,15 +150,12 @@ def main():
     fasteners = load_fasteners(kb["fasteners"])
     solver = ProblemSolvingModel(engine, fasteners)
 
-    print(len(kb["questions"]), "questions loaded.")
-    print(len(kb["rules"]), "rules loaded.")
-    print(len(fasteners), "fasteners loaded.")
-
     question_history = []
 
-    # ─────────────────────────────────────────
-    # ASK QUESTIONS
-    # ─────────────────────────────────────────
+    print(f"\nloaded {len(kb['questions'])} questions from knowledge base.")
+    print(f"loaded {len(kb['rules'])} rules from knowledge base.")
+    print(f"loaded {len(kb['materials'])} materials from knowledge base.")
+    print(f"loaded {len(kb['fasteners'])} fasteners from knowledge base.")
 
     while True:
         question = input_model.get_next_question()
@@ -206,9 +175,10 @@ def main():
                 }
             )
 
-    # ─────────────────────────────────────────
-    # SOLVE
-    # ─────────────────────────────────────────
+            task = input_model.get_task()
+            recommendations = solver.recommend(task)
+
+            save_debug_state(input_model, task, recommendations, question_history)
 
     task = input_model.get_task()
     recommendations = solver.recommend(task)
@@ -217,7 +187,7 @@ def main():
     if not recommendations:
         print("❌ No suitable fasteners found.")
     else:
-        print(f"✅ Found {len(recommendations)} suitable fastener(s):\n")
+        print(f"Found {len(recommendations)} suitable fastener(s):\n")
         for idx, f in enumerate(recommendations, 1):
             print(f"{idx}. {f.name}")
             print(f"   Category: {f.category}")
@@ -226,8 +196,9 @@ def main():
             print(f"   Permanence: {f.permanence.value}")
             print()
 
-    debug_file = save_debug_state(input_model, task, recommendations, question_history)
-    print(f"\n📝 Debug state saved to {debug_file}")
+    final_debug = save_debug_state(input_model, task, recommendations, question_history)
+
+    print(f"\nFinal debug state saved to {final_debug}")
     print("\nThank you for using the system.")
 
 
