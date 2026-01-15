@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable
 
-from domain_model import (
+from src.domain_model import (
     FasteningTask,
     Permanence,
     ResistanceLevel,

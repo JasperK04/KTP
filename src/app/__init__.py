@@ -2,8 +2,8 @@ from os import getenv
 
 from flask import Flask
 
-from app.config import config
-from app.routes import routes
+from src.app.config import config
+from src.app.routes import routes
 
 
 def create_app():

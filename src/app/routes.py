@@ -3,10 +3,10 @@ from pathlib import Path
 
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
-from domain_model import FasteningTask
-from input_model import InputModel
-from rule_model import ForwardChainingEngine, RuleFactory
-from solving_model import ProblemSolvingModel
+from src.domain_model import FasteningTask
+from src.input_model import InputModel
+from src.rule_model import ForwardChainingEngine, RuleFactory
+from src.solving_model import ProblemSolvingModel
 
 routes = Blueprint("routes", __name__)
 

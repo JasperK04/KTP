@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from domain_model import (
+from src.domain_model import (
     Fastener,
     MaterialType,
     Permanence,
@@ -24,9 +24,9 @@ from domain_model import (
     Rigidity,
     StrengthLevel,
 )
-from input_model import InputModel
-from rule_model import ForwardChainingEngine, RuleFactory
-from solving_model import ProblemSolvingModel
+from src.input_model import InputModel
+from src.rule_model import ForwardChainingEngine, RuleFactory
+from src.solving_model import ProblemSolvingModel
 
 # ─────────────────────────────────────────────
 # SERIALIZATION FOR DEBUG OUTPUT

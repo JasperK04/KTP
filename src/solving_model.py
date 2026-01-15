@@ -1,5 +1,5 @@
-from domain_model import Fastener, FasteningTask, ResistanceLevel, StrengthLevel
-from rule_model import ForwardChainingEngine
+from src.domain_model import Fastener, FasteningTask, ResistanceLevel, StrengthLevel
+from src.rule_model import ForwardChainingEngine
 
 # ─────────────────────────────────────────────
 # ORDINAL SCALES DEFINITION

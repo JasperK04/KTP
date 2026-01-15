@@ -11,7 +11,7 @@ The input model acts as an API that can be used by multiple frontends
 
 from typing import Any
 
-from domain_model import (
+from src.domain_model import (
     Environment,
     FasteningTask,
     LoadCondition,
