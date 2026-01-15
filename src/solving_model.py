@@ -1,27 +1,13 @@
-from domain_model import Fastener, FasteningTask, StrengthLevel, ResistanceLevel
+from domain_model import Fastener, FasteningTask, ResistanceLevel, StrengthLevel
 from rule_model import ForwardChainingEngine
-
 
 # ─────────────────────────────────────────────
 # ORDINAL SCALES DEFINITION
 # ─────────────────────────────────────────────
 
-STRENGTH_ORDER = [
-    "none",
-    "very_low",
-    "low",
-    "moderate",
-    "high",
-    "very_high"
-]
+STRENGTH_ORDER = ["none", "very_low", "low", "moderate", "high", "very_high"]
 
-RESISTANCE_ORDER = [
-    "none",
-    "poor",
-    "fair",
-    "good",
-    "excellent"
-]
+RESISTANCE_ORDER = ["none", "poor", "fair", "good", "excellent"]
 
 
 def get_strength_idx(level: StrengthLevel) -> int:
@@ -37,6 +23,7 @@ def get_resistance_idx(level: ResistanceLevel) -> int:
 # ─────────────────────────────────────────────
 # PROBLEM SOLVING MODEL
 # ─────────────────────────────────────────────
+
 
 class ProblemSolvingModel:
     """
@@ -119,6 +106,15 @@ class ProblemSolvingModel:
     ) -> bool:
         req = task.requirements
 
+        # Material compatibility
+        mat_a = task.materials.material_a.material_type
+        mat_b = task.materials.material_b.material_type
+        if mat_a not in fastener.compatible_materials:
+            return False
+
+        if mat_b not in fastener.compatible_materials:
+            return False
+
         # Category constraints
         if req.allowed_categories and fastener.category not in req.allowed_categories:
             return False
@@ -129,26 +125,44 @@ class ProblemSolvingModel:
         if req.allowed_rigidities and fastener.rigidity not in req.allowed_rigidities:
             return False
 
-        # Strength constraints (Ordinal Comparison)
-        if get_strength_idx(fastener.tensile_strength) < get_strength_idx(req.min_tensile_strength):
-            return False
-        if get_strength_idx(fastener.shear_strength) < get_strength_idx(req.min_shear_strength):
-            return False
-
-        # Resistance constraints (Ordinal Comparison)
-        if get_resistance_idx(fastener.water_resistance) < get_resistance_idx(req.min_water_resistance):
-            return False
-        if get_resistance_idx(fastener.temperature_resistance) < get_resistance_idx(req.min_temperature_resistance):
-            return False
-        if get_resistance_idx(fastener.uv_resistance) < get_resistance_idx(req.min_uv_resistance):
-            return False
-        if get_resistance_idx(fastener.vibration_resistance) < get_resistance_idx(req.min_vibration_resistance):
-            return False
-        if get_resistance_idx(fastener.chemical_resistance) < get_resistance_idx(req.min_chemical_resistance):
+        # Permanence constraints
+        if req.allowed_permanence and fastener.permanence not in req.allowed_permanence:
             return False
 
         # One-sided access constraint
         if task.constraints.one_side_accessable and fastener.requires_two_sided_access:
+            return False
+
+        # Strength constraints (Ordinal Comparison)
+        if get_strength_idx(fastener.tensile_strength) < get_strength_idx(
+            req.min_tensile_strength
+        ):
+            return False
+        if get_strength_idx(fastener.shear_strength) < get_strength_idx(
+            req.min_shear_strength
+        ):
+            return False
+
+        # Resistance constraints (Ordinal Comparison)
+        if get_resistance_idx(fastener.water_resistance) < get_resistance_idx(
+            req.min_water_resistance
+        ):
+            return False
+        if get_resistance_idx(fastener.temperature_resistance) < get_resistance_idx(
+            req.min_temperature_resistance
+        ):
+            return False
+        if get_resistance_idx(fastener.uv_resistance) < get_resistance_idx(
+            req.min_uv_resistance
+        ):
+            return False
+        if get_resistance_idx(fastener.vibration_resistance) < get_resistance_idx(
+            req.min_vibration_resistance
+        ):
+            return False
+        if get_resistance_idx(fastener.chemical_resistance) < get_resistance_idx(
+            req.min_chemical_resistance
+        ):
             return False
 
         return True

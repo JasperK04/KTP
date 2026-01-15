@@ -290,7 +290,12 @@ class RuleFactory:
                         setattr(target, attr, new_value)
 
                 elif isinstance(current, set):
-                    current.update(self._coerce_values(value))
+                    values = self._coerce_values(value)
+
+                    if attr in ["allowed_rigidities", "allowed_permanence"]:
+                        setattr(target, attr, values)
+                    else:
+                        current.update(values)
 
                 else:
                     setattr(target, attr, new_value)

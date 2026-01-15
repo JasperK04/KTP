@@ -360,8 +360,8 @@ class DerivedRequirements:
     min_vibration_resistance: ResistanceLevel = ResistanceLevel.NONE
     min_chemical_resistance: ResistanceLevel = ResistanceLevel.NONE
 
-    allowed_rigidities: set[Rigidity] = field(default_factory=set)
-    allowed_permanence: set[Permanence] = field(default_factory=set)
+    allowed_rigidities: set[Rigidity] = field(default_factory=lambda: set(Rigidity))
+    allowed_permanence: set[Permanence] = field(default_factory=lambda: set(Permanence))
     allowed_categories: set[str] = field(default_factory=set)
     excluded_categories: set[str] = field(default_factory=set)
 
