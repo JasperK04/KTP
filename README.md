@@ -84,13 +84,16 @@ uv run pytest -v
 
 ## Project Structure
 
-- `src/engine.py` - Core inference engine and knowledge base
-- `src/kb.json` - Knowledge base (questions, fasteners, rules, suggestion rules)
-- `src/app/` - Flask web application
-- `cli_test.py` - CLI testing interface (root level)
-- `cli_test.md` - CLI testing documentation and design rationale
-- `main.py` - Web application entry point (root level)
-- `tests/` - Test suite (80 tests, root level)
+- `src/domain_model.py` - Core model defining domain objects
+- `src/rule_model.py` - Core model defining the Rule and RuleBase objects as well as the Forward chaining Engine
+- `src/solving_model.py` - Core model that combines input and rules to infer outcomes
+- `src/input_model.py` - Model that asks questions and retrieves answers
+- `src/kb.json` - Knowledge base (questions, materials, rules, fasteners)
+- `src/app/` - Flask web application (required GUI element)
+- `cli_test.py` - CLI testing interface
+- `cli_test.md` - CLI testing documentation
+- `main.py` - Web application entry point
+- `tests/` - Test suite (35 tests)
 - `debug_state.yaml` - Generated debug output (updated after each question)
 
 ## Debugging
