@@ -382,7 +382,7 @@
     },
     {
       "id": "metal_to_metal",
-      "context": "Allows high-strength joining methods for identical metal parts.",
+      "context": "Allows high-strength categories for identical metal parts (Mechanical/Thermal).",
       "conditions": {
         "materials.same_material": true,
         "materials.material_a.material_type": "metal"
@@ -391,8 +391,31 @@
         "requirements.allowed_categories": [
           "mechanical",
           "thermal"
-        ],
+        ]
+      }
+    },
+    {
+      "id": "metal_heavy_load_strength",
+      "context": "Enforces high tensile strength for metal joints under heavy dynamic loads.",
+      "conditions": {
+        "materials.same_material": true,
+        "materials.material_a.material_type": "metal",
+        "load.load_type": "heavy_dynamic"
+      },
+      "effects": {
         "requirements.min_tensile_strength": "high"
+      }
+    },
+    {
+      "id": "metal_light_load_strength",
+      "context": "Sets moderate tensile strength for metal joints under light dynamic loads.",
+      "conditions": {
+        "materials.same_material": true,
+        "materials.material_a.material_type": "metal",
+        "load.load_type": "light_dynamic"
+      },
+      "effects": {
+        "requirements.min_tensile_strength": "moderate"
       }
     },
     {
@@ -454,6 +477,20 @@
         "requirements.min_water_resistance": "good"
       }
     },
+    {
+      "id": "outdoor_wood_allows_mechanical",
+      "context": "Allows mechanical fastening for outdoor wood joints.",
+      "conditions": {
+        "environment.moisture": "outdoor",
+        "materials.same_material": true,
+        "materials.material_a.material_type": "wood"
+      },
+      "effects": {
+        "requirements.allowed_categories": [
+          "mechanical"
+        ]
+      }
+    },  
     {
       "id": "submerged_environment",
       "context": "Requires excellent water resistance for fully submerged joints.",
@@ -553,7 +590,9 @@
       },
       "effects": {
         "requirements.allowed_permanence": [
-          "permanent"
+          "permanent",
+          "semi_permanent",
+          "removable"
         ]
       }
     },
@@ -726,9 +765,13 @@
     },
     {
       "id": "overhead_installation_requires_shear",
-      "context": "Requires high shear strength for overhead installations.",
+      "context": "Requires high shear strength for overhead installations, but only for non-static loads.",
       "conditions": {
-        "constraints.orientation_vertical": true
+        "constraints.orientation_vertical": true,
+        "load.load_type": [
+          "light_dynamic",
+          "heavy_dynamic"
+        ]
       },
       "effects": {
         "requirements.min_shear_strength": "high"
