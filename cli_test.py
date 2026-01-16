@@ -101,33 +101,6 @@ def ask_question(question):
     return None
 
 
-def load_fasteners(fastener_specs):
-    fasteners = []
-
-    for spec in fastener_specs:
-        fasteners.append(
-            Fastener(
-                name=spec["name"],
-                category=spec["category"],
-                compatible_materials=[
-                    MaterialType(m) for m in spec["compatible_materials"]
-                ],
-                tensile_strength=StrengthLevel(spec["tensile_strength"]),
-                shear_strength=StrengthLevel(spec["shear_strength"]),
-                temperature_resistance=ResistanceLevel(spec["temperature_resistance"]),
-                uv_resistance=ResistanceLevel(spec["uv_resistance"]),
-                chemical_resistance=ResistanceLevel(spec["chemical_resistance"]),
-                rigidity=Rigidity(spec["rigidity"]),
-                permanence=Permanence(spec["permanence"]),
-                water_resistance=ResistanceLevel(spec["water_resistance"]),
-                vibration_resistance=ResistanceLevel(spec["vibration_resistance"]),
-                requires_two_sided_access=spec["requires_two_sided_access"],
-            )
-        )
-
-    return fasteners
-
-
 def main():
     print("=" * 80)
     print(" Fastener Recommendation System (CLI)")
@@ -147,7 +120,7 @@ def main():
     rule_base = rule_factory.build_rule_base()
     engine = ForwardChainingEngine(rule_base)
 
-    fasteners = load_fasteners(kb["fasteners"])
+    fasteners = [Fastener.from_dict(f) for f in kb["fasteners"]]
     solver = ProblemSolvingModel(engine, fasteners)
 
     question_history = []

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
-from src.domain_model import FasteningTask
+from src.domain_model import Fastener, FasteningTask
 from src.input_model import InputModel
 from src.rule_model import ForwardChainingEngine, RuleFactory
 from src.solving_model import ProblemSolvingModel
@@ -31,7 +31,8 @@ def load_models():
     rule_engine = ForwardChainingEngine(rule_factory.build_rule_base())
 
     problem_solver = ProblemSolvingModel(
-        rule_engine=rule_engine, fasteners=kb["fasteners"]
+        rule_engine=rule_engine,
+        fasteners=[Fastener.from_dict(f) for f in kb["fasteners"]],
     )
 
     if "input_state" in session:
