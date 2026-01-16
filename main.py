@@ -17,7 +17,7 @@ def main():
     arg.add_argument(
         "--port",
         type=int,
-        default=5000,
+        default=5001,
         help="Port number to run the Flask app on.",
     )
     args = arg.parse_args()
