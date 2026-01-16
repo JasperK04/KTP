@@ -1,5 +1,5 @@
 agent: B
-generated_at: '2026-01-16T14:09:25.888450'
+generated_at: '2026-01-16T16:57:10.071018'
 summary:
   total_scenarios: 7
   passed: 0
@@ -112,10 +112,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: false
     precision_required: false
-    tension_dominant: false
+    load_direction: false
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: high
     min_shear_strength: none
@@ -329,9 +328,7 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
-    - mechanical
   fired_rules:
-  - brittle_materials_present
   - high_shear_excludes_weak_adhesives
   - masonry_involved
   - overhead_installation_requires_shear

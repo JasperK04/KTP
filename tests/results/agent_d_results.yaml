@@ -1,5 +1,5 @@
 agent: D
-generated_at: '2026-01-16T14:09:25.901382'
+generated_at: '2026-01-16T16:57:10.094846'
 summary:
   total_scenarios: 7
   passed: 3
@@ -244,8 +244,8 @@ scenarios:
     vibration_resistance: poor
   recommendation_count: 15
   recommended_categories:
-  - mechanical
   - adhesive
+  - mechanical
   evaluation:
     expected_categories_found:
     - adhesive
@@ -278,10 +278,9 @@ scenarios:
     max_curing_time: moderate
     access_one_side: false
     precision_required: false
-    tension_dominant: false
+    load_direction: false
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: low
     min_shear_strength: none
@@ -451,10 +450,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: true
     precision_required: true
-    tension_dominant: true
+    load_direction: true
     shock_loads: true
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: none
     min_shear_strength: high
@@ -472,8 +470,10 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
+    - mechanical
     - thermal
   fired_rules:
+  - brittle_materials_present
   - chemical_exposure
   - chemical_exposure_and_permanent
   - health_constraints
@@ -630,10 +630,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: true
     precision_required: false
-    tension_dominant: true
+    load_direction: true
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: none
     min_shear_strength: high
@@ -651,9 +650,7 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
-    - mechanical
   fired_rules:
-  - brittle_materials_present
   - heavy_dynamic_load
   - high_shear_excludes_weak_adhesives
   - masonry_involved

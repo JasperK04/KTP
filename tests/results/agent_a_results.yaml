@@ -1,5 +1,5 @@
 agent: A
-generated_at: '2026-01-16T14:09:25.880104'
+generated_at: '2026-01-16T16:57:10.055342'
 summary:
   total_scenarios: 7
   passed: 2
@@ -45,7 +45,6 @@ scenarios:
     - mechanical
     - thermal
   fired_rules:
-  - brittle_materials_present
   - high_porosity_excludes_low_strength_adhesives
   - immediate_use_required
   - paper_to_paper
@@ -86,10 +85,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: false
     precision_required: true
-    tension_dominant: false
+    load_direction: false
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: high
     min_shear_strength: none
@@ -274,8 +272,8 @@ scenarios:
     vibration_resistance: poor
   recommendation_count: 11
   recommended_categories:
-  - mechanical
   - adhesive
+  - mechanical
   evaluation:
     expected_categories_found:
     - mechanical
@@ -461,9 +459,7 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
-    - mechanical
   fired_rules:
-  - brittle_materials_present
   - low_porosity_materials
   - permanent_connection
   - precision_positioning_required

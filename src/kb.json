@@ -22,8 +22,7 @@
         "fabric_involved",
         "metal_to_metal",
         "wood_to_wood",
-        "masonry_involved",
-        "rigid_and_permanent_prefers_thermal"
+        "masonry_involved"
       ]
     },
     {
@@ -48,8 +47,7 @@
         "fabric_involved",
         "metal_to_metal",
         "wood_to_wood",
-        "masonry_involved",
-        "rigid_and_permanent_prefers_thermal"
+        "masonry_involved"
       ]
     },
     {
@@ -118,7 +116,6 @@
         "removable_connection",
         "permanent_connection",
         "chemical_exposure_and_permanent",
-        "rigid_and_permanent_prefers_thermal",
         "vibration_and_permanent"
       ]
     },
@@ -167,7 +164,7 @@
         ]
       },
       "helps_rules": [
-        "tension_dominant_load"
+        "tension_dominant"
       ]
     },
     {
@@ -220,8 +217,7 @@
       "helps_rules": [
         "flexibility_required",
         "fabric_involved",
-        "flexible_implies_low_strength",
-        "rigid_and_permanent_prefers_thermal"
+        "flexible_implies_low_strength"
       ]
     },
     {
@@ -371,7 +367,7 @@
       "id": "brittle_materials_present",
       "context": "Avoids mechanical fastening when one or more materials are brittle.",
       "conditions": {
-        "materials.any.brittleness": "high"
+        "materials.any.brittleness": "very_high"
       },
       "effects": {
         "requirements.excluded_categories": [
@@ -671,7 +667,7 @@
       }
     },
     {
-      "id": "tension_dominant_load",
+      "id": "tension_dominant",
       "context": "Requires sufficient tensile strength for tension dominated loads.",
       "conditions": {
         "load.tension_dominant": true
@@ -702,24 +698,6 @@
       },
       "effects": {
         "requirements.min_shear_strength": "high"
-      }
-    },
-    {
-      "id": "rigid_and_permanent_prefers_thermal",
-      "context": "Prefers thermal joining for rigid, permanent joints of identical materials.",
-      "conditions": {
-        "materials.same_material": true,
-        "materials.material_a.material_type": [
-          "metal",
-          "plastic"
-        ],
-        "requirements.allowed_rigidities": "rigid",
-        "constraints.permanence": "permanent"
-      },
-      "effects": {
-        "requirements.allowed_categories": [
-          "thermal"
-        ]
       }
     },
     {

@@ -1,10 +1,10 @@
 agent: C
-generated_at: '2026-01-16T14:09:25.895471'
+generated_at: '2026-01-16T16:57:10.083727'
 summary:
   total_scenarios: 6
-  passed: 1
-  failed: 5
-  pass_rate: 16.7%
+  passed: 2
+  failed: 4
+  pass_rate: 33.3%
 scenarios:
 - scenario_id: C01
   scenario_name: Industrial Machine Vibration Mount
@@ -25,10 +25,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: false
     precision_required: true
-    tension_dominant: false
+    load_direction: false
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: high
     min_shear_strength: none
@@ -100,10 +99,9 @@ scenarios:
     max_curing_time: moderate
     access_one_side: true
     precision_required: false
-    tension_dominant: false
+    load_direction: false
     shock_loads: true
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: high
     min_shear_strength: none
@@ -191,10 +189,8 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
-    - mechanical
     - thermal
   fired_rules:
-  - brittle_materials_present
   - high_shear_excludes_weak_adhesives
   - immediate_use_required
   - masonry_involved
@@ -202,20 +198,37 @@ scenarios:
   - removable_connection
   - static_load
   - vertical_or_overhead
-  recommendations: []
-  recommendation_count: 0
-  recommended_categories: []
+  recommendations:
+  - name: Concrete screw
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: good
+  - name: Masonry nail
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: high
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 2
+  recommended_categories:
+  - mechanical
   evaluation:
-    expected_categories_found: []
-    expected_categories_missing:
+    expected_categories_found:
     - mechanical
+    expected_categories_missing: []
     excluded_categories_violated: []
-    expected_fasteners_found: []
+    expected_fasteners_found:
+    - Masonry nail
     expected_fasteners_missing:
     - Common nail
-    - Masonry nail
     unexpected_fasteners_found: []
-  passed: false
+  passed: true
 - scenario_id: C04
   scenario_name: Climbing Wall Hold Mounting
   description: Mounting plastic climbing holds to plywood wall. Tension-dominant loads as climbers pull on holds.
@@ -235,10 +248,9 @@ scenarios:
     max_curing_time: immediate
     access_one_side: false
     precision_required: false
-    tension_dominant: true
+    load_direction: true
     shock_loads: true
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: none
     min_shear_strength: high
@@ -333,9 +345,7 @@ scenarios:
     allowed_categories: []
     excluded_categories:
     - adhesive
-    - mechanical
   fired_rules:
-  - brittle_materials_present
   - high_shear_excludes_weak_adhesives
   - immediate_use_required
   - masonry_involved
@@ -419,12 +429,11 @@ scenarios:
     - thermal
     expected_categories_missing:
     - mechanical
-    - adhesive
     excluded_categories_violated: []
     expected_fasteners_found: []
     expected_fasteners_missing:
     - Dowel pin
+    - metal welding
     - Two-component epoxy
-    - Metal epoxy
     unexpected_fasteners_found: []
   passed: false
