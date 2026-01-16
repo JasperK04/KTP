@@ -63,13 +63,10 @@ class InputModel:
     def restore_state(
         self, answer_state: dict[str, Any], order_state: list[str]
     ) -> None:
-        print(answer_state)
         self.answers = answer_state
         self.answer_order = order_state
 
-        print("test")
         for qid in self.answer_order:
-            print("Restoring answer for question:", qid)
             question = self._get_question(qid)
             self._apply_answer(question["attribute"], self.answers[qid])
 
