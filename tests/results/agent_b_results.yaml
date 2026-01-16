@@ -1,5 +1,5 @@
 agent: B
-generated_at: '2026-01-16T17:23:17.775141'
+generated_at: '2026-01-16T17:55:32.221122'
 summary:
   total_scenarios: 7
   passed: 7
@@ -94,8 +94,8 @@ scenarios:
     vibration_resistance: fair
   recommendation_count: 5
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical
@@ -239,16 +239,8 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
-  - name: Dowel pin
-    category: mechanical
-    tensile_strength: low
-    shear_strength: high
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: good
     vibration_resistance: excellent
-  recommendation_count: 3
+  recommendation_count: 2
   recommended_categories:
   - mechanical
   evaluation:
@@ -320,16 +312,8 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
-  - name: Dowel pin
-    category: mechanical
-    tensile_strength: low
-    shear_strength: high
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: good
     vibration_resistance: excellent
-  recommendation_count: 3
+  recommendation_count: 2
   recommended_categories:
   - mechanical
   evaluation:
@@ -461,7 +445,7 @@ scenarios:
     tensile_strength: low
     shear_strength: high
     rigidity: rigid
-    permanence: semi_permanent
+    permanence: permanent
     water_resistance: good
     vibration_resistance: excellent
   - name: Metal welding
@@ -539,7 +523,7 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   - name: rivet
     category: mechanical
     tensile_strength: moderate
@@ -553,7 +537,7 @@ scenarios:
     tensile_strength: low
     shear_strength: high
     rigidity: rigid
-    permanence: semi_permanent
+    permanence: permanent
     water_resistance: good
     vibration_resistance: excellent
   recommendation_count: 3

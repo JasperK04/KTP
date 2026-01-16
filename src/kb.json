@@ -533,7 +533,7 @@
       },
       "effects": {
         "load.required_strength": "high",
-        "requirements.min_vibration_resistance": "good"
+        "requirements.min_vibration_resistance": "fair"
       }
     },
     {
@@ -1155,7 +1155,7 @@
       "water_resistance": "fair",
       "temperature_resistance": "excellent",
       "uv_resistance": "excellent",
-      "vibration_resistance": "good",
+      "vibration_resistance": "excellent",
       "chemical_resistance": "good",
       "rigidity": "rigid",
       "permanence": "removable",
@@ -1299,7 +1299,7 @@
       "vibration_resistance": "excellent",
       "chemical_resistance": "good",
       "rigidity": "rigid",
-      "permanence": "semi_permanent",
+      "permanence": "permanent",
       "requires_two_sided_access": true
     },
     {

@@ -1,5 +1,5 @@
 agent: D
-generated_at: '2026-01-16T17:23:17.790744'
+generated_at: '2026-01-16T17:55:32.235775'
 summary:
   total_scenarios: 7
   passed: 7
@@ -82,8 +82,8 @@ scenarios:
     vibration_resistance: fair
   recommendation_count: 4
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical
@@ -346,7 +346,7 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   - name: Lag bolt
     category: mechanical
     tensile_strength: very_high
@@ -381,8 +381,8 @@ scenarios:
     vibration_resistance: poor
   recommendation_count: 11
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical
@@ -540,11 +540,11 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   recommendation_count: 5
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical

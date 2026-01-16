@@ -1,5 +1,5 @@
 agent: C
-generated_at: '2026-01-16T17:23:17.783688'
+generated_at: '2026-01-16T17:55:32.229031'
 summary:
   total_scenarios: 6
   passed: 6
@@ -65,7 +65,7 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   - name: Metal welding
     category: thermal
     tensile_strength: very_high
@@ -168,8 +168,8 @@ scenarios:
     vibration_resistance: fair
   recommendation_count: 4
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical
@@ -282,7 +282,7 @@ scenarios:
     min_water_resistance: none
     min_temperature_resistance: none
     min_uv_resistance: none
-    min_vibration_resistance: good
+    min_vibration_resistance: fair
     min_chemical_resistance: none
     allowed_rigidities:
     - flexible
@@ -309,7 +309,7 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   recommendation_count: 1
   recommended_categories:
   - mechanical
@@ -438,7 +438,7 @@ scenarios:
     rigidity: rigid
     permanence: removable
     water_resistance: fair
-    vibration_resistance: good
+    vibration_resistance: excellent
   - name: rivet
     category: mechanical
     tensile_strength: moderate
@@ -452,7 +452,7 @@ scenarios:
     tensile_strength: low
     shear_strength: high
     rigidity: rigid
-    permanence: semi_permanent
+    permanence: permanent
     water_resistance: good
     vibration_resistance: excellent
   - name: Metal welding
