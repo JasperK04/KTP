@@ -43,7 +43,7 @@ python cli_test.py
 
 This will:
 - Ask you a series of questions about your fastening requirements
-- **Save debug state after each question** to `debug_state.yaml`
+- **Save debug state after each question** to `debug_states/debug_state_{run_id}.yaml`
 - Generate final recommendations based on your answers
 - Provide complete audit trail with timestamps
 
@@ -103,11 +103,11 @@ uv run pytest -v
 - `cli_test.md` - CLI testing documentation
 - `main.py` - Web application entry point
 - `tests/` - Test suite (35 tests)
-- `debug_state.yaml` - Generated debug output (updated after each question)
+- `debug_states/` - Generated debug output files (one per CLI run)
 
 ## Debugging
 
-The CLI tool automatically updates `debug_state.yaml` **after every question**. This file contains:
+The CLI tool saves debug state **after every question** to a uniquely named file in `debug_states/`. Each file contains:
 
 ```yaml
 current_facts:              # All answers provided so far

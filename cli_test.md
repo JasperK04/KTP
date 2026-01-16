@@ -41,7 +41,7 @@ python cli_test.py
   1. updates the domain model
   2. reruns forward-chaining inference
   3. updates candidate recommendations
-  4. writes a debug snapshot to `debug_state.yaml`
+  4. writes a debug snapshot to `debug_states/debug_state_{run_id}.yaml`
 
 ---
 
@@ -67,11 +67,11 @@ This supports:
 
 ### File Naming
 
-Each run of the CLI overwrites the previous YAML file:
-`debug_state.yaml`
+Each run of the CLI creates a new file with a unique run ID:
+`debug_states/debug_state_{run_id}.yaml`
 
-The file is updated after each question resulting in one continues debug state.
-Timestamped questions and the answers are appended while internal states are updated.
+The run ID includes a timestamp and short UUID (e.g., `20260116_143022_a1b2c3`).
+The file is updated after each question, with timestamped questions appended while internal states are updated.
 
 ---
 
@@ -161,7 +161,7 @@ meaning if you check the debug file while not finished, this section shows what 
 
 1. Run the CLI
 2. Answer questions interactively
-3. Inspect `debug_state.yaml` after each answer
+3. Inspect the debug file in `debug_states/` after each answer
 4. Observe how:
    * requirements tighten
    * categories are excluded
@@ -171,8 +171,8 @@ meaning if you check the debug file while not finished, this section shows what 
 
 ## Design Guarantees
 
-* Debug files are **fully rewritten** every time you run the script
-* Each `debug_state.yaml` file is **internally consistent**
+* Each CLI run creates a **new debug file** with a unique run ID
+* Each debug file is **internally consistent**
 * CLI behavior is deterministic given identical answers
 * Debug output has **no effect on inference behavior**
 
