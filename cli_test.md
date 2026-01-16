@@ -1,109 +1,190 @@
-# CLI Testing Interface - Design Documentation
+# Command Line Interface Documentation
 
 ## Overview
-Interactive command-line tool for testing the fastener recommendation system with real-time debug output.
+
+The Command Line Interface (CLI) provides an interactive frontend for the **Fastener Recommendation Knowledge System**.
+It is designed explicitly for **testing, validation, and transparency** during development and expert evaluation.
+
+The CLI is intentionally thin:
+
+* it contains **no domain knowledge**
+* it performs **no inference logic**
+* it delegates all reasoning to the input model, rule engine, and problem-solving model
+
+This strict separation aligns with Knowledge Technology principles and supports expert-verifiable systems.
+
+---
 
 ## Usage
+
+activate the virtual environment
 ```bash
-uv run python cli_test.py
+source .venv/bin/activate
 ```
 
-## Design Choices
-
-### Incremental Debug State Saving
-The tool saves `debug_state.yaml` **after every question** to provide real-time insight into the inference process.
-
-Allows testers to:
-- Monitor the system's decision-making in real-time
-- Debug issues without completing the entire questionnaire
-- Understand how each answer affects recommendations
-
-### File Structure: Holistic + Historical
-
-The YAML file is **completely rewritten** after each answer with this structure:
-
-```yaml
-current_facts:          # All answers so far (holistic view)
-current_conclusions:    # Inferred facts from rules
-current_recommendations_count: N
-question_history:       # Chronological list with timestamps
-recommendations:        # Full details of matching fasteners
+then
+```bash
+python cli_test.py
 ```
 
-## Debug State Format
+---
 
-### 1. Current Facts
+## Interaction Model
+
+* Questions are asked sequentially based on applicability conditions.
+* Each question can be:
+
+  * answered (boolean or enum choice)
+  * skipped using `s`
+* After **every answered question**, the system:
+
+  1. updates the domain model
+  2. reruns forward-chaining inference
+  3. updates candidate recommendations
+  4. writes a debug snapshot to `debug_state.yaml`
+
+---
+
+## Incremental Debug State Saving
+
+### Rationale
+
+Inference in a knowledge-based system is incremental and monotonic.
+Saving only a final state obscures how conclusions were reached.
+
+The CLI therefore writes debug output after each answered question, exposing the evolving knowledge state.
+
+This supports:
+
+* rule validation
+* expert walkthroughs
+* debugging unexpected recommendations
+* verification & validation requirements
+
+---
+
+## Debug Output Files
+
+### File Naming
+
+Each run of the CLI overwrites the previous YAML file:
+`debug_state.yaml`
+
+The file is updated after each question resulting in one continues debug state.
+Timestamped questions and the answers are appended while internal states are updated.
+
+---
+
+## Debug State Structure
+
+The debug file has the following schema.
+
+### Top-Level Fields
+
 ```yaml
-current_facts:
-  material_type: wood
-  mechanical_strength: moderate
-  moisture_exposure: outdoor
+timestamp:               # ISO-8601 timestamp
+answers:                 # all answers given so far
+derived_requirements:    # inferred constraints from rules
+recommendation_count:    # N
+question_history:        # chronological audit trail
+recommendations:         # current matching fasteners
 ```
-**Snapshot of all user answers at this moment**
 
-### 2. Current Conclusions
+---
+
+### Answers
+
 ```yaml
-current_conclusions:
-  recommended_categories:
+answers:
+  material_a_type: wood
+  environment_moisture: outdoor
+  permanence: permanent
+```
+
+This section always reflects the **complete answer state**, not just the most recent input.
+
+---
+
+### Derived Requirements
+
+```yaml
+derived_requirements:
+  min_tensile_strength: high
+  min_water_resistance: good
+  allowed_rigidities:
+    - rigid
+  excluded_categories:
     - adhesive
-    - mechanical
-  required_properties:
-    - permanence:removable
 ```
-**What the inference engine deduced from the rules**
 
-### 3. Question History
+These values result from **forward-chaining rule inference**.
+Ordinal properties (e.g. strength, resistance) only increase monotonically.
+
+---
+
+### Question History
+
 ```yaml
 question_history:
-  - question_id: material_type
-    question_text: What material or surface is it intended for?
-    answer: wood
-    timestamp: '2025-12-12T17:07:18.742113'
+  - question_id: environment_moisture
+    question_text: What level of moisture exposure will the joint face?
+    answer: outdoor
+    timestamp: '2026-01-15T21:03:41.921882'
 ```
-**Complete audit trail with exact question text and timing**
 
-### 4. Recommendations
+This provides a complete **audit trail**:
+
+* exact question wording
+* given answers
+* order and timing
+
+---
+
+### Recommendations
+
 ```yaml
 recommendations:
-  - name: Hex bolts with nuts
+  - name: Stainless Steel Bolt
     category: mechanical
-    properties:
-      tensile_strength: high
-      water_resistance: good
-      # ... all properties
-    suggestions:
-      - Consider stainless steel bolts for superior corrosion resistance
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
 ```
-**Full details of every matching fastener with contextual suggestions**
 
-## Testing Workflow
+This section shows the **current filtering result**.
+meaning if you check the debug file while not finished, this section shows what fasteners are currently available to you.
 
-1. **Run the CLI** - Answer questions interactively
-2. **Open `debug_state.yaml`** in another window
-3. **Refresh after each answer** - See how facts accumulate
-4. **Analyze conclusions** - Understand which rules fired
-5. **Review recommendations** - See which fasteners match and why
+---
 
-## Quick Debugging
+## Typical Testing Workflow
 
-**No recommendations?**
-1. Check `current_facts` - Are all required answers present?
-2. Check `current_conclusions` - Did rules fire as expected?
-3. Check `recommendations: []` - Review fastener properties in `src/kb.json`
+1. Run the CLI
+2. Answer questions interactively
+3. Inspect `debug_state.yaml` after each answer
+4. Observe how:
+   * requirements tighten
+   * categories are excluded
+   * recommendations disappear
 
-**Wrong recommendations?**
-1. Review `question_history` - Were answers interpreted correctly?
-2. Check `current_conclusions` - Are the inferred properties correct?
-3. Compare fastener properties to required properties
+---
 
-**Rule not firing?**
-1. Verify all conditions in `src/kb.json` match the facts
-2. Check rule priority (higher priority = evaluated first)
-3. Look for conflicting conclusions from multiple rules
+## Design Guarantees
 
-## Tips for Fresh Testers
+* Debug files are **fully rewritten** every time you run the script
+* Each `debug_state.yaml` file is **internally consistent**
+* CLI behavior is deterministic given identical answers
+* Debug output has **no effect on inference behavior**
 
-- **Skip questions** with `s` to test partial scenarios
-- **Restart** with `r` to try different answer combinations
-- **Compare** multiple test runs by copying `debug_state.yaml` between runs
-- The file is **always safe to open** - it's rewritten cleanly each time, never appended
+---
+
+## Intended Audience
+
+This CLI is intended for:
+
+* debugging inference behavior
+* validating rule coverage
+* expert performing walkthroughs
+* evaluating transparency and traceability
+
+It is **not** intended as an end-user interface.

@@ -2,22 +2,65 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Question {{ qid }}</title>
+  <title>Question</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
 <body>
-  <h1>{{ question }}</h1>
+<div class="modal question-modal">
 
-  <div class="options">
-    {% for opt in options %}
-      <form method="post" style="display:inline;">
-        <input type="hidden" name="answer" value="{{ opt }}">
-        <button type="submit">{{ opt }}</button>
-      </form>
+    <h2>Question</h2>
+
+    {% for line in question.text.split('\n') %}
+        <p class="question-text">{{ line }}</p>
     {% endfor %}
-  </div>
 
-  {% if selected %}
-    <p>You selected: <strong>{{ selected }}</strong></p>
-  {% endif %}
+    <form method="post">
+
+        {% if question.type == "boolean" %}
+            <label>
+                <input type="radio" name="answer" value="true" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="answer" value="false">
+                No
+            </label>
+
+        {% elif question.type == "enum" %}
+            {% for choice in question.options %}
+                <label>
+                    <input type="radio" name="answer" value="{{ choice }}" required>
+                    {{ choice.replace("_", " ").capitalize() }}
+                </label>
+            {% endfor %}
+        {% endif %}
+
+        <div class="button">
+            <button type="submit">Next</button>
+        </div>
+
+    </form>
+
+
+    {% if explanations %}
+        <div class="explanations">
+            <p>Why this question is asked:</p>
+            {% for line in explanations %}
+            <p class="question-explanation">
+                {{ line }}
+            </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form action="{{ url_for('routes.questions_overview') }}" method="get">
+        <div class="button secondary">
+            <button type="submit">Show current overview</button>
+        </div>
+    </form>
+
+</div>
 </body>
 </html>

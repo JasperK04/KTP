@@ -1,0 +1,23 @@
+:root {
+  --body-bg: #f2f4f8;
+  --modal-bg: #ffffff;
+  --text-color: #1f2933;
+
+  --button-bg: #3b82f6;
+  --button-bg-hover: #2563eb;
+  --button-text: #ffffff;
+
+  --shadow-color: rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode {
+  --body-bg: #121212;
+  --modal-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+
+  --button-bg: #2563eb;
+  --button-bg-hover: #3b82f6;
+  --button-text: #ffffff;
+
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}

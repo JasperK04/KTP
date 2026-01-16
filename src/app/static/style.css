@@ -1,11 +1,164 @@
-body{
-    font-family: Arial, sans-serif; padding:20px
+@import url("colors.css");
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.options form {
-    display:inline-block; margin:6px
+.modal {
+  background-color: var(--modal-bg);
+  max-width: 900px;
+  width: calc(100% - 4rem);
+  padding: 2rem 2.5rem;
+  margin: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px var(--shadow-color);
+}
+
+.question-modal {
+  max-width: 450px;
+  width: calc(80% - 10rem);
+}
+
+.question-text {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.explanations {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+
+  > p {
+    margin: 0.7rem 0 0.3rem;
+  }
+
+  > .question-explanation {
+    font-size: 0.7rem;
+    margin: 0rem;
+    margin-bottom: 0.3rem;
+    padding: 0rem;
+  }
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+pre {
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 button {
-    padding:10px 14px; cursor:pointer
+  width: 260px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: var(--button-bg-hover);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  gap: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+form input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--button-bg);
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+form input[type="radio"]::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.15s ease-in-out;
+  background-color: var(--button-bg);
+}
+
+form input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+form input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+form button[type="submit"] {
+  width: 260px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: var(--button-bg-hover);
+}
+
+form button[type="submit"]:active {
+  transform: translateY(1px);
 }

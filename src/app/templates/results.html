@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fastener Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class="modal">
+
+    <h1>Fastener Recommendations</h1>
+
+    {% if recommendations|length == 0 %}
+        <p>
+            No fastening methods match the derived requirements.
+            You may revise your answers or restart the process.
+        </p>
+    {% else %}
+        <p>
+            Found {{ recommendations|length }} suitable fastening method(s)
+            based on the inferred requirements.
+        </p>
+
+        <hr>
+
+        {% for fastener in recommendations %}
+            <section class="fastener">
+
+                <h2>{{ fastener.name }}</h2>
+
+                <p><strong>Category:</strong> {{ fastener.category }}</p>
+
+                <p>
+                    <strong>Compatible Materials:</strong>
+                    {{ fastener.compatible_materials
+                        | map(attribute="value")
+                        | join(", ")
+                    }}
+                </p>
+
+                <h3>Mechanical Properties</h3>
+                <ul>
+                    <li><strong>Tensile Strength:</strong> {{ fastener.tensile_strength.value }}</li>
+                    <li><strong>Shear Strength:</strong> {{ fastener.shear_strength.value }}</li>
+                    <li><strong>Rigidity:</strong> {{ fastener.rigidity.value }}</li>
+                    <li><strong>Permanence:</strong> {{ fastener.permanence.value }}</li>
+                </ul>
+
+                <h3>Resistance Properties</h3>
+                <ul>
+                    <li><strong>Water Resistance:</strong> {{ fastener.water_resistance.value }}</li>
+                    <li><strong>Temperature Resistance:</strong> {{ fastener.temperature_resistance.value }}</li>
+                    <li><strong>UV Resistance:</strong> {{ fastener.uv_resistance.value }}</li>
+                    <li><strong>Vibration Resistance:</strong> {{ fastener.vibration_resistance.value }}</li>
+                    <li><strong>Chemical Resistance:</strong> {{ fastener.chemical_resistance.value }}</li>
+                </ul>
+
+                {% if fastener.requires_two_sided_access %}
+                    <p>
+                        <strong>Installation constraint:</strong>
+                        Requires access from both sides.
+                    </p>
+                {% else %}
+                    <p>
+                        <strong>Installation constraint:</strong>
+                        Suitable for one-sided access.
+                    </p>
+                {% endif %}
+
+            </section>
+
+            <hr>
+        {% endfor %}
+    {% endif %}
+
+    <hr>
+
+    <h2>Derived Requirements (Explanation)</h2>
+    <pre>{{ task.requirements | tojson(indent=2) }}</pre>
+
+    <h2>Rules Applied</h2>
+    {% if fired_rules|length == 0 %}
+        <p>No inference rules were triggered.</p>
+    {% else %}
+        <ul>
+            {% for rule in fired_rules %}
+                <li>{{ rule }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <form action="{{ url_for('routes.questions_overview') }}" method="get">
+        <div class="button">
+            <button type="submit">Review Answers & Reasoning</button>
+        </div>
+    </form>
+
+    <form action="{{ url_for('routes.reset') }}" method="post">
+        <div class="button danger">
+            <button type="submit">Start Over</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

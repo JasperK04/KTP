@@ -1,0 +1,481 @@
+agent: C
+generated_at: '2026-01-16T17:55:32.229031'
+summary:
+  total_scenarios: 6
+  passed: 6
+  failed: 0
+  pass_rate: 100.0%
+scenarios:
+- scenario_id: C01
+  scenario_name: Industrial Machine Vibration Mount
+  description: Mounting a motor to a metal base plate. Heavy vibration, high dynamic loads, must not loosen.
+  notes: Permanent metal-to-metal with vibration. Welding is ideal but Hex bolt with lock washers is also valid for industrial
+    mounts. Vibration excludes adhesives.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+    load_direction: false
+    shock_loads: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - heavy_dynamic_load
+  - metal_heavy_load_strength
+  - metal_to_metal
+  - permanent_connection
+  - precision_positioning_required
+  - vibration_and_permanent
+  - vibration_present
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 2
+  recommended_categories:
+  - mechanical
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    - thermal
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Metal welding
+    - Hex bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C02
+  scenario_name: Interior Plastic Panel Mount
+  description: Attaching plastic interior panel to metal frame. Indoor/protected use. Needs to be serviceable.
+  notes: Indoor use - no water resistance needed. Removable excludes rivet and thermal. Sheet metal screw and various adhesives
+    work for plastic+metal.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: metal
+    environment_moisture: none
+    load_type: light_dynamic
+    vibration: false
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: false
+    precision_required: false
+    load_direction: false
+    shock_loads: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - light_dynamic_load
+  - removable_connection
+  recommendations:
+  - name: Superglue (cyanoacrylate)
+    category: adhesive
+    tensile_strength: high
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Duct tape
+    category: adhesive
+    tensile_strength: low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Sheet metal screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 4
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Sheet metal screw
+    - Superglue (cyanoacrylate)
+    expected_fasteners_missing:
+    - Acrylic adhesive
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C03
+  scenario_name: Decorative Wall Picture
+  description: Attaching a wooden picture frame to masonry wall. Using adhesive to avoid drilling into decorative masonry.
+  notes: No mechanical fastener works for wood+masonry combination. Masonry nail only works on masonry itself, not wood+masonry
+    joint. Construction/Flooring adhesive compatible with both materials.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: masonry
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: moderate
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - masonry_involved
+  - static_load
+  recommendations:
+  - name: Flooring adhesive
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  recommendation_count: 2
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Construction adhesive
+    - Flooring adhesive
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C04
+  scenario_name: Heavy Duty Shelf Bracket
+  description: Mounting metal shelf brackets to wooden studs. Heavy load, tension from loaded shelves.
+  notes: Shock loads exclude adhesives. Hex bolt is the only metal+wood compatible fastener. Lag bolt is wood-only. Need two-sided
+    access for bolt+nut.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: wood
+    environment_moisture: none
+    load_type: heavy_dynamic
+    vibration: false
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+    load_direction: true
+    shock_loads: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: moderate
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: fair
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - heavy_dynamic_load
+  - overhead_installation_requires_shear
+  - removable_connection
+  - shock_loads_present
+  - tension_dominant
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  recommendation_count: 1
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Hex bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C05
+  scenario_name: Ceiling Light Fixture Base
+  description: Mounting a metal light fixture base to concrete ceiling. Using construction adhesive for flush mount.
+  notes: No mechanical fastener works for metal+masonry in KB. Concrete screw is masonry+stone only. Construction adhesive
+    has high shear strength needed for vertical installation.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: masonry
+    environment_moisture: none
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: moderate
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - masonry_involved
+  - permanent_connection
+  - static_load
+  recommendations:
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  recommendation_count: 1
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Construction adhesive
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C06
+  scenario_name: Precision Optical Instrument Mount
+  description: Mounting optical sensor to metal bracket. Requires precise positioning that won't shift. Permanent installation.
+  notes: metal_to_metal allows mechanical+thermal. Dowel pins are ideal for precision positioning - that's their primary purpose.
+    Welding also provides permanent, precise joints.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories: []
+  fired_rules:
+  - metal_to_metal
+  - permanent_connection
+  - precision_positioning_required
+  - static_load
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  - name: rivet
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  - name: Dowel pin
+    category: mechanical
+    tensile_strength: low
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: excellent
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 4
+  recommended_categories:
+  - mechanical
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    - thermal
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Metal welding
+    - Dowel pin
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true

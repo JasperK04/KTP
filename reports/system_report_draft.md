@@ -28,7 +28,12 @@ The problem involves multi-dimensional decision-making considering:
 
 ### Identity
 
-Jasper's dad and uncle co-own a hardware stoor with over two decades of experience.
+**Klaas Kleine**, has been part of Hubo Noordhorn since 2004, where he is one of the two owners and takes on much of the daily operational work. 
+His way of assisting customers is direct and practical: he listens closely, identifies what the issue truly is, and offers solutions grounded in technical knowledge. 
+Whether the question concerns fastening materials or something entirely different, he focuses on what will actually solve the problem.
+
+The same qualities that shape his work; clear reasoning, a hands-on attitude, and a readiness to help also shows how customers learn from him. His approach illustrates how practical expertise and problem solving can reinforce each other in a setting where reliability matters.
+
 
 ### Expertise Domain
 The expert knowledge encompasses:
@@ -38,6 +43,7 @@ The expert knowledge encompasses:
 - Material science principles governing compatibility
 - Environmental resistance requirements
 - Load-bearing capacity specifications
+- Much more
 
 ## Knowledge Models
 
@@ -197,7 +203,7 @@ uv run pytest tests/          # Test suite
 
 ### Project Structure
 - `src/engine.py` (474 lines): Core inference engine and knowledge base
-- `src/kb.json` (396 lines): Declarative knowledge base
+- `src/kb.json` (1436 lines): Declarative knowledge base
 - `src/app/`: Flask web application (not yet implemented)
 - `cli_test.py` (227 lines): CLI testing interface
 - `tests/`: Automated test suite (89 tests)
@@ -216,8 +222,8 @@ Each fastener contains 11 material properties, requires_tools list, surface_prep
 
 The system meets the minimum complexity requirement of 100 knowledge elements through:
 - 37 top-level knowledge entities
-- 7 fasteners × 11 properties = 77 property specifications
+- 54 fasteners × 11 properties = 594 property specifications, (there exists a lot overlap between these)
 - Multi-valued properties (e.g., compatible_materials lists)
 - Contextual suggestion conditions and triggers
 
-Total knowledge base size: 396 lines of structured JSON containing comprehensive domain knowledge about fastening technology.
+Total knowledge base size: 1436 lines of structured JSON containing comprehensive domain knowledge about fastening technology.

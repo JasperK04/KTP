@@ -1,0 +1,619 @@
+agent: A
+generated_at: '2026-01-16T17:55:32.211455'
+summary:
+  total_scenarios: 7
+  passed: 7
+  failed: 0
+  pass_rate: 100.0%
+scenarios:
+- scenario_id: A01
+  scenario_name: Paper-to-Paper Scrapbooking
+  description: Attaching decorative paper to a scrapbook page. Very light, indoor use, needs to be repositionable.
+  notes: Paper is too weak for mechanical fasteners. Thermal would destroy it. High porosity requires moderate shear strength,
+    filtering out very_low/low adhesives. Wood glue (PVA) and Contact cement meet requirements.
+  answers_applied:
+    material_a_type: paper
+    material_b_type: paper
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: very_low
+    min_shear_strength: moderate
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - mechanical
+    - thermal
+  fired_rules:
+  - high_porosity_excludes_low_strength_adhesives
+  - paper_to_paper
+  - removable_connection
+  - static_load
+  recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 2
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A02
+  scenario_name: Metal-to-Metal Structural Frame
+  description: Joining steel beams for a permanent structural frame. High load, outdoor industrial setting.
+  notes: Permanent metal-to-metal structural connections use welding. Bolts are removable by design. Vibration excludes adhesives.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: outdoor
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    uv_exposure: true
+    temperature_extremes: true
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+    load_direction: false
+    shock_loads: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: good
+    min_temperature_resistance: excellent
+    min_uv_resistance: excellent
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - heavy_dynamic_load
+  - metal_heavy_load_strength
+  - metal_to_metal
+  - outdoor_and_uv_exposure
+  - outdoor_environment
+  - permanent_connection
+  - precision_positioning_required
+  - temperature_extremes_and_outdoor
+  - temperature_extremes_present
+  - uv_exposure_present
+  - vibration_and_permanent
+  - vibration_present
+  recommendations:
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - thermal
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Metal welding
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A03
+  scenario_name: Wood-to-Wood Furniture Joint
+  description: Assembling a wooden dining table. Indoor use, moderate load, should be disassemblable for moving.
+  notes: Wood-to-wood excludes thermal (can't weld wood). Screws and wood glue are standard. Removable favors screws over
+    permanent adhesives.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - removable_connection
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Wood screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: poor
+    vibration_resistance: fair
+  - name: Deck screw
+    category: mechanical
+    tensile_strength: high
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Common nail
+    category: mechanical
+    tensile_strength: low
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Brad nail
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Staple
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  recommendation_count: 11
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood screw
+    - Wood glue (PVA)
+    - Hex bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A04
+  scenario_name: Fabric-to-Fabric Upholstery
+  description: Attaching fabric to cushion padding for furniture upholstery. Needs flexibility, light load.
+  notes: Fabric requires flexible bonding. Thermal excluded for fabric. High porosity requires moderate shear strength, filtering
+    out low-strength adhesives. Contact cement meets all requirements (flexible, moderate shear).
+  answers_applied:
+    material_a_type: fabric
+    material_b_type: fabric
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: true
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: fast
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: low
+    min_shear_strength: moderate
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - fabric_involved
+  - flexibility_required
+  - flexible_implies_low_strength
+  - high_porosity_excludes_low_strength_adhesives
+  - static_load
+  recommendations:
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 1
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Contact cement
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A05
+  scenario_name: Glass-to-Metal Display Case
+  description: Attaching glass panels to metal frame for a museum display case. Brittle material handling critical.
+  notes: Glass is very brittle - mechanical fasteners would crack it. Adhesives that work on both glass and metal are required.
+  answers_applied:
+    material_a_type: glass
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - permanent_connection
+  - precision_positioning_required
+  - static_load
+  recommendations:
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Glass adhesive
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  - name: Acrylic adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 3
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Glass adhesive
+    - Silicone sealant
+    expected_fasteners_missing:
+    - Two-component epoxy
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A06
+  scenario_name: Ceramic Tile to Stone Floor
+  description: Installing ceramic tiles on a stone subfloor in a kitchen. Permanent installation, some moisture.
+  notes: Ceramic is brittle - cannot use mechanical fasteners. Need adhesives compatible with both ceramic and stone.
+  answers_applied:
+    material_a_type: ceramic
+    material_b_type: stone
+    environment_moisture: splash
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: true
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: fair
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - permanent_connection
+  - precision_positioning_required
+  - splash_environment
+  - static_load
+  recommendations:
+  - name: Two-component epoxy
+    category: adhesive
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Two-component epoxy
+    expected_fasteners_missing:
+    - High-temperature adhesive
+    - Flooring adhesive
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: A07
+  scenario_name: Plastic-to-Plastic Electronics Enclosure
+  description: Assembling a plastic electronics enclosure. Needs to be openable for maintenance, indoor use.
+  notes: Plastic-to-plastic enclosure uses screws for removability. Rivet is permanent so excluded. Thermal excluded by removable
+    constraint.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: plastic
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - removable_connection
+  - static_load
+  recommendations:
+  - name: Superglue (cyanoacrylate)
+    category: adhesive
+    tensile_strength: high
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Duct tape
+    category: adhesive
+    tensile_strength: low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Sheet metal screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 6
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Sheet metal screw
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true

@@ -1,226 +1,191 @@
 #!/usr/bin/env python3
-"""
-CLI Testing Interface for Fastener Recommendation System
-Asks questions interactively and provides recommendations with debug output
-"""
+import json
 import sys
-from pathlib import Path
-from src.engine import KnowledgeBase, InferenceEngine, QuestionType
-import yaml
+import uuid
 from datetime import datetime
+from pathlib import Path
+
+import yaml
+
+from src.domain_model import (
+    Fastener,
+    MaterialType,
+    Permanence,
+    ResistanceLevel,
+    Rigidity,
+    StrengthLevel,
+)
+from src.input_model import InputModel
+from src.rule_model import ForwardChainingEngine, RuleFactory
+from src.solving_model import ProblemSolvingModel
 
 
-def save_debug_state(engine: InferenceEngine, question_history: list = None, filename: str = "debug_state.yaml"):
-    """Save current facts, conclusions, and recommendations to YAML for debugging"""
-    recommendations = engine.recommend_fasteners()
-    
+def serialize_value(value):
+    if hasattr(value, "value"):
+        return value.value
+    if isinstance(value, set):
+        return sorted(serialize_value(v) for v in value)  # pyright: ignore[reportArgumentType]
+    if isinstance(value, list):
+        return [serialize_value(v) for v in value]
+    if isinstance(value, dict):
+        return {k: serialize_value(v) for k, v in value.items()}
+    return value
+
+
+def generate_run_id():
+    """Generate a short date-time based UUID for this run."""
+    dt = datetime.now()
+    date_str = dt.strftime("%Y%m%d_%H%M%S")
+    short_uuid = uuid.uuid4().hex[:6]
+    return f"{date_str}_{short_uuid}"
+
+
+def save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir):
     debug_data = {
-        "current_facts": dict(engine.facts),
-        "current_conclusions": dict(engine.conclusions),
-        "current_recommendations_count": len(recommendations),
+        "timestamp": datetime.now().isoformat(),
+        "answers": dict(input_model.answers),
+        "derived_requirements": {
+            k: serialize_value(v) for k, v in vars(task.requirements).items()
+        },
+        "recommendation_count": len(recommendations),
+        "question_history": list(question_history),
+        "recommendations": [],
     }
-    
-    # Add question history if provided
-    if question_history:
-        debug_data["question_history"] = question_history
-    
-    # Add full recommendations
-    debug_data["recommendations"] = []
-    for fastener, suggestions in recommendations:
-        rec = {
-            "name": fastener.name,
-            "category": fastener.category.value,
-            "properties": {
-                "compatible_materials": fastener.properties.compatible_materials,
-                "tensile_strength": fastener.properties.tensile_strength.value,
-                "shear_strength": fastener.properties.shear_strength.value,
-                "compressive_strength": fastener.properties.compressive_strength.value,
-                "water_resistance": fastener.properties.water_resistance.value,
-                "weather_resistance": fastener.properties.weather_resistance.value,
-                "chemical_resistance": fastener.properties.chemical_resistance.value,
-                "temperature_resistance": fastener.properties.temperature_resistance.value,
-                "vibration_resistance": fastener.properties.vibration_resistance.value,
-                "rigidity": fastener.properties.rigidity.value,
-                "permanence": fastener.properties.permanence.value,
-                "notes": fastener.properties.notes
-            },
-            "requires_tools": fastener.requires_tools,
-            "surface_prep": fastener.surface_prep,
-            "curing_time": fastener.curing_time,
-            "suggestions": suggestions
-        }
-        debug_data["recommendations"].append(rec)
-    
-    with open(filename, 'w') as f:
-        yaml.dump(debug_data, f, default_flow_style=False, sort_keys=False)
-    
-    return filename
+
+    for fastener in recommendations:
+        debug_data["recommendations"].append(
+            {
+                "name": fastener.name,
+                "category": fastener.category,
+                "tensile_strength": fastener.tensile_strength.value,
+                "shear_strength": fastener.shear_strength.value,
+                "rigidity": fastener.rigidity.value,
+                "permanence": fastener.permanence.value,
+            }
+        )
+
+    debug_dir.mkdir(parents=True, exist_ok=True)
+    filename = debug_dir / f"debug_state_{run_id}.yaml"
+    with open(filename, "w") as f:
+        yaml.dump(debug_data, f, sort_keys=False)
+
+    return str(filename)
 
 
-def ask_question(question, engine: InferenceEngine, question_history: list) -> any:
-    """Ask a single question and get user input, saving debug state after each answer"""
-    print(f"\n{question.text}")
-    
-    if question.type == QuestionType.BOOLEAN:
-        print("  [y] Yes")
-        print("  [n] No")
+def ask_question(question):
+    print("\n" + "-" * 80)
+    print(question["text"])
+
+    if question["type"] == "boolean":
+        print("  [1] Yes")
+        print("  [2] No")
         print("  [s] Skip")
-        
+
         while True:
             answer = input("Your answer: ").strip().lower()
-            if answer == 's':
+            if answer == "s":
                 return None
-            elif answer in ['y', 'yes']:
-                answer_value = True
-                break
-            elif answer in ['n', 'no']:
-                answer_value = False
-                break
-            else:
-                print("Invalid input. Please enter 'y', 'n', or 's' to skip.")
-                continue
-    
-    elif question.type == QuestionType.CHOICE:
-        for idx, choice in enumerate(question.choices, 1):
-            print(f"  [{idx}] {choice}")
-        print(f"  [s] Skip")
-        
+            if answer in ("y", "yes", "1"):
+                return True
+            if answer in ("n", "no", "2"):
+                return False
+            print("Please enter 1, 2, or s.")
+
+    elif question["type"] == "enum":
+        for idx, option in enumerate(question["options"], 1):
+            print(f"  [{idx}] {option}")
+        print("  [s] Skip")
+
         while True:
-            answer = input("Your answer (number or 's' to skip): ").strip().lower()
-            if answer == 's':
+            answer = input("Your answer: ").strip().lower()
+            if answer == "s":
                 return None
             try:
-                choice_idx = int(answer) - 1
-                if 0 <= choice_idx < len(question.choices):
-                    answer_value = question.choices[choice_idx]
-                    break
-                else:
-                    print(f"Please enter a number between 1 and {len(question.choices)}, or 's' to skip.")
+                idx = int(answer) - 1
+                if 0 <= idx < len(question["options"]):
+                    return question["options"][idx]
             except ValueError:
-                print("Invalid input. Please enter a number or 's' to skip.")
-                continue
-    else:
-        return None
-    
-    # Record this question and answer in history
-    question_history.append({
-        "question_id": question.id,
-        "question_text": question.text,
-        "answer": answer_value,
-        "timestamp": datetime.now().isoformat()
-    })
-    
-    # Save debug state after this answer
-    save_debug_state(engine, question_history)
-    print(f"  ✓ Debug state updated (question {len(question_history)}/{len(engine.kb.questions)})")
-    
-    return answer_value
+                pass
+            print("Invalid choice.")
 
-
-def display_recommendations(recommendations: list):
-    """Display fastener recommendations in a readable format"""
-    if not recommendations:
-        print("\n❌ No fasteners match your requirements.")
-        print("Try adjusting your requirements or using different materials.")
-        return
-    
-    print(f"\n✅ Found {len(recommendations)} matching fastener(s):\n")
-    print("=" * 80)
-    
-    for idx, (fastener, suggestions) in enumerate(recommendations, 1):
-        print(f"\n{idx}. {fastener.name}")
-        print(f"   Category: {fastener.category.value}")
-        print(f"   Compatible Materials: {', '.join(fastener.properties.compatible_materials)}")
-        print(f"   Strength: {fastener.properties.tensile_strength.value}")
-        print(f"   Water Resistance: {fastener.properties.water_resistance.value}")
-        print(f"   Permanence: {fastener.properties.permanence.value}")
-        print(f"   Rigidity: {fastener.properties.rigidity.value}")
-        
-        if fastener.curing_time:
-            print(f"   Curing Time: {fastener.curing_time}")
-        
-        if fastener.requires_tools:
-            print(f"   Required Tools: {', '.join(fastener.requires_tools)}")
-        
-        if fastener.surface_prep:
-            print(f"   Surface Prep: {', '.join(fastener.surface_prep)}")
-        
-        if suggestions:
-            print(f"\n   💡 Suggestions:")
-            for suggestion in suggestions:
-                print(f"      • {suggestion}")
-        
-        if fastener.properties.notes:
-            print(f"\n   📝 Notes:")
-            for note in fastener.properties.notes:
-                print(f"      • {note}")
-        
-        print()
+    return None
 
 
 def main():
-    """Main CLI testing loop"""
     print("=" * 80)
-    print("  Fastener Recommendation System - CLI Test Interface")
+    print(" Fastener Recommendation System (CLI)")
     print("=" * 80)
-    
-    # Load knowledge base
-    kb_path = Path(__file__).parent / "src" / "kb.json"
+
+    run_id = generate_run_id()
+    debug_dir = Path(__file__).resolve().parent / "debug_states"
+
+    kb_path = Path(__file__).resolve().parent / "src" / "kb.json"
     if not kb_path.exists():
-        print(f"Error: Knowledge base not found at {kb_path}")
+        print("Error: kb.json not found")
         sys.exit(1)
-    
-    kb = KnowledgeBase()
-    kb.load_from_file(str(kb_path))
-    
-    print(f"\nLoaded knowledge base:")
-    print(f"  - {len(kb.questions)} questions")
-    print(f"  - {len(kb.fasteners)} fasteners")
-    print(f"  - {len(kb.rules)} rules")
-    print(f"  - {len(kb.suggestion_rules)} suggestion rules")
-    
-    # Initialize inference engine
-    engine = InferenceEngine(kb)
+
+    with open(kb_path) as f:
+        kb = json.load(f)
+
+    input_model = InputModel(kb["questions"], kb["materials"])
+
+    rule_factory = RuleFactory(kb["rules"])
+    rule_base = rule_factory.build_rule_base()
+    engine = ForwardChainingEngine(rule_base)
+
+    fasteners = [Fastener.from_dict(f) for f in kb["fasteners"]]
+    solver = ProblemSolvingModel(engine, fasteners)
+
     question_history = []
-    
-    # Ask all questions
-    print("\n" + "=" * 80)
-    print("Answer questions to get fastener recommendations")
-    print("(You can skip any question by entering 's')")
-    print("(Debug state saved after each answer to debug_state.yaml)")
-    print("=" * 80)
-    
-    for question in kb.questions:
-        answer = ask_question(question, engine, question_history)
+
+    print(f"\nloaded {len(kb['questions'])} questions from knowledge base.")
+    print(f"loaded {len(kb['rules'])} rules from knowledge base.")
+    print(f"loaded {len(kb['materials'])} materials from knowledge base.")
+    print(f"loaded {len(kb['fasteners'])} fasteners from knowledge base.")
+
+    while True:
+        question = input_model.get_next_question()
+        if question is None:
+            break
+
+        answer = ask_question(question)
+
         if answer is not None:
-            engine.add_fact(question.id, answer)
-    
-    # Get recommendations
+            input_model.answer_question(question["id"], answer)
+            question_history.append(
+                {
+                    "question_id": question["id"],
+                    "question_text": question["text"],
+                    "answer": answer,
+                    "timestamp": datetime.now().isoformat(),
+                }
+            )
+
+            task = input_model.get_task()
+            recommendations = solver.recommend(task)
+
+            save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir)
+
+    task = input_model.get_task()
+    recommendations = solver.recommend(task)
+
     print("\n" + "=" * 80)
-    print("  Generating Recommendations...")
-    print("=" * 80)
-    
-    recommendations = engine.recommend_fasteners()
-    display_recommendations(recommendations)
-    
-    # Save final debug state
-    debug_file = save_debug_state(engine, question_history)
-    print("\n" + "=" * 80)
-    print(f"✅ Final debug state saved to: {debug_file}")
-    print("   (This file was updated after each question with complete state)")
-    print("=" * 80)
-    
-    # Option to restart or quit
-    print("\nOptions:")
-    print("  [r] Restart with new answers")
-    print("  [q] Quit")
-    
-    choice = input("\nYour choice: ").strip().lower()
-    if choice == 'r':
-        engine.reset()
-        main()
+    if not recommendations:
+        print("❌ No suitable fasteners found.")
     else:
-        print("\nThank you for using the Fastener Recommendation System!")
+        print(f"Found {len(recommendations)} suitable fastener(s):\n")
+        for idx, f in enumerate(recommendations, 1):
+            print(f"{idx}. {f.name}")
+            print(f"   Category: {f.category}")
+            print(f"   Tensile Strength: {f.tensile_strength.value}")
+            print(f"   Rigidity: {f.rigidity.value}")
+            print(f"   Permanence: {f.permanence.value}")
+            print()
+
+    final_debug = save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir)
+
+    print(f"\nFinal debug state saved to {final_debug}")
+    print("\nThank you for using the system.")
 
 
 if __name__ == "__main__":

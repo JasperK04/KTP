@@ -1,0 +1,625 @@
+agent: D
+generated_at: '2026-01-16T17:55:32.235775'
+summary:
+  total_scenarios: 7
+  passed: 7
+  failed: 0
+  pass_rate: 100.0%
+scenarios:
+- scenario_id: D01
+  scenario_name: One-Sided Access Panel
+  description: Attaching plastic access panel to metal enclosure where only exterior is accessible. Needs to be openable for
+    maintenance.
+  notes: One-sided access excludes Hex bolt (needs nut). Plastic+metal uses Sheet metal screw. Rivet is permanent. Removable
+    excludes thermal.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - removable_connection
+  - static_load
+  recommendations:
+  - name: Superglue (cyanoacrylate)
+    category: adhesive
+    tensile_strength: high
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Duct tape
+    category: adhesive
+    tensile_strength: low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: poor
+  - name: Sheet metal screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 4
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Sheet metal screw
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D02
+  scenario_name: Health-Restricted School Project
+  description: Elementary school craft project. No fumes, no heat, must be completely safe for children.
+  notes: 'Health constraints exclude thermal. Paper+wood adhesives: PVA, Hot-melt, Contact cement. Staple not paper+wood compatible
+    (only fabric+paper+wood, must match BOTH materials).'
+  answers_applied:
+    material_a_type: paper
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: true
+    max_curing_time: fast
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: moderate
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - health_constraints
+  - high_porosity_excludes_low_strength_adhesives
+  - static_load
+  recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  recommendation_count: 2
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood glue (PVA)
+    - Contact cement
+    expected_fasteners_missing:
+    - Hot-melt glue
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D03
+  scenario_name: Flexible Joint Requirement
+  description: Connecting two plastic parts that need to flex relative to each other. Like a living hinge.
+  notes: Flexibility required limits to flexible/semi-flexible rigidity. Silicone and Contact cement are flexible and work
+    on plastic.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: plastic
+    environment_moisture: none
+    load_type: light_dynamic
+    vibration: false
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: true
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: false
+    precision_required: false
+    load_direction: false
+    shock_loads: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: low
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - flexibility_required
+  - flexible_implies_low_strength
+  - light_dynamic_load
+  recommendations:
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Duct tape
+    category: adhesive
+    tensile_strength: low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: poor
+  recommendation_count: 3
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Contact cement
+    expected_fasteners_missing:
+    - Silicone sealant
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D04
+  scenario_name: 'Contradictory: Permanent but Removable'
+  description: Customer wants a permanent solution that can also be removed. Testing how system handles conflicting constraints.
+  notes: Removable constraint should exclude permanent-only fasteners. Testing that permanence constraints are properly applied.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - removable_connection
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Wood screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: poor
+    vibration_resistance: fair
+  - name: Deck screw
+    category: mechanical
+    tensile_strength: high
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Common nail
+    category: mechanical
+    tensile_strength: low
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Brad nail
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Staple
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  recommendation_count: 11
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood screw
+    - Hex bolt
+    - Lag bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D05
+  scenario_name: Everything Excluded Scenario
+  description: 'Extreme constraints that should eliminate most options: brittle material, vibration, health constraints, vertical.'
+  notes: This scenario tests edge case where constraints are very restrictive. Glass+ceramic = brittle = no mechanical. Health
+    = no thermal. Vibration+shock = no adhesive. System should handle gracefully.
+  answers_applied:
+    material_a_type: glass
+    material_b_type: ceramic
+    environment_moisture: splash
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    chemical_exposure: true
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: true
+    max_curing_time: slow
+    access_one_side: true
+    precision_required: true
+    load_direction: true
+    shock_loads: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: moderate
+    min_shear_strength: high
+    min_water_resistance: fair
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: good
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - chemical_exposure
+  - chemical_exposure_and_permanent
+  - health_constraints
+  - heavy_dynamic_load
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - precision_positioning_required
+  - shock_loads_present
+  - splash_environment
+  - tension_dominant
+  - vibration_and_permanent
+  - vibration_present
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D06
+  scenario_name: Quick Assembly Metal-to-Wood
+  description: Attaching metal bracket to wooden beam. Needs to be functional immediately, serviceable later.
+  notes: 'Metal+wood compatible: Hex bolt, Construction adhesive, Polyurethane glue. We removed immediate_use_required rule,
+    so adhesives are allowed.'
+  answers_applied:
+    material_a_type: metal
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - static_load
+  recommendations:
+  - name: Polyurethane glue
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Marine epoxy
+    category: adhesive
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: excellent
+  recommendation_count: 5
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Hex bolt
+    - Construction adhesive
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D07
+  scenario_name: Outdoor Deck Post to Concrete
+  description: Mounting wood deck post to concrete foundation using post bracket and adhesive. Outdoor exposure, high load.
+  notes: No mechanical fastener works for wood+masonry in KB. Masonry nail is masonry+stone only. Construction adhesive is
+    the only option that's compatible with both wood AND masonry.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: masonry
+    environment_moisture: outdoor
+    load_type: static
+    permanence: semi_permanent
+    uv_exposure: false
+    temperature_extremes: false
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: moderate
+    min_water_resistance: good
+    min_temperature_resistance: none
+    min_uv_resistance: poor
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories: []
+  fired_rules:
+  - masonry_involved
+  - no_uv_but_outdoor
+  - outdoor_environment
+  - static_load
+  recommendations:
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  recommendation_count: 1
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Construction adhesive
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true

@@ -8,10 +8,7 @@ load_dotenv()
 class Config:
     """Base configuration"""
 
-    QUESTIONS_FILE_PATH = os.environ.get("QUESTIONS_FILE_PATH", "questions.json")
-    RULES_FILE_PATH = os.environ.get("RULES_FILE_PATH", "rules.json")
-    SESSION_PERMANENT = False
-    SESSION_TYPE = "filesystem"
+    SECRET_KEY = os.environ.get("SECRET_KEY", "supersecretkey")
 
 
 config: dict[str, type[Config]] = {

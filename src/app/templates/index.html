@@ -5,17 +5,25 @@
   <title>Question {{ qid }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <h1>Hello World</h1>
+<body><div class="modal">
+  <h1>Fastener Recommendation System</h1>
 
-  <div class="options">
-    {% for i in range(5) %}
-      <form method="post" style="display:inline;">
-        <input type="hidden" name="answer" value="{{ i }}">
-        <button type="submit">{{ i }}</button>
-      </form>
-    {% endfor %}
-  </div>
-  
-</body>
+  <p>
+    This tool helps you select an appropriate fastening method by asking a series
+    of targeted questions. Your answers are evaluated using a rule-based inference
+    engine.
+  </p>
+
+  <p>
+    You may skip any question. At the end, the system will present one or more
+    recommended fastening solutions.
+  </p>
+
+  <form action="{{ url_for('routes.question') }}" method="get">
+    <div class="button">
+      <button type="submit">Start</button>
+    </div>
+  </form>
+
+</div></body>
 </html>

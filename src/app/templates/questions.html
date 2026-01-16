@@ -2,20 +2,119 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Questions</title>
+  <title>Question Overview</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<body>
-  <div class="all_questions">
-    {% for qid in questions %}
-      <form method="post" style="display:inline;">
-        <input type="hidden" name="answer" value="{{ qid }}">
-        <button type="submit">{{ qid }}</button>
-      </form>
-    {% endfor %}
-  </div>
+</head>
 
-  {% if selected %}
-    <p>You selected: <strong>{{ selected }}</strong></p>
-  {% endif %}
+<body>
+<div class="modal">
+
+    <h1>Question Overview</h1>
+
+    <p>
+        This page shows the current internal state of the system:
+        your answers, the constructed fastening task, and which rules
+        have fired so far.
+    </p>
+
+    <hr>
+
+    <!-- ───────────────────────────────────────────── -->
+    <!-- ANSWERS -->
+    <!-- ───────────────────────────────────────────── -->
+
+    <h2>Answered Questions</h2>
+
+    {% if answers|length == 0 %}
+        <p>No questions answered yet.</p>
+    {% else %}
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question ID</th>
+                    <th>Your Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for qid, value in answers.items() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ qid }}</td>
+                        <td>
+                            {% if value is boolean %}
+                                {% if value %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            {% else %}
+                                {{ value | string | replace("_", " ") | capitalize }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <hr>
+
+    <!-- ───────────────────────────────────────────── -->
+    <!-- DOMAIN MODEL STATE -->
+    <!-- ───────────────────────────────────────────── -->
+
+    <h2>Fastening Task (Domain Model)</h2>
+
+    <p>
+        This is the complete domain object constructed from your answers
+        and inference so far.
+    </p>
+
+    <pre>{{ task | tojson(indent=2) }}</pre>
+
+    <hr>
+
+    <!-- ───────────────────────────────────────────── -->
+    <!-- RULE MODEL STATE -->
+    <!-- ───────────────────────────────────────────── -->
+
+    <h2>Fired Rules</h2>
+
+    {% if fired_rules|length == 0 %}
+        <p>No rules have fired yet.</p>
+    {% else %}
+        <ul>
+            {% for rule_id in fired_rules %}
+                <li>{{ rule_id }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <!-- ───────────────────────────────────────────── -->
+    <!-- NAVIGATION -->
+    <!-- ───────────────────────────────────────────── -->
+
+    <form action="{{ url_for('routes.question') }}" method="get">
+        <div class="button">
+            <button type="submit">Continue Questionnaire</button>
+        </div>
+    </form>
+
+    <form action="{{ url_for('routes.results') }}" method="get">
+        <div class="button">
+            <button type="submit">View Final Results</button>
+        </div>
+    </form>
+
+    <form action="{{ url_for('routes.reset') }}" method="post">
+        <div class="button danger">
+            <button type="submit">Restart</button>
+        </div>
+    </form>
+
+</div>
 </body>
 </html>
