@@ -1,0 +1,502 @@
+agent: B
+generated_at: '2026-01-16T14:09:25.888450'
+summary:
+  total_scenarios: 7
+  passed: 0
+  failed: 7
+  pass_rate: 0.0%
+scenarios:
+- scenario_id: B01
+  scenario_name: Outdoor Garden Furniture
+  description: Assembling wooden garden furniture exposed to rain and sun. Must withstand weather year-round.
+  notes: Outdoor exposure requires excellent UV and water resistance. Standard wood glue has poor water resistance. Deck screws
+    are designed for this.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: wood
+    environment_moisture: outdoor
+    load_type: static
+    permanence: permanent
+    uv_exposure: true
+    temperature_extremes: true
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: good
+    min_temperature_resistance: none
+    min_uv_resistance: poor
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - no_uv_but_outdoor
+  - outdoor_environment
+  - permanent_connection
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Polyurethane glue
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Marine epoxy
+    category: adhesive
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  recommendation_count: 3
+  recommended_categories:
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Polyurethane glue
+    - Marine epoxy
+    expected_fasteners_missing:
+    - Deck screw
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B02
+  scenario_name: Submerged Pool Equipment
+  description: Mounting plastic fittings to metal pool pump housing. Constantly underwater, chlorine exposure.
+  notes: Submerged + vibration + chemicals creates harsh conditions. Most adhesives fail. Need excellent water and chemical
+    resistance.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: metal
+    environment_moisture: submerged
+    load_type: light_dynamic
+    vibration: true
+    permanence: permanent
+    uv_exposure: false
+    temperature_extremes: false
+    chemical_exposure: true
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: false
+    tension_dominant: false
+    shock_loads: false
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: excellent
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: good
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - chemical_exposure
+  - chemical_exposure_and_permanent
+  - light_dynamic_load
+  - low_porosity_materials
+  - metal_to_metal
+  - permanent_connection
+  - submerged_environment
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Sheet metal screw
+    - rivet
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B03
+  scenario_name: Chemical Plant Pipe Support
+  description: Mounting metal pipe brackets in a chemical processing plant. Exposure to corrosive chemicals, high temperatures.
+  notes: Health constraints exclude thermal (welding fumes). Chemical exposure requires good chemical resistance. Vertical
+    orientation needs shear strength.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: splash
+    load_type: static
+    permanence: permanent
+    chemical_exposure: true
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: true
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: high
+    min_water_resistance: fair
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: good
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - chemical_exposure
+  - chemical_exposure_and_permanent
+  - health_constraints
+  - high_shear_excludes_weak_adhesives
+  - low_porosity_materials
+  - metal_to_metal
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - splash_environment
+  - static_load
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Hex bolt
+    - rivet
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B04
+  scenario_name: Freezer Storage Shelving
+  description: "Installing metal shelving brackets inside an industrial freezer. Extreme cold (-30\xB0C), frost cycles."
+  notes: Extreme cold degrades many adhesives. Mechanical and thermal methods maintain strength at low temperatures. Immediate
+    use favors mechanical.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - immediate_use_required
+  - low_porosity_materials
+  - metal_to_metal
+  - removable_connection
+  - static_load
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing:
+    - thermal
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Hex bolt
+    expected_fasteners_missing:
+    - Sheet metal screw
+    - Metal welding
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B05
+  scenario_name: Bathroom Mirror Mounting
+  description: Mounting a glass mirror to masonry bathroom wall. High humidity, occasional splashing.
+  notes: Glass is brittle - no mechanical fasteners. Need water-resistant adhesive that works on both glass and masonry. Silicone
+    excels here.
+  answers_applied:
+    material_a_type: glass
+    material_b_type: masonry
+    environment_moisture: splash
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: true
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: fair
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - mechanical
+  fired_rules:
+  - brittle_materials_present
+  - high_shear_excludes_weak_adhesives
+  - masonry_involved
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - precision_positioning_required
+  - splash_environment
+  - static_load
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - adhesive
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Glass adhesive
+    - Silicone sealant
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B06
+  scenario_name: Desert Solar Panel Frame
+  description: Mounting metal solar panel frame in desert conditions. Extreme UV, temperature swings, no moisture.
+  notes: Extreme UV and temperature swings degrade most adhesives. Metal fasteners and welding provide long-term durability.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: outdoor
+    load_type: static
+    permanence: permanent
+    uv_exposure: true
+    temperature_extremes: true
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: good
+    min_temperature_resistance: none
+    min_uv_resistance: poor
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - low_porosity_materials
+  - metal_to_metal
+  - no_uv_but_outdoor
+  - outdoor_environment
+  - permanent_connection
+  - precision_positioning_required
+  - static_load
+  recommendations:
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - thermal
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Metal welding
+    expected_fasteners_missing:
+    - Hex bolt
+    - rivet
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: B07
+  scenario_name: Indoor Climate-Controlled Art Installation
+  description: Mounting metal sculpture elements in a museum. Perfect climate control, no environmental stress.
+  notes: Health constraints (museum air quality) exclude thermal methods. Protected environment allows more adhesive options.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: true
+    max_curing_time: moderate
+    access_one_side: false
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - health_constraints
+  - high_shear_excludes_weak_adhesives
+  - low_porosity_materials
+  - metal_to_metal
+  - overhead_installation_requires_shear
+  - precision_positioning_required
+  - static_load
+  - vertical_or_overhead
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing:
+    - adhesive
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Hex bolt
+    expected_fasteners_missing:
+    - Two-component epoxy
+    - Metal epoxy
+    unexpected_fasteners_found: []
+  passed: false

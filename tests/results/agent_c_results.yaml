@@ -1,0 +1,430 @@
+agent: C
+generated_at: '2026-01-16T14:09:25.895471'
+summary:
+  total_scenarios: 6
+  passed: 1
+  failed: 5
+  pass_rate: 16.7%
+scenarios:
+- scenario_id: C01
+  scenario_name: Industrial Machine Vibration Mount
+  description: Mounting a motor to a metal base plate. Heavy vibration, high dynamic loads, must not loosen.
+  notes: Heavy vibration excludes adhesives. Need high vibration resistance. Bolts with lock washers or welding are standard
+    for machinery.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+    tension_dominant: false
+    shock_loads: false
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - heavy_dynamic_load
+  - low_porosity_materials
+  - metal_to_metal
+  - permanent_connection
+  - precision_positioning_required
+  recommendations:
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - thermal
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Metal welding
+    expected_fasteners_missing:
+    - Hex bolt
+    - rivet
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: C02
+  scenario_name: Automotive Impact Bumper
+  description: Attaching plastic bumper cover to metal frame. Must absorb shock impacts without detaching.
+  notes: Shock loads exclude most adhesives. Need good shear strength for impacts. Vibration further restricts to mechanical
+    fasteners.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: metal
+    environment_moisture: outdoor
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: semi_permanent
+    uv_exposure: true
+    temperature_extremes: true
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: true
+    precision_required: false
+    tension_dominant: false
+    shock_loads: true
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: good
+    min_temperature_resistance: none
+    min_uv_resistance: poor
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - heavy_dynamic_load
+  - low_porosity_materials
+  - metal_to_metal
+  - no_uv_but_outdoor
+  - outdoor_environment
+  recommendations:
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - thermal
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Sheet metal screw
+    - rivet
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: C03
+  scenario_name: Decorative Wall Picture
+  description: Hanging a lightweight picture frame on drywall. Minimal load, static, needs to be repositionable.
+  notes: Static light load allows simple nails. Vertical orientation and immediate use favor mechanical. Removable excludes
+    permanent adhesives.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: masonry
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - mechanical
+    - thermal
+  fired_rules:
+  - brittle_materials_present
+  - high_shear_excludes_weak_adhesives
+  - immediate_use_required
+  - masonry_involved
+  - overhead_installation_requires_shear
+  - removable_connection
+  - static_load
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Common nail
+    - Masonry nail
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: C04
+  scenario_name: Climbing Wall Hold Mounting
+  description: Mounting plastic climbing holds to plywood wall. Tension-dominant loads as climbers pull on holds.
+  notes: High tension + shock loads need strong mechanical fasteners. Removable constraint means no permanent adhesives. Bolts
+    are standard for climbing walls.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: wood
+    environment_moisture: none
+    load_type: heavy_dynamic
+    vibration: false
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+    tension_dominant: true
+    shock_loads: true
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - heavy_dynamic_load
+  - high_shear_excludes_weak_adhesives
+  - immediate_use_required
+  - overhead_installation_requires_shear
+  - removable_connection
+  - vertical_or_overhead
+  - wood_to_wood
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  recommendation_count: 2
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Hex bolt
+    - Lag bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: C05
+  scenario_name: Overhead Ceiling Light Fixture
+  description: Mounting a heavy metal light fixture to ceiling. Overhead installation, must never fall.
+  notes: Overhead installation requires high shear strength - adhesives excluded. Safety-critical application demands robust
+    mechanical anchoring.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: masonry
+    environment_moisture: none
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: true
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - mechanical
+  fired_rules:
+  - brittle_materials_present
+  - high_shear_excludes_weak_adhesives
+  - immediate_use_required
+  - masonry_involved
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - precision_positioning_required
+  - static_load
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Concrete screw
+    - Masonry nail
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: C06
+  scenario_name: Precision Optical Instrument Mount
+  description: Mounting optical sensor to metal bracket. Requires precise positioning that won't shift.
+  notes: Precision positioning requires vibration resistance. Dowel pins provide precise alignment. High-quality epoxies maintain
+    position.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: false
+    precision_required: true
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - low_porosity_materials
+  - metal_to_metal
+  - permanent_connection
+  - precision_positioning_required
+  - static_load
+  recommendations:
+  - name: Metal welding
+    category: thermal
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - thermal
+  evaluation:
+    expected_categories_found:
+    - thermal
+    expected_categories_missing:
+    - mechanical
+    - adhesive
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Dowel pin
+    - Two-component epoxy
+    - Metal epoxy
+    unexpected_fasteners_found: []
+  passed: false

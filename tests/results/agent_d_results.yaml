@@ -1,0 +1,678 @@
+agent: D
+generated_at: '2026-01-16T14:09:25.901382'
+summary:
+  total_scenarios: 7
+  passed: 3
+  failed: 4
+  pass_rate: 42.9%
+scenarios:
+- scenario_id: D01
+  scenario_name: One-Sided Access Panel
+  description: Attaching access panel to enclosure where only exterior is accessible. Cannot reach inside.
+  notes: One-sided access excludes fasteners requiring two-sided access (like hex bolts with nuts). Self-tapping screws or
+    blind rivets work.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: metal
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: high
+    min_shear_strength: high
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories:
+    - mechanical
+    - thermal
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - high_shear_excludes_weak_adhesives
+  - immediate_use_required
+  - low_porosity_materials
+  - metal_to_metal
+  - overhead_installation_requires_shear
+  - removable_connection
+  - static_load
+  - vertical_or_overhead
+  recommendations:
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  recommendation_count: 1
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Sheet metal screw
+    - rivet
+    unexpected_fasteners_found:
+    - Hex bolt
+  passed: false
+- scenario_id: D02
+  scenario_name: Health-Restricted School Project
+  description: Elementary school craft project. No fumes, no heat, must be completely safe for children.
+  notes: Health constraints exclude thermal and toxic adhesives. PVA glue is non-toxic and standard for school projects. Staples
+    are safe if supervised.
+  answers_applied:
+    material_a_type: paper
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: true
+    max_curing_time: fast
+    access_one_side: true
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - thermal
+  fired_rules:
+  - health_constraints
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Polyurethane glue
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Marine epoxy
+    category: adhesive
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Flooring adhesive
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Wood screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: poor
+    vibration_resistance: fair
+  - name: Deck screw
+    category: mechanical
+    tensile_strength: high
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Common nail
+    category: mechanical
+    tensile_strength: low
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Brad nail
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Staple
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  recommendation_count: 15
+  recommended_categories:
+  - mechanical
+  - adhesive
+  evaluation:
+    expected_categories_found:
+    - adhesive
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood glue (PVA)
+    - Staple
+    expected_fasteners_missing: []
+    unexpected_fasteners_found:
+    - Contact cement
+  passed: false
+- scenario_id: D03
+  scenario_name: Flexible Joint Requirement
+  description: Connecting two parts that need to flex relative to each other. Like a hinge without being a hinge.
+  notes: Flexibility required means only flexible/semi-flexible rigidity allowed. Rigid adhesives and mechanical fasteners
+    won't work.
+  answers_applied:
+    material_a_type: plastic
+    material_b_type: plastic
+    environment_moisture: none
+    load_type: light_dynamic
+    vibration: false
+    permanence: permanent
+    chemical_exposure: false
+    flexibility_required: true
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: moderate
+    access_one_side: false
+    precision_required: false
+    tension_dominant: false
+    shock_loads: false
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: low
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+  fired_rules:
+  - flexibility_required
+  - flexible_implies_low_strength
+  - light_dynamic_load
+  - low_porosity_materials
+  - permanent_connection
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - adhesive
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Silicone sealant
+    - Contact cement
+    unexpected_fasteners_found: []
+  passed: false
+- scenario_id: D04
+  scenario_name: 'Contradictory: Permanent but Removable'
+  description: Customer wants a permanent solution that can also be removed. Testing how system handles conflicting constraints.
+  notes: Removable constraint should exclude permanent-only fasteners. Testing that permanence constraints are properly applied.
+  answers_applied:
+    material_a_type: wood
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: removable
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - immediate_use_required
+  - removable_connection
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Wood screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: poor
+    vibration_resistance: fair
+  - name: Deck screw
+    category: mechanical
+    tensile_strength: high
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Common nail
+    category: mechanical
+    tensile_strength: low
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Brad nail
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Staple
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  recommendation_count: 7
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood screw
+    - Hex bolt
+    - Lag bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D05
+  scenario_name: Everything Excluded Scenario
+  description: 'Extreme constraints that should eliminate most options: brittle material, vibration, health constraints, vertical.'
+  notes: This scenario tests edge case where constraints are very restrictive. Glass+ceramic = brittle = no mechanical. Health
+    = no thermal. Vibration+shock = no adhesive. System should handle gracefully.
+  answers_applied:
+    material_a_type: glass
+    material_b_type: ceramic
+    environment_moisture: splash
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    chemical_exposure: true
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: true
+    max_curing_time: slow
+    access_one_side: true
+    precision_required: true
+    tension_dominant: true
+    shock_loads: true
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: fair
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: good
+    min_chemical_resistance: good
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - chemical_exposure
+  - chemical_exposure_and_permanent
+  - health_constraints
+  - heavy_dynamic_load
+  - high_shear_excludes_weak_adhesives
+  - low_porosity_materials
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - precision_positioning_required
+  - splash_environment
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D06
+  scenario_name: Immediate Curing Constraint
+  description: Emergency repair where joint must be usable immediately. No time to wait for curing.
+  notes: Immediate curing time excludes adhesives that need time to set. Mechanical fasteners provide instant holding power.
+  answers_applied:
+    material_a_type: metal
+    material_b_type: wood
+    environment_moisture: none
+    load_type: static
+    permanence: semi_permanent
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: false
+    health_constraints: false
+    max_curing_time: immediate
+    access_one_side: false
+    precision_required: false
+  errors: []
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: none
+    min_water_resistance: none
+    min_temperature_resistance: none
+    min_uv_resistance: none
+    min_vibration_resistance: none
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    - removable
+    - semi_permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - thermal
+  fired_rules:
+  - immediate_use_required
+  - static_load
+  - wood_to_wood
+  recommendations:
+  - name: Wood screw
+    category: mechanical
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: poor
+    vibration_resistance: fair
+  - name: Deck screw
+    category: mechanical
+    tensile_strength: high
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: removable
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Hex bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Lag bolt
+    category: mechanical
+    tensile_strength: very_high
+    shear_strength: high
+    rigidity: rigid
+    permanence: removable
+    water_resistance: fair
+    vibration_resistance: good
+  - name: Common nail
+    category: mechanical
+    tensile_strength: low
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Brad nail
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Staple
+    category: mechanical
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  recommendation_count: 7
+  recommended_categories:
+  - mechanical
+  evaluation:
+    expected_categories_found:
+    - mechanical
+    expected_categories_missing: []
+    excluded_categories_violated: []
+    expected_fasteners_found:
+    - Wood screw
+    - Hex bolt
+    expected_fasteners_missing: []
+    unexpected_fasteners_found: []
+  passed: true
+- scenario_id: D07
+  scenario_name: Maximum Exclusion Stacking
+  description: 'Testing how multiple exclusion rules stack: outdoor + UV + vibration + vertical.'
+  notes: 'Multiple exclusions stack: vibration excludes adhesive, vertical excludes adhesive, wood excludes thermal. Only
+    robust mechanical fasteners remain.'
+  answers_applied:
+    material_a_type: wood
+    material_b_type: masonry
+    environment_moisture: outdoor
+    load_type: heavy_dynamic
+    vibration: true
+    permanence: permanent
+    uv_exposure: true
+    temperature_extremes: true
+    chemical_exposure: false
+    flexibility_required: false
+    orientation_vertical: true
+    health_constraints: false
+    max_curing_time: slow
+    access_one_side: true
+    precision_required: false
+    tension_dominant: true
+    shock_loads: false
+  errors:
+  - 'Unknown question: tension_dominant'
+  derived_requirements:
+    min_tensile_strength: none
+    min_shear_strength: high
+    min_water_resistance: good
+    min_temperature_resistance: none
+    min_uv_resistance: poor
+    min_vibration_resistance: good
+    min_chemical_resistance: none
+    allowed_rigidities:
+    - flexible
+    - rigid
+    - semi_flexible
+    allowed_permanence:
+    - permanent
+    allowed_categories: []
+    excluded_categories:
+    - adhesive
+    - mechanical
+  fired_rules:
+  - brittle_materials_present
+  - heavy_dynamic_load
+  - high_shear_excludes_weak_adhesives
+  - masonry_involved
+  - no_uv_but_outdoor
+  - outdoor_environment
+  - overhead_installation_requires_shear
+  - permanent_connection
+  - vertical_or_overhead
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
+  evaluation:
+    expected_categories_found: []
+    expected_categories_missing:
+    - mechanical
+    excluded_categories_violated: []
+    expected_fasteners_found: []
+    expected_fasteners_missing:
+    - Lag bolt
+    - Concrete screw
+    unexpected_fasteners_found: []
+  passed: false
