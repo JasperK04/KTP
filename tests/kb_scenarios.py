@@ -23,7 +23,7 @@ class TestScenario:
         id: Unique identifier for the scenario
         name: Short descriptive name
         description: Real-world context for the fastening task
-        agent: Scenario group ("A", "B", "C", or "D")
+        group: Scenario group ("A", "B", "C", or "D")
         answers: Maps question_id -> answer value
         expected_categories: Fastener categories that SHOULD be recommended
         excluded_categories: Fastener categories that should NOT appear
@@ -34,7 +34,7 @@ class TestScenario:
     id: str
     name: str
     description: str
-    agent: str
+    group: str
     answers: dict[str, Any]
     expected_categories: list[str] = field(default_factory=list)
     excluded_categories: list[str] = field(default_factory=list)
@@ -44,16 +44,16 @@ class TestScenario:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# AGENT A: MATERIAL-SPECIFIC SCENARIOS
+# GROUP A: MATERIAL-SPECIFIC SCENARIOS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-AGENT_A_SCENARIOS = [
+GROUP_A_SCENARIOS = [
     TestScenario(
         id="A01",
         name="Paper-to-Paper Scrapbooking",
         description="Attaching decorative paper to a scrapbook page. Very light, "
                     "indoor use, needs to be repositionable.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "paper",
             "material_b_type": "paper",
@@ -81,7 +81,7 @@ AGENT_A_SCENARIOS = [
         name="Metal-to-Metal Structural Frame",
         description="Joining steel beams for a permanent structural frame. "
                     "High load, outdoor industrial setting.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -113,7 +113,7 @@ AGENT_A_SCENARIOS = [
         name="Wood-to-Wood Furniture Joint",
         description="Assembling a wooden dining table. Indoor use, moderate load, "
                     "should be disassemblable for moving.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "wood",
             "material_b_type": "wood",
@@ -140,7 +140,7 @@ AGENT_A_SCENARIOS = [
         name="Fabric-to-Fabric Upholstery",
         description="Attaching fabric to cushion padding for furniture upholstery. "
                     "Needs flexibility, light load.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "fabric",
             "material_b_type": "fabric",
@@ -168,7 +168,7 @@ AGENT_A_SCENARIOS = [
         name="Glass-to-Metal Display Case",
         description="Attaching glass panels to metal frame for a museum display case. "
                     "Brittle material handling critical.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "glass",
             "material_b_type": "metal",
@@ -195,7 +195,7 @@ AGENT_A_SCENARIOS = [
         name="Ceramic Tile to Stone Floor",
         description="Installing ceramic tiles on a stone subfloor in a kitchen. "
                     "Permanent installation, some moisture.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "ceramic",
             "material_b_type": "stone",
@@ -222,7 +222,7 @@ AGENT_A_SCENARIOS = [
         name="Plastic-to-Plastic Electronics Enclosure",
         description="Assembling a plastic electronics enclosure. Needs to be "
                     "openable for maintenance, indoor use.",
-        agent="A",
+        group="A",
         answers={
             "material_a_type": "plastic",
             "material_b_type": "plastic",
@@ -247,16 +247,16 @@ AGENT_A_SCENARIOS = [
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# AGENT B: ENVIRONMENTAL SCENARIOS
+# GROUP B: ENVIRONMENTAL SCENARIOS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-AGENT_B_SCENARIOS = [
+GROUP_B_SCENARIOS = [
     TestScenario(
         id="B01",
         name="Covered Patio Furniture",
         description="Assembling wooden patio furniture under a covered area. "
                     "Some weather exposure but protected from direct sun/rain.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "wood",
             "material_b_type": "wood",
@@ -285,7 +285,7 @@ AGENT_B_SCENARIOS = [
         name="Pool Deck Equipment Mount",
         description="Mounting plastic equipment housing to metal bracket near pool. "
                     "Splash zone exposure, permanent installation.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "plastic",
             "material_b_type": "metal",
@@ -315,7 +315,7 @@ AGENT_B_SCENARIOS = [
         name="Chemical Plant Pipe Support",
         description="Mounting metal pipe brackets in a chemical processing plant. "
                     "Exposure to corrosive chemicals, needs to be serviceable.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -342,7 +342,7 @@ AGENT_B_SCENARIOS = [
         name="Freezer Storage Shelving",
         description="Installing metal shelving brackets inside an industrial freezer. "
                     "Extreme cold (-30°C), frost cycles.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -369,7 +369,7 @@ AGENT_B_SCENARIOS = [
         name="Bathroom Mirror Mounting",
         description="Mounting a glass mirror to drywall bathroom wall. "
                     "Using mirror clips and silicone for safety.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "glass",
             "material_b_type": "wood",  # Changed: drywall backing is wood studs
@@ -396,7 +396,7 @@ AGENT_B_SCENARIOS = [
         name="Desert Solar Panel Frame",
         description="Mounting metal solar panel frame in desert conditions. "
                     "Extreme UV, temperature swings, permanent installation.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -425,7 +425,7 @@ AGENT_B_SCENARIOS = [
         name="Indoor Climate-Controlled Art Installation",
         description="Mounting metal sculpture elements in a museum. Perfect climate "
                     "control, no environmental stress.",
-        agent="B",
+        group="B",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -450,16 +450,16 @@ AGENT_B_SCENARIOS = [
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# AGENT C: LOAD AND MECHANICAL SCENARIOS
+# GROUP C: LOAD AND MECHANICAL SCENARIOS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-AGENT_C_SCENARIOS = [
+GROUP_C_SCENARIOS = [
     TestScenario(
         id="C01",
         name="Industrial Machine Vibration Mount",
         description="Mounting a motor to a metal base plate. Heavy vibration, "
                     "high dynamic loads, must not loosen.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -490,7 +490,7 @@ AGENT_C_SCENARIOS = [
         name="Interior Plastic Panel Mount",
         description="Attaching plastic interior panel to metal frame. "
                     "Indoor/protected use. Needs to be serviceable.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "plastic",
             "material_b_type": "metal",
@@ -520,7 +520,7 @@ AGENT_C_SCENARIOS = [
         name="Decorative Wall Picture",
         description="Attaching a wooden picture frame to masonry wall. "
                     "Using adhesive to avoid drilling into decorative masonry.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "wood",
             "material_b_type": "masonry",
@@ -548,7 +548,7 @@ AGENT_C_SCENARIOS = [
         name="Heavy Duty Shelf Bracket",
         description="Mounting metal shelf brackets to wooden studs. "
                     "Heavy load, tension from loaded shelves.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "metal",
             "material_b_type": "wood",
@@ -578,7 +578,7 @@ AGENT_C_SCENARIOS = [
         name="Ceiling Light Fixture Base",
         description="Mounting a metal light fixture base to concrete ceiling. "
                     "Using construction adhesive for flush mount.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "metal",
             "material_b_type": "masonry",
@@ -606,7 +606,7 @@ AGENT_C_SCENARIOS = [
         name="Precision Optical Instrument Mount",
         description="Mounting optical sensor to metal bracket. Requires precise "
                     "positioning that won't shift. Permanent installation.",
-        agent="C",
+        group="C",
         answers={
             "material_a_type": "metal",
             "material_b_type": "metal",
@@ -632,16 +632,16 @@ AGENT_C_SCENARIOS = [
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# AGENT D: EDGE CASES AND CONSTRAINT COMBINATIONS
+# GROUP D: EDGE CASES AND CONSTRAINT COMBINATIONS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-AGENT_D_SCENARIOS = [
+GROUP_D_SCENARIOS = [
     TestScenario(
         id="D01",
         name="One-Sided Access Panel",
         description="Attaching plastic access panel to metal enclosure where only exterior is "
                     "accessible. Needs to be openable for maintenance.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "plastic",  # Changed: avoid metal_to_metal high tensile
             "material_b_type": "metal",
@@ -668,7 +668,7 @@ AGENT_D_SCENARIOS = [
         name="Health-Restricted School Project",
         description="Elementary school craft project. No fumes, no heat, must be "
                     "completely safe for children.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "paper",
             "material_b_type": "wood",
@@ -695,7 +695,7 @@ AGENT_D_SCENARIOS = [
         name="Flexible Joint Requirement",
         description="Connecting two plastic parts that need to flex relative to each other. "
                     "Like a living hinge.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "plastic",
             "material_b_type": "plastic",
@@ -725,7 +725,7 @@ AGENT_D_SCENARIOS = [
         name="Contradictory: Permanent but Removable",
         description="Customer wants a permanent solution that can also be removed. "
                     "Testing how system handles conflicting constraints.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "wood",
             "material_b_type": "wood",
@@ -752,7 +752,7 @@ AGENT_D_SCENARIOS = [
         name="Everything Excluded Scenario",
         description="Extreme constraints that should eliminate most options: "
                     "brittle material, vibration, health constraints, vertical.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "glass",
             "material_b_type": "ceramic",
@@ -783,7 +783,7 @@ AGENT_D_SCENARIOS = [
         name="Quick Assembly Metal-to-Wood",
         description="Attaching metal bracket to wooden beam. Needs to be "
                     "functional immediately, serviceable later.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "metal",
             "material_b_type": "wood",
@@ -810,7 +810,7 @@ AGENT_D_SCENARIOS = [
         name="Outdoor Deck Post to Concrete",
         description="Mounting wood deck post to concrete foundation using post bracket and adhesive. "
                     "Outdoor exposure, high load.",
-        agent="D",
+        group="D",
         answers={
             "material_a_type": "wood",
             "material_b_type": "masonry",
@@ -842,16 +842,16 @@ AGENT_D_SCENARIOS = [
 # ═══════════════════════════════════════════════════════════════════════════════
 
 ALL_SCENARIOS = (
-    AGENT_A_SCENARIOS +
-    AGENT_B_SCENARIOS +
-    AGENT_C_SCENARIOS +
-    AGENT_D_SCENARIOS
+    GROUP_A_SCENARIOS +
+    GROUP_B_SCENARIOS +
+    GROUP_C_SCENARIOS +
+    GROUP_D_SCENARIOS
 )
 
 
-def get_scenarios_for_agent(agent: str) -> list[TestScenario]:
-    """Return all scenarios assigned to a specific agent."""
-    return [s for s in ALL_SCENARIOS if s.agent == agent]
+def get_scenarios_for_group(group: str) -> list[TestScenario]:
+    """Return all scenarios assigned to a specific group."""
+    return [s for s in ALL_SCENARIOS if s.group == group]
 
 
 def get_scenario_by_id(scenario_id: str) -> TestScenario | None:

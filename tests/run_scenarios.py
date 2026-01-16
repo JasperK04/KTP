@@ -8,10 +8,10 @@ Usage:
     python tests/run_scenarios.py
 
 Output:
-    tests/results/agent_a_results.yaml  (Material scenarios)
-    tests/results/agent_b_results.yaml  (Environmental scenarios)
-    tests/results/agent_c_results.yaml  (Load scenarios)
-    tests/results/agent_d_results.yaml  (Edge case scenarios)
+    tests/results/group_a_results.yaml  (Material scenarios)
+    tests/results/group_b_results.yaml  (Environmental scenarios)
+    tests/results/group_c_results.yaml  (Load scenarios)
+    tests/results/group_d_results.yaml  (Edge case scenarios)
 """
 
 import json
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from tests.kb_scenarios import (
     ALL_SCENARIOS,
     TestScenario,
-    get_scenarios_for_agent,
+    get_scenarios_for_group,
 )
 from src.domain_model import Fastener
 from src.input_model import InputModel
@@ -175,8 +175,8 @@ def run_scenario(
 
 
 def run_all_scenarios(kb: dict) -> dict[str, list[dict]]:
-    """Run all scenarios and group results by agent."""
-    results_by_agent = {
+    """Run all scenarios and group results by focus area."""
+    results_by_group = {
         "A": [],
         "B": [],
         "C": [],
@@ -186,24 +186,24 @@ def run_all_scenarios(kb: dict) -> dict[str, list[dict]]:
     for scenario in ALL_SCENARIOS:
         print(f"Running scenario {scenario.id}: {scenario.name}...")
         result = run_scenario(scenario, kb)
-        results_by_agent[scenario.agent].append(result)
+        results_by_group[scenario.group].append(result)
         
         status = "✓ PASS" if result["passed"] else "✗ FAIL"
         print(f"  {status} - {result['recommendation_count']} recommendations")
     
-    return results_by_agent
+    return results_by_group
 
 
-def export_results(results_by_agent: dict[str, list[dict]], output_dir: Path):
-    """Export results to YAML files per agent."""
+def export_results(results_by_group: dict[str, list[dict]], output_dir: Path):
+    """Export results to YAML files per group."""
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    for agent, results in results_by_agent.items():
+    for group, results in results_by_group.items():
         passed = sum(1 for r in results if r["passed"])
         failed = len(results) - passed
         
         output_data = {
-            "agent": agent,
+            "group": group,
             "generated_at": datetime.now().isoformat(),
             "summary": {
                 "total_scenarios": len(results),
@@ -214,11 +214,11 @@ def export_results(results_by_agent: dict[str, list[dict]], output_dir: Path):
             "scenarios": results,
         }
         
-        filename = output_dir / f"agent_{agent.lower()}_results.yaml"
+        filename = output_dir / f"group_{group.lower()}_results.yaml"
         with open(filename, "w") as f:
             yaml.dump(output_data, f, sort_keys=False, default_flow_style=False, width=120)
         
-        print(f"Exported Agent {agent} results to {filename}")
+        print(f"Exported Group {group} results to {filename}")
 
 
 def main():
@@ -243,11 +243,11 @@ def main():
     print(f"\nRunning {len(ALL_SCENARIOS)} test scenarios...\n")
     
     # Run scenarios
-    results_by_agent = run_all_scenarios(kb)
+    results_by_group = run_all_scenarios(kb)
     
     # Export results
     output_dir = Path(__file__).resolve().parent / "results"
-    export_results(results_by_agent, output_dir)
+    export_results(results_by_group, output_dir)
     
     # Print summary
     print("\n" + "=" * 80)
@@ -257,14 +257,14 @@ def main():
     total_passed = 0
     total_failed = 0
     
-    for agent in ["A", "B", "C", "D"]:
-        results = results_by_agent[agent]
+    for group in ["A", "B", "C", "D"]:
+        results = results_by_group[group]
         passed = sum(1 for r in results if r["passed"])
         failed = len(results) - passed
         total_passed += passed
         total_failed += failed
         
-        print(f"\nAgent {agent}: {passed}/{len(results)} passed")
+        print(f"\nGroup {group}: {passed}/{len(results)} passed")
         
         for r in results:
             status = "✓" if r["passed"] else "✗"
@@ -284,7 +284,6 @@ def main():
     print(f"{'=' * 80}")
     
     print(f"\nResults exported to: {output_dir}/")
-    print("Each agent should review their respective results file.")
 
 
 if __name__ == "__main__":

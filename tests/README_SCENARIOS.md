@@ -20,10 +20,10 @@ uv run python tests/run_scenarios.py
 ```
 
 This generates results files in `tests/results/`:
-- `agent_a_results.yaml` - Material scenario results
-- `agent_b_results.yaml` - Environmental scenario results
-- `agent_c_results.yaml` - Load scenario results
-- `agent_d_results.yaml` - Edge case results
+- `group_a_results.yaml` - Material scenario results
+- `group_b_results.yaml` - Environmental scenario results
+- `group_c_results.yaml` - Load scenario results
+- `group_d_results.yaml` - Edge case results
 
 ## File Structure
 
@@ -31,16 +31,11 @@ This generates results files in `tests/results/`:
 tests/
 ├── kb_scenarios.py           # 27 test scenarios
 ├── run_scenarios.py          # Scenario runner
-├── results/                  # Generated results
-│   ├── agent_a_results.yaml
-│   ├── agent_b_results.yaml
-│   ├── agent_c_results.yaml
-│   └── agent_d_results.yaml
-└── reports/                  # Analysis reports
-    ├── agent_a_report.md
-    ├── agent_b_report.md
-    ├── agent_c_report.md
-    └── agent_d_report.md
+└── results/                  # Generated results
+    ├── group_a_results.yaml
+    ├── group_b_results.yaml
+    ├── group_c_results.yaml
+    └── group_d_results.yaml
 ```
 
 ## Current Status
