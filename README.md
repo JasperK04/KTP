@@ -18,6 +18,15 @@ pip install -r requirements.txt
 
 ## Usage
 
+### create your .env file
+
+running the full application requires a secret key for the flask session
+therefor you must create an .env file
+
+```bash
+cp .example_env .env
+```
+
 ### Activate your virtual environment
 
 ```bash
