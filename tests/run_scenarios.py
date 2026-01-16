@@ -2,17 +2,16 @@
 """
 Scenario Runner for KB Testing.
 
-Executes all test scenarios and exports results per agent for review.
-Each agent gets a separate YAML file with their assigned scenarios' results.
+Executes all test scenarios and exports results grouped by focus area.
 
 Usage:
     python tests/run_scenarios.py
 
 Output:
-    tests/results/agent_a_results.yaml
-    tests/results/agent_b_results.yaml
-    tests/results/agent_c_results.yaml
-    tests/results/agent_d_results.yaml
+    tests/results/agent_a_results.yaml  (Material scenarios)
+    tests/results/agent_b_results.yaml  (Environmental scenarios)
+    tests/results/agent_c_results.yaml  (Load scenarios)
+    tests/results/agent_d_results.yaml  (Edge case scenarios)
 """
 
 import json

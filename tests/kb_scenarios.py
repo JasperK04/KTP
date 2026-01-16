@@ -2,14 +2,12 @@
 Knowledge Base Test Scenarios for Fastener Recommendation System.
 
 This module contains structured test scenarios for evaluating the KB rules
-and fastener recommendations. Each scenario is assigned to one of 4 LLM agents
-for review and analysis.
+and fastener recommendations. Scenarios are organized into 4 focus groups:
 
-Agent Assignments:
-- Agent A: Material-specific rules (wood, metal, paper, fabric, brittle)
-- Agent B: Environmental conditions (moisture, UV, temperature, chemicals)
-- Agent C: Load and mechanical constraints (dynamic, shock, vibration, tension)
-- Agent D: Edge cases and constraint combinations
+Group A: Material-specific rules (wood, metal, paper, fabric, brittle)
+Group B: Environmental conditions (moisture, UV, temperature, chemicals)
+Group C: Load and mechanical constraints (dynamic, shock, vibration, tension)
+Group D: Edge cases and constraint combinations
 """
 
 from dataclasses import dataclass, field
@@ -25,7 +23,7 @@ class TestScenario:
         id: Unique identifier for the scenario
         name: Short descriptive name
         description: Real-world context for the fastening task
-        agent: Assigned agent ("A", "B", "C", or "D")
+        agent: Scenario group ("A", "B", "C", or "D")
         answers: Maps question_id -> answer value
         expected_categories: Fastener categories that SHOULD be recommended
         excluded_categories: Fastener categories that should NOT appear

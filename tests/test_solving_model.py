@@ -160,7 +160,7 @@ class TestAccessConstraints:
         bolt = Fastener(
             name="Bolt",
             category="mechanical",
-            compatible_materials=[],
+            compatible_materials=[MaterialType.METAL],
             tensile_strength=StrengthLevel.MODERATE,
             shear_strength=StrengthLevel.MODERATE,
             water_resistance=ResistanceLevel.FAIR,
@@ -175,7 +175,7 @@ class TestAccessConstraints:
         screw = Fastener(
             name="Screw",
             category="mechanical",
-            compatible_materials=[],
+            compatible_materials=[MaterialType.METAL],
             tensile_strength=StrengthLevel.MODERATE,
             shear_strength=StrengthLevel.MODERATE,
             water_resistance=ResistanceLevel.FAIR,
@@ -205,7 +205,7 @@ class TestAccessConstraints:
         bolt = Fastener(
             name="Bolt",
             category="mechanical",
-            compatible_materials=[],
+            compatible_materials=[MaterialType.METAL],
             tensile_strength=StrengthLevel.MODERATE,
             shear_strength=StrengthLevel.MODERATE,
             water_resistance=ResistanceLevel.FAIR,

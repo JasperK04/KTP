@@ -138,13 +138,13 @@ Mocks are used only where appropriate, primarily to:
 From the project root:
 
 ```bash
-run pytest
+uv run pytest
 ```
 
 Verbose output:
 
 ```bash
-run pytest -v
+uv run pytest -v
 ```
 
 All tests are designed to be deterministic and order‑independent.

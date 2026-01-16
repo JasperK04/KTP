@@ -1,5 +1,5 @@
 agent: C
-generated_at: '2026-01-16T17:55:32.229031'
+generated_at: '2026-01-16T18:16:08.761531'
 summary:
   total_scenarios: 6
   passed: 6
@@ -76,8 +76,8 @@ scenarios:
     vibration_resistance: good
   recommendation_count: 2
   recommended_categories:
-  - mechanical
   - thermal
+  - mechanical
   evaluation:
     expected_categories_found:
     - mechanical
@@ -168,8 +168,8 @@ scenarios:
     vibration_resistance: fair
   recommendation_count: 4
   recommended_categories:
-  - mechanical
   - adhesive
+  - mechanical
   evaluation:
     expected_categories_found:
     - mechanical
@@ -465,8 +465,8 @@ scenarios:
     vibration_resistance: good
   recommendation_count: 4
   recommended_categories:
-  - mechanical
   - thermal
+  - mechanical
   evaluation:
     expected_categories_found:
     - mechanical
