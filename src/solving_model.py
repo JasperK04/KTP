@@ -109,10 +109,10 @@ class ProblemSolvingModel:
         # Material compatibility
         mat_a = task.materials.material_a.material_type
         mat_b = task.materials.material_b.material_type
-        if mat_a not in fastener.compatible_materials:
-            return False
-
-        if mat_b not in fastener.compatible_materials:
+        if (
+            mat_a not in fastener.compatible_materials
+            or mat_b not in fastener.compatible_materials
+        ):
             return False
 
         # Category constraints

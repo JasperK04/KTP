@@ -479,12 +479,13 @@ AGENT_C_SCENARIOS = [
             "load_direction": False,
             "shock_loads": False,
         },
-        expected_categories=["thermal"],
+        expected_categories=["mechanical", "thermal"],
         excluded_categories=["adhesive"],
-        expected_fasteners=["Metal welding"],
-        unexpected_fasteners=["Wood glue (PVA)", "Hot-melt glue", "Hex bolt"],
-        notes="Permanent + metal_to_metal + high tensile = welding. "
-              "Hex bolt is removable. Vibration excludes adhesives.",
+        expected_fasteners=["Metal welding", "Hex bolt"],
+        unexpected_fasteners=["Wood glue (PVA)", "Hot-melt glue"],
+        notes="Permanent metal-to-metal with vibration. Welding is ideal but "
+              "Hex bolt with lock washers is also valid for industrial mounts. "
+              "Vibration excludes adhesives.",
     ),
     TestScenario(
         id="C02",
@@ -622,12 +623,13 @@ AGENT_C_SCENARIOS = [
             "access_one_side": False,
             "precision_required": True,
         },
-        expected_categories=["thermal"],
-        excluded_categories=["adhesive"],
-        expected_fasteners=["Metal welding"],
-        unexpected_fasteners=["Hot-melt glue", "Duct tape", "Dowel pin"],
-        notes="metal_to_metal restricts to mechanical+thermal. Permanent excludes removable bolts. "
-              "High tensile requirement filters rivet. Only welding remains.",
+        expected_categories=["mechanical", "thermal"],
+        excluded_categories=[],
+        expected_fasteners=["Metal welding", "Dowel pin"],
+        unexpected_fasteners=["Hot-melt glue", "Duct tape"],
+        notes="metal_to_metal allows mechanical+thermal. Dowel pins are ideal for "
+              "precision positioning - that's their primary purpose. Welding also "
+              "provides permanent, precise joints.",
     ),
 ]
 

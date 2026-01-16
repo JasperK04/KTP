@@ -1,5 +1,5 @@
 agent: A
-generated_at: '2026-01-16T16:24:20.914062'
+generated_at: '2026-01-16T17:23:17.765216'
 summary:
   total_scenarios: 7
   passed: 7
@@ -9,7 +9,8 @@ scenarios:
 - scenario_id: A01
   scenario_name: Paper-to-Paper Scrapbooking
   description: Attaching decorative paper to a scrapbook page. Very light, indoor use, needs to be repositionable.
-  notes: Paper is too weak for mechanical fasteners. Thermal would destroy it. Only light adhesives are appropriate.
+  notes: Paper is too weak for mechanical fasteners. Thermal would destroy it. High porosity requires moderate shear strength,
+    filtering out very_low/low adhesives. Wood glue (PVA) and Contact cement meet requirements.
   answers_applied:
     material_a_type: paper
     material_b_type: paper
@@ -44,7 +45,6 @@ scenarios:
     - mechanical
     - thermal
   fired_rules:
-  - brittle_materials_present
   - high_porosity_excludes_low_strength_adhesives
   - paper_to_paper
   - removable_connection
@@ -75,9 +75,7 @@ scenarios:
     expected_categories_missing: []
     excluded_categories_violated: []
     expected_fasteners_found: []
-    expected_fasteners_missing:
-    - Wallpaper adhesive
-    - Fabric adhesive
+    expected_fasteners_missing: []
     unexpected_fasteners_found: []
   passed: true
 - scenario_id: A02
@@ -100,10 +98,9 @@ scenarios:
     max_curing_time: slow
     access_one_side: false
     precision_required: true
-    tension_dominant: false
+    load_direction: false
     shock_loads: false
-  errors:
-  - 'Unknown question: tension_dominant'
+  errors: []
   derived_requirements:
     min_tensile_strength: high
     min_shear_strength: none
@@ -118,6 +115,8 @@ scenarios:
     - semi_flexible
     allowed_permanence:
     - permanent
+    - removable
+    - semi_permanent
     allowed_categories:
     - mechanical
     - thermal
@@ -125,6 +124,7 @@ scenarios:
     - adhesive
   fired_rules:
   - heavy_dynamic_load
+  - metal_heavy_load_strength
   - metal_to_metal
   - outdoor_and_uv_exposure
   - outdoor_environment
@@ -307,8 +307,8 @@ scenarios:
 - scenario_id: A04
   scenario_name: Fabric-to-Fabric Upholstery
   description: Attaching fabric to cushion padding for furniture upholstery. Needs flexibility, light load.
-  notes: Fabric requires flexible bonding. Thermal excluded for fabric. Mechanical generally unsuitable except staples for
-    wood backing.
+  notes: Fabric requires flexible bonding. Thermal excluded for fabric. High porosity requires moderate shear strength, filtering
+    out low-strength adhesives. Contact cement meets all requirements (flexible, moderate shear).
   answers_applied:
     material_a_type: fabric
     material_b_type: fabric
@@ -366,9 +366,7 @@ scenarios:
     excluded_categories_violated: []
     expected_fasteners_found:
     - Contact cement
-    expected_fasteners_missing:
-    - Fabric adhesive
-    - Hot-melt glue
+    expected_fasteners_missing: []
     unexpected_fasteners_found: []
   passed: true
 - scenario_id: A05
@@ -391,7 +389,7 @@ scenarios:
   errors: []
   derived_requirements:
     min_tensile_strength: none
-    min_shear_strength: high
+    min_shear_strength: none
     min_water_resistance: none
     min_temperature_resistance: none
     min_uv_resistance: none
@@ -403,14 +401,31 @@ scenarios:
     - semi_flexible
     allowed_permanence:
     - permanent
+    - removable
+    - semi_permanent
     allowed_categories: []
     excluded_categories: []
   fired_rules:
-  - overhead_installation_requires_shear
   - permanent_connection
   - precision_positioning_required
   - static_load
   recommendations:
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Glass adhesive
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: semi_flexible
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
   - name: Acrylic adhesive
     category: adhesive
     tensile_strength: high
@@ -419,7 +434,7 @@ scenarios:
     permanence: permanent
     water_resistance: good
     vibration_resistance: good
-  recommendation_count: 1
+  recommendation_count: 3
   recommended_categories:
   - adhesive
   evaluation:
@@ -427,10 +442,10 @@ scenarios:
     - adhesive
     expected_categories_missing: []
     excluded_categories_violated: []
-    expected_fasteners_found: []
-    expected_fasteners_missing:
+    expected_fasteners_found:
     - Glass adhesive
     - Silicone sealant
+    expected_fasteners_missing:
     - Two-component epoxy
     unexpected_fasteners_found: []
   passed: true
@@ -466,11 +481,11 @@ scenarios:
     - semi_flexible
     allowed_permanence:
     - permanent
+    - removable
+    - semi_permanent
     allowed_categories: []
-    excluded_categories:
-    - mechanical
+    excluded_categories: []
   fired_rules:
-  - brittle_materials_present
   - permanent_connection
   - precision_positioning_required
   - splash_environment

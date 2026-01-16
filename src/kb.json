@@ -22,8 +22,7 @@
         "fabric_involved",
         "metal_to_metal",
         "wood_to_wood",
-        "masonry_involved",
-        "rigid_and_permanent_prefers_thermal"
+        "masonry_involved"
       ]
     },
     {
@@ -48,8 +47,7 @@
         "fabric_involved",
         "metal_to_metal",
         "wood_to_wood",
-        "masonry_involved",
-        "rigid_and_permanent_prefers_thermal"
+        "masonry_involved"
       ]
     },
     {
@@ -118,7 +116,6 @@
         "removable_connection",
         "permanent_connection",
         "chemical_exposure_and_permanent",
-        "rigid_and_permanent_prefers_thermal",
         "vibration_and_permanent"
       ]
     },
@@ -167,7 +164,7 @@
         ]
       },
       "helps_rules": [
-        "tension_dominant_load"
+        "tension_dominant"
       ]
     },
     {
@@ -220,8 +217,7 @@
       "helps_rules": [
         "flexibility_required",
         "fabric_involved",
-        "flexible_implies_low_strength",
-        "rigid_and_permanent_prefers_thermal"
+        "flexible_implies_low_strength"
       ]
     },
     {
@@ -477,20 +473,7 @@
         "requirements.min_water_resistance": "good"
       }
     },
-    {
-      "id": "outdoor_wood_allows_mechanical",
-      "context": "Allows mechanical fastening for outdoor wood joints.",
-      "conditions": {
-        "environment.moisture": "outdoor",
-        "materials.same_material": true,
-        "materials.material_a.material_type": "wood"
-      },
-      "effects": {
-        "requirements.allowed_categories": [
-          "mechanical"
-        ]
-      }
-    },  
+    
     {
       "id": "submerged_environment",
       "context": "Requires excellent water resistance for fully submerged joints.",
@@ -675,7 +658,7 @@
       }
     },
     {
-      "id": "tension_dominant_load",
+      "id": "tension_dominant",
       "context": "Requires sufficient tensile strength for tension dominated loads.",
       "conditions": {
         "load.tension_dominant": true
@@ -706,24 +689,6 @@
       },
       "effects": {
         "requirements.min_shear_strength": "high"
-      }
-    },
-    {
-      "id": "rigid_and_permanent_prefers_thermal",
-      "context": "Prefers thermal joining for rigid, permanent joints of identical materials.",
-      "conditions": {
-        "materials.same_material": true,
-        "materials.material_a.material_type": [
-          "metal",
-          "plastic"
-        ],
-        "requirements.allowed_rigidities": "rigid",
-        "constraints.permanence": "permanent"
-      },
-      "effects": {
-        "requirements.allowed_categories": [
-          "thermal"
-        ]
       }
     },
     {
