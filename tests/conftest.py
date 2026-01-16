@@ -39,7 +39,8 @@ def loaded_fasteners(kb_data):
 @pytest.fixture
 def loaded_input_model(kb_data):
     """Fixture to provide an InputModel initialized with real questions"""
-    return InputModel(kb_data["questions"], kb_data["materials"])
+    fasteners = loaded_fasteners(kb_data)
+    return InputModel(kb_data["questions"], fasteners)
 
 
 @pytest.fixture
