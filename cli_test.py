@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -31,7 +32,15 @@ def serialize_value(value):
     return value
 
 
-def save_debug_state(input_model, task, recommendations, question_history):
+def generate_run_id():
+    """Generate a short date-time based UUID for this run."""
+    dt = datetime.now()
+    date_str = dt.strftime("%Y%m%d_%H%M%S")
+    short_uuid = uuid.uuid4().hex[:6]
+    return f"{date_str}_{short_uuid}"
+
+
+def save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir):
     debug_data = {
         "timestamp": datetime.now().isoformat(),
         "answers": dict(input_model.answers),
@@ -55,11 +64,12 @@ def save_debug_state(input_model, task, recommendations, question_history):
             }
         )
 
-    filename = "debug_state.yaml"
+    debug_dir.mkdir(parents=True, exist_ok=True)
+    filename = debug_dir / f"debug_state_{run_id}.yaml"
     with open(filename, "w") as f:
         yaml.dump(debug_data, f, sort_keys=False)
 
-    return filename
+    return str(filename)
 
 
 def ask_question(question):
@@ -106,6 +116,9 @@ def main():
     print(" Fastener Recommendation System (CLI)")
     print("=" * 80)
 
+    run_id = generate_run_id()
+    debug_dir = Path(__file__).resolve().parent / "debug_states"
+
     kb_path = Path(__file__).resolve().parent / "src" / "kb.json"
     if not kb_path.exists():
         print("Error: kb.json not found")
@@ -151,7 +164,7 @@ def main():
             task = input_model.get_task()
             recommendations = solver.recommend(task)
 
-            save_debug_state(input_model, task, recommendations, question_history)
+            save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir)
 
     task = input_model.get_task()
     recommendations = solver.recommend(task)
@@ -169,7 +182,7 @@ def main():
             print(f"   Permanence: {f.permanence.value}")
             print()
 
-    final_debug = save_debug_state(input_model, task, recommendations, question_history)
+    final_debug = save_debug_state(input_model, task, recommendations, question_history, run_id, debug_dir)
 
     print(f"\nFinal debug state saved to {final_debug}")
     print("\nThank you for using the system.")
