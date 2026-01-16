@@ -9,6 +9,7 @@ class Config:
     """Base configuration"""
 
     SECRET_KEY = os.environ.get("SECRET_KEY", "supersecretkey")
+    SESSION_TYPE = "filesystem"
 
 
 config: dict[str, type[Config]] = {
