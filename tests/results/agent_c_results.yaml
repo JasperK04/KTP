@@ -1,10 +1,10 @@
 agent: C
-generated_at: '2026-01-16T14:09:25.895471'
+generated_at: '2026-01-16T16:24:20.929862'
 summary:
   total_scenarios: 6
-  passed: 1
-  failed: 5
-  pass_rate: 16.7%
+  passed: 0
+  failed: 6
+  pass_rate: 0.0%
 scenarios:
 - scenario_id: C01
   scenario_name: Industrial Machine Vibration Mount
@@ -50,10 +50,11 @@ scenarios:
     - adhesive
   fired_rules:
   - heavy_dynamic_load
-  - low_porosity_materials
   - metal_to_metal
   - permanent_connection
   - precision_positioning_required
+  - vibration_and_permanent
+  - vibration_present
   recommendations:
   - name: Metal welding
     category: thermal
@@ -105,11 +106,11 @@ scenarios:
   errors:
   - 'Unknown question: tension_dominant'
   derived_requirements:
-    min_tensile_strength: high
-    min_shear_strength: none
+    min_tensile_strength: none
+    min_shear_strength: moderate
     min_water_resistance: good
-    min_temperature_resistance: none
-    min_uv_resistance: poor
+    min_temperature_resistance: excellent
+    min_uv_resistance: excellent
     min_vibration_resistance: good
     min_chemical_resistance: none
     allowed_rigidities:
@@ -120,29 +121,21 @@ scenarios:
     - permanent
     - removable
     - semi_permanent
-    allowed_categories:
-    - mechanical
-    - thermal
+    allowed_categories: []
     excluded_categories:
     - adhesive
   fired_rules:
   - heavy_dynamic_load
-  - low_porosity_materials
-  - metal_to_metal
-  - no_uv_but_outdoor
+  - outdoor_and_uv_exposure
   - outdoor_environment
-  recommendations:
-  - name: Metal welding
-    category: thermal
-    tensile_strength: very_high
-    shear_strength: very_high
-    rigidity: rigid
-    permanence: permanent
-    water_resistance: good
-    vibration_resistance: good
-  recommendation_count: 1
-  recommended_categories:
-  - thermal
+  - shock_loads_present
+  - temperature_extremes_and_outdoor
+  - temperature_extremes_present
+  - uv_exposure_present
+  - vibration_present
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
   evaluation:
     expected_categories_found: []
     expected_categories_missing:
@@ -190,18 +183,14 @@ scenarios:
     - semi_permanent
     allowed_categories: []
     excluded_categories:
-    - adhesive
     - mechanical
     - thermal
   fired_rules:
   - brittle_materials_present
-  - high_shear_excludes_weak_adhesives
-  - immediate_use_required
   - masonry_involved
   - overhead_installation_requires_shear
   - removable_connection
   - static_load
-  - vertical_or_overhead
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -260,43 +249,23 @@ scenarios:
     - thermal
   fired_rules:
   - heavy_dynamic_load
-  - high_shear_excludes_weak_adhesives
-  - immediate_use_required
   - overhead_installation_requires_shear
   - removable_connection
-  - vertical_or_overhead
-  - wood_to_wood
-  recommendations:
-  - name: Hex bolt
-    category: mechanical
-    tensile_strength: very_high
-    shear_strength: very_high
-    rigidity: rigid
-    permanence: removable
-    water_resistance: fair
-    vibration_resistance: good
-  - name: Lag bolt
-    category: mechanical
-    tensile_strength: very_high
-    shear_strength: high
-    rigidity: rigid
-    permanence: removable
-    water_resistance: fair
-    vibration_resistance: good
-  recommendation_count: 2
-  recommended_categories:
-  - mechanical
+  - shock_loads_present
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
   evaluation:
-    expected_categories_found:
+    expected_categories_found: []
+    expected_categories_missing:
     - mechanical
-    expected_categories_missing: []
     excluded_categories_violated: []
-    expected_fasteners_found:
+    expected_fasteners_found: []
+    expected_fasteners_missing:
     - Hex bolt
     - Lag bolt
-    expected_fasteners_missing: []
     unexpected_fasteners_found: []
-  passed: true
+  passed: false
 - scenario_id: C05
   scenario_name: Overhead Ceiling Light Fixture
   description: Mounting a heavy metal light fixture to ceiling. Overhead installation, must never fall.
@@ -332,18 +301,14 @@ scenarios:
     - permanent
     allowed_categories: []
     excluded_categories:
-    - adhesive
     - mechanical
   fired_rules:
   - brittle_materials_present
-  - high_shear_excludes_weak_adhesives
-  - immediate_use_required
   - masonry_involved
   - overhead_installation_requires_shear
   - permanent_connection
   - precision_positioning_required
   - static_load
-  - vertical_or_overhead
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -394,10 +359,8 @@ scenarios:
     allowed_categories:
     - mechanical
     - thermal
-    excluded_categories:
-    - adhesive
+    excluded_categories: []
   fired_rules:
-  - low_porosity_materials
   - metal_to_metal
   - permanent_connection
   - precision_positioning_required

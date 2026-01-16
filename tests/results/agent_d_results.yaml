@@ -1,10 +1,10 @@
 agent: D
-generated_at: '2026-01-16T14:09:25.901382'
+generated_at: '2026-01-16T16:24:20.935541'
 summary:
   total_scenarios: 7
-  passed: 3
-  failed: 4
-  pass_rate: 42.9%
+  passed: 2
+  failed: 5
+  pass_rate: 28.6%
 scenarios:
 - scenario_id: D01
   scenario_name: One-Sided Access Panel
@@ -44,17 +44,12 @@ scenarios:
     - mechanical
     - thermal
     excluded_categories:
-    - adhesive
     - thermal
   fired_rules:
-  - high_shear_excludes_weak_adhesives
-  - immediate_use_required
-  - low_porosity_materials
   - metal_to_metal
   - overhead_installation_requires_shear
   - removable_connection
   - static_load
-  - vertical_or_overhead
   recommendations:
   - name: Hex bolt
     category: mechanical
@@ -100,7 +95,7 @@ scenarios:
   errors: []
   derived_requirements:
     min_tensile_strength: none
-    min_shear_strength: none
+    min_shear_strength: moderate
     min_water_resistance: none
     min_temperature_resistance: none
     min_uv_resistance: none
@@ -116,41 +111,19 @@ scenarios:
     - semi_permanent
     allowed_categories: []
     excluded_categories:
+    - mechanical
     - thermal
   fired_rules:
+  - brittle_materials_present
   - health_constraints
+  - high_porosity_excludes_low_strength_adhesives
   - static_load
-  - wood_to_wood
   recommendations:
   - name: Wood glue (PVA)
     category: adhesive
     tensile_strength: moderate
     shear_strength: moderate
     rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  - name: Polyurethane glue
-    category: adhesive
-    tensile_strength: high
-    shear_strength: high
-    rigidity: rigid
-    permanence: permanent
-    water_resistance: good
-    vibration_resistance: fair
-  - name: Marine epoxy
-    category: adhesive
-    tensile_strength: very_high
-    shear_strength: very_high
-    rigidity: rigid
-    permanence: permanent
-    water_resistance: excellent
-    vibration_resistance: good
-  - name: Hot-melt glue
-    category: adhesive
-    tensile_strength: low
-    shear_strength: low
-    rigidity: semi_flexible
     permanence: semi_permanent
     water_resistance: poor
     vibration_resistance: poor
@@ -162,100 +135,19 @@ scenarios:
     permanence: semi_permanent
     water_resistance: fair
     vibration_resistance: fair
-  - name: Silicone sealant
-    category: adhesive
-    tensile_strength: very_low
-    shear_strength: very_low
-    rigidity: flexible
-    permanence: semi_permanent
-    water_resistance: excellent
-    vibration_resistance: excellent
-  - name: Flooring adhesive
-    category: adhesive
-    tensile_strength: moderate
-    shear_strength: high
-    rigidity: semi_flexible
-    permanence: permanent
-    water_resistance: fair
-    vibration_resistance: fair
-  - name: Construction adhesive
-    category: adhesive
-    tensile_strength: high
-    shear_strength: high
-    rigidity: semi_flexible
-    permanence: permanent
-    water_resistance: good
-    vibration_resistance: fair
-  - name: Wood screw
-    category: mechanical
-    tensile_strength: moderate
-    shear_strength: moderate
-    rigidity: rigid
-    permanence: removable
-    water_resistance: poor
-    vibration_resistance: fair
-  - name: Deck screw
-    category: mechanical
-    tensile_strength: high
-    shear_strength: moderate
-    rigidity: rigid
-    permanence: removable
-    water_resistance: good
-    vibration_resistance: fair
-  - name: Hex bolt
-    category: mechanical
-    tensile_strength: very_high
-    shear_strength: very_high
-    rigidity: rigid
-    permanence: removable
-    water_resistance: fair
-    vibration_resistance: good
-  - name: Lag bolt
-    category: mechanical
-    tensile_strength: very_high
-    shear_strength: high
-    rigidity: rigid
-    permanence: removable
-    water_resistance: fair
-    vibration_resistance: good
-  - name: Common nail
-    category: mechanical
-    tensile_strength: low
-    shear_strength: moderate
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  - name: Brad nail
-    category: mechanical
-    tensile_strength: very_low
-    shear_strength: low
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  - name: Staple
-    category: mechanical
-    tensile_strength: very_low
-    shear_strength: very_low
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  recommendation_count: 15
+  recommendation_count: 2
   recommended_categories:
-  - mechanical
   - adhesive
   evaluation:
     expected_categories_found:
     - adhesive
+    expected_categories_missing:
     - mechanical
-    expected_categories_missing: []
     excluded_categories_violated: []
     expected_fasteners_found:
     - Wood glue (PVA)
+    expected_fasteners_missing:
     - Staple
-    expected_fasteners_missing: []
     unexpected_fasteners_found:
     - Contact cement
   passed: false
@@ -296,13 +188,11 @@ scenarios:
     allowed_permanence:
     - permanent
     allowed_categories: []
-    excluded_categories:
-    - adhesive
+    excluded_categories: []
   fired_rules:
   - flexibility_required
   - flexible_implies_low_strength
   - light_dynamic_load
-  - low_porosity_materials
   - permanent_connection
   recommendations: []
   recommendation_count: 0
@@ -353,14 +243,44 @@ scenarios:
     - semi_permanent
     allowed_categories: []
     excluded_categories:
-    - adhesive
     - thermal
   fired_rules:
-  - immediate_use_required
   - removable_connection
   - static_load
   - wood_to_wood
   recommendations:
+  - name: Wood glue (PVA)
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: rigid
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Hot-melt glue
+    category: adhesive
+    tensile_strength: low
+    shear_strength: low
+    rigidity: semi_flexible
+    permanence: semi_permanent
+    water_resistance: poor
+    vibration_resistance: poor
+  - name: Contact cement
+    category: adhesive
+    tensile_strength: moderate
+    shear_strength: moderate
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: fair
+    vibration_resistance: fair
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
   - name: Wood screw
     category: mechanical
     tensile_strength: moderate
@@ -417,8 +337,9 @@ scenarios:
     permanence: semi_permanent
     water_resistance: poor
     vibration_resistance: poor
-  recommendation_count: 7
+  recommendation_count: 11
   recommended_categories:
+  - adhesive
   - mechanical
   evaluation:
     expected_categories_found:
@@ -478,13 +399,13 @@ scenarios:
   - chemical_exposure_and_permanent
   - health_constraints
   - heavy_dynamic_load
-  - high_shear_excludes_weak_adhesives
-  - low_porosity_materials
   - overhead_installation_requires_shear
   - permanent_connection
   - precision_positioning_required
+  - shock_loads_present
   - splash_environment
-  - vertical_or_overhead
+  - vibration_and_permanent
+  - vibration_present
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -531,28 +452,40 @@ scenarios:
     - removable
     - semi_permanent
     allowed_categories: []
-    excluded_categories:
-    - adhesive
-    - thermal
+    excluded_categories: []
   fired_rules:
-  - immediate_use_required
   - static_load
-  - wood_to_wood
   recommendations:
-  - name: Wood screw
-    category: mechanical
-    tensile_strength: moderate
-    shear_strength: moderate
-    rigidity: rigid
-    permanence: removable
-    water_resistance: poor
-    vibration_resistance: fair
-  - name: Deck screw
-    category: mechanical
+  - name: Polyurethane glue
+    category: adhesive
     tensile_strength: high
-    shear_strength: moderate
+    shear_strength: high
     rigidity: rigid
-    permanence: removable
+    permanence: permanent
+    water_resistance: good
+    vibration_resistance: fair
+  - name: Marine epoxy
+    category: adhesive
+    tensile_strength: very_high
+    shear_strength: very_high
+    rigidity: rigid
+    permanence: permanent
+    water_resistance: excellent
+    vibration_resistance: good
+  - name: Silicone sealant
+    category: adhesive
+    tensile_strength: very_low
+    shear_strength: very_low
+    rigidity: flexible
+    permanence: semi_permanent
+    water_resistance: excellent
+    vibration_resistance: excellent
+  - name: Construction adhesive
+    category: adhesive
+    tensile_strength: high
+    shear_strength: high
+    rigidity: semi_flexible
+    permanence: permanent
     water_resistance: good
     vibration_resistance: fair
   - name: Hex bolt
@@ -563,52 +496,24 @@ scenarios:
     permanence: removable
     water_resistance: fair
     vibration_resistance: good
-  - name: Lag bolt
-    category: mechanical
-    tensile_strength: very_high
-    shear_strength: high
-    rigidity: rigid
-    permanence: removable
-    water_resistance: fair
-    vibration_resistance: good
-  - name: Common nail
-    category: mechanical
-    tensile_strength: low
-    shear_strength: moderate
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  - name: Brad nail
-    category: mechanical
-    tensile_strength: very_low
-    shear_strength: low
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  - name: Staple
-    category: mechanical
-    tensile_strength: very_low
-    shear_strength: very_low
-    rigidity: rigid
-    permanence: semi_permanent
-    water_resistance: poor
-    vibration_resistance: poor
-  recommendation_count: 7
+  recommendation_count: 5
   recommended_categories:
+  - adhesive
   - mechanical
   evaluation:
     expected_categories_found:
     - mechanical
     expected_categories_missing: []
-    excluded_categories_violated: []
+    excluded_categories_violated:
+    - adhesive
     expected_fasteners_found:
-    - Wood screw
     - Hex bolt
-    expected_fasteners_missing: []
-    unexpected_fasteners_found: []
-  passed: true
+    expected_fasteners_missing:
+    - Wood screw
+    unexpected_fasteners_found:
+    - Polyurethane glue
+    - Marine epoxy
+  passed: false
 - scenario_id: D07
   scenario_name: Maximum Exclusion Stacking
   description: 'Testing how multiple exclusion rules stack: outdoor + UV + vibration + vertical.'
@@ -638,8 +543,8 @@ scenarios:
     min_tensile_strength: none
     min_shear_strength: high
     min_water_resistance: good
-    min_temperature_resistance: none
-    min_uv_resistance: poor
+    min_temperature_resistance: excellent
+    min_uv_resistance: excellent
     min_vibration_resistance: good
     min_chemical_resistance: none
     allowed_rigidities:
@@ -655,13 +560,16 @@ scenarios:
   fired_rules:
   - brittle_materials_present
   - heavy_dynamic_load
-  - high_shear_excludes_weak_adhesives
   - masonry_involved
-  - no_uv_but_outdoor
+  - outdoor_and_uv_exposure
   - outdoor_environment
   - overhead_installation_requires_shear
   - permanent_connection
-  - vertical_or_overhead
+  - temperature_extremes_and_outdoor
+  - temperature_extremes_present
+  - uv_exposure_present
+  - vibration_and_permanent
+  - vibration_present
   recommendations: []
   recommendation_count: 0
   recommended_categories: []

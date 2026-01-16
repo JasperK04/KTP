@@ -380,18 +380,6 @@
       }
     },
     {
-      "id": "low_porosity_materials",
-      "context": "Limits adhesive use when materials have low surface porosity.",
-      "conditions": {
-        "materials.any.porosity": "low"
-      },
-      "effects": {
-        "requirements.excluded_categories": [
-          "adhesive"
-        ]
-      }
-    },
-    {
       "id": "metal_to_metal",
       "context": "Allows high-strength joining methods for identical metal parts.",
       "conditions": {
@@ -582,18 +570,6 @@
       }
     },
     {
-      "id": "vertical_or_overhead",
-      "context": "Excludes adhesives for joints installed vertically or overhead.",
-      "conditions": {
-        "constraints.orientation_vertical": true
-      },
-      "effects": {
-        "requirements.excluded_categories": [
-          "adhesive"
-        ]
-      }
-    },
-    {
       "id": "health_constraints",
       "context": "Avoids fastening methods that pose health or safety risks.",
       "conditions": {
@@ -602,18 +578,6 @@
       "effects": {
         "requirements.excluded_categories": [
           "thermal"
-        ]
-      }
-    },
-    {
-      "id": "immediate_use_required",
-      "context": "Excludes slow-curing methods when immediate usability is required.",
-      "conditions": {
-        "constraints.max_curing_time": "immediate"
-      },
-      "effects": {
-        "requirements.excluded_categories": [
-          "adhesive"
         ]
       }
     },
@@ -767,18 +731,6 @@
       },
       "effects": {
         "requirements.min_shear_strength": "high"
-      }
-    },
-    {
-      "id": "high_shear_excludes_weak_adhesives",
-      "context": "Excludes adhesives that cannot meet high shear strength requirements.",
-      "conditions": {
-        "requirements.min_shear_strength": "high"
-      },
-      "effects": {
-        "requirements.excluded_categories": [
-          "adhesive"
-        ]
       }
     },
     {

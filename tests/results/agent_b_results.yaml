@@ -1,5 +1,5 @@
 agent: B
-generated_at: '2026-01-16T14:09:25.888450'
+generated_at: '2026-01-16T16:24:20.922647'
 summary:
   total_scenarios: 7
   passed: 0
@@ -31,8 +31,8 @@ scenarios:
     min_tensile_strength: none
     min_shear_strength: none
     min_water_resistance: good
-    min_temperature_resistance: none
-    min_uv_resistance: poor
+    min_temperature_resistance: excellent
+    min_uv_resistance: excellent
     min_vibration_resistance: none
     min_chemical_resistance: none
     allowed_rigidities:
@@ -45,50 +45,28 @@ scenarios:
     excluded_categories:
     - thermal
   fired_rules:
-  - no_uv_but_outdoor
+  - outdoor_and_uv_exposure
   - outdoor_environment
   - permanent_connection
   - static_load
+  - temperature_extremes_and_outdoor
+  - temperature_extremes_present
+  - uv_exposure_present
   - wood_to_wood
-  recommendations:
-  - name: Polyurethane glue
-    category: adhesive
-    tensile_strength: high
-    shear_strength: high
-    rigidity: rigid
-    permanence: permanent
-    water_resistance: good
-    vibration_resistance: fair
-  - name: Marine epoxy
-    category: adhesive
-    tensile_strength: very_high
-    shear_strength: very_high
-    rigidity: rigid
-    permanence: permanent
-    water_resistance: excellent
-    vibration_resistance: good
-  - name: Construction adhesive
-    category: adhesive
-    tensile_strength: high
-    shear_strength: high
-    rigidity: semi_flexible
-    permanence: permanent
-    water_resistance: good
-    vibration_resistance: fair
-  recommendation_count: 3
-  recommended_categories:
-  - adhesive
+  recommendations: []
+  recommendation_count: 0
+  recommended_categories: []
   evaluation:
-    expected_categories_found:
-    - adhesive
+    expected_categories_found: []
     expected_categories_missing:
     - mechanical
+    - adhesive
     excluded_categories_violated: []
-    expected_fasteners_found:
-    - Polyurethane glue
-    - Marine epoxy
+    expected_fasteners_found: []
     expected_fasteners_missing:
     - Deck screw
+    - Polyurethane glue
+    - Marine epoxy
     unexpected_fasteners_found: []
   passed: false
 - scenario_id: B02
@@ -117,12 +95,12 @@ scenarios:
   errors:
   - 'Unknown question: tension_dominant'
   derived_requirements:
-    min_tensile_strength: high
+    min_tensile_strength: none
     min_shear_strength: none
     min_water_resistance: excellent
     min_temperature_resistance: none
     min_uv_resistance: none
-    min_vibration_resistance: none
+    min_vibration_resistance: good
     min_chemical_resistance: good
     allowed_rigidities:
     - flexible
@@ -130,19 +108,17 @@ scenarios:
     - semi_flexible
     allowed_permanence:
     - permanent
-    allowed_categories:
-    - mechanical
-    - thermal
+    allowed_categories: []
     excluded_categories:
     - adhesive
   fired_rules:
   - chemical_exposure
   - chemical_exposure_and_permanent
   - light_dynamic_load
-  - low_porosity_materials
-  - metal_to_metal
   - permanent_connection
   - submerged_environment
+  - vibration_and_permanent
+  - vibration_present
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -194,20 +170,16 @@ scenarios:
     - mechanical
     - thermal
     excluded_categories:
-    - adhesive
     - thermal
   fired_rules:
   - chemical_exposure
   - chemical_exposure_and_permanent
   - health_constraints
-  - high_shear_excludes_weak_adhesives
-  - low_porosity_materials
   - metal_to_metal
   - overhead_installation_requires_shear
   - permanent_connection
   - splash_environment
   - static_load
-  - vertical_or_overhead
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -260,11 +232,8 @@ scenarios:
     - mechanical
     - thermal
     excluded_categories:
-    - adhesive
     - thermal
   fired_rules:
-  - immediate_use_required
-  - low_porosity_materials
   - metal_to_metal
   - removable_connection
   - static_load
@@ -328,18 +297,15 @@ scenarios:
     - permanent
     allowed_categories: []
     excluded_categories:
-    - adhesive
     - mechanical
   fired_rules:
   - brittle_materials_present
-  - high_shear_excludes_weak_adhesives
   - masonry_involved
   - overhead_installation_requires_shear
   - permanent_connection
   - precision_positioning_required
   - splash_environment
   - static_load
-  - vertical_or_overhead
   recommendations: []
   recommendation_count: 0
   recommended_categories: []
@@ -378,8 +344,8 @@ scenarios:
     min_tensile_strength: high
     min_shear_strength: none
     min_water_resistance: good
-    min_temperature_resistance: none
-    min_uv_resistance: poor
+    min_temperature_resistance: excellent
+    min_uv_resistance: excellent
     min_vibration_resistance: good
     min_chemical_resistance: none
     allowed_rigidities:
@@ -391,16 +357,17 @@ scenarios:
     allowed_categories:
     - mechanical
     - thermal
-    excluded_categories:
-    - adhesive
+    excluded_categories: []
   fired_rules:
-  - low_porosity_materials
   - metal_to_metal
-  - no_uv_but_outdoor
+  - outdoor_and_uv_exposure
   - outdoor_environment
   - permanent_connection
   - precision_positioning_required
   - static_load
+  - temperature_extremes_and_outdoor
+  - temperature_extremes_present
+  - uv_exposure_present
   recommendations:
   - name: Metal welding
     category: thermal
@@ -464,17 +431,13 @@ scenarios:
     - mechanical
     - thermal
     excluded_categories:
-    - adhesive
     - thermal
   fired_rules:
   - health_constraints
-  - high_shear_excludes_weak_adhesives
-  - low_porosity_materials
   - metal_to_metal
   - overhead_installation_requires_shear
   - precision_positioning_required
   - static_load
-  - vertical_or_overhead
   recommendations:
   - name: Hex bolt
     category: mechanical

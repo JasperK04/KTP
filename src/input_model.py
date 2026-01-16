@@ -88,6 +88,11 @@ class InputModel:
             except AttributeError:
                 return False
 
+            # Convert enum to its string value for comparison
+            from enum import Enum
+            if isinstance(value, Enum):
+                value = value.value
+
             if isinstance(expected, list):
                 if value not in expected:
                     return False
@@ -209,7 +214,15 @@ class InputModel:
         """
         Create an empty FasteningTask with placeholder sub-objects.
         """
-        material_placeholder = Material(
+        # Create TWO separate Material objects - using the same object would
+        # cause both to be overwritten when either is modified
+        material_a = Material(
+            material_type=None,  # pyright: ignore[reportArgumentType]
+            porosity="none",
+            brittleness="none",
+            base_strength=None,  # pyright: ignore[reportArgumentType]
+        )
+        material_b = Material(
             material_type=None,  # pyright: ignore[reportArgumentType]
             porosity="none",
             brittleness="none",
@@ -217,7 +230,7 @@ class InputModel:
         )
 
         return FasteningTask(
-            materials=MaterialPair(material_placeholder, material_placeholder),
+            materials=MaterialPair(material_a, material_b),
             environment=Environment(
                 moisture=MoistureExposure.NONE,
                 chemical_exposure=False,

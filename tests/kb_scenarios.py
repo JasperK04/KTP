@@ -102,12 +102,12 @@ AGENT_A_SCENARIOS = [
             "tension_dominant": False,
             "shock_loads": False,
         },
-        expected_categories=["mechanical", "thermal"],
+        expected_categories=["thermal"],
         excluded_categories=["adhesive"],
-        expected_fasteners=["Metal welding", "Hex bolt", "rivet"],
-        unexpected_fasteners=["Wood glue (PVA)", "Hot-melt glue", "Staple"],
-        notes="Metal-to-metal with high loads favors welding or heavy mechanical. "
-              "Vibration excludes adhesives. Thermal methods excel here.",
+        expected_fasteners=["Metal welding"],
+        unexpected_fasteners=["Wood glue (PVA)", "Hot-melt glue", "Staple", "Hex bolt"],
+        notes="Permanent metal-to-metal structural connections use welding. "
+              "Bolts are removable by design. Vibration excludes adhesives.",
     ),
     TestScenario(
         id="A03",
@@ -235,14 +235,14 @@ AGENT_A_SCENARIOS = [
             "health_constraints": False,
             "max_curing_time": "immediate",
             "access_one_side": False,
-            "precision_required": True,
+            "precision_required": False,
         },
         expected_categories=["mechanical"],
-        excluded_categories=[],
-        expected_fasteners=["Sheet metal screw", "rivet"],
-        unexpected_fasteners=["Wood screw", "Lag bolt", "Masonry nail"],
-        notes="Plastic-to-plastic can use screws or welding. Removable constraint "
-              "favors screws. Immediate use excludes slow-curing adhesives.",
+        excluded_categories=["thermal"],
+        expected_fasteners=["Sheet metal screw"],
+        unexpected_fasteners=["Wood screw", "Lag bolt", "Masonry nail", "rivet"],
+        notes="Plastic-to-plastic enclosure uses screws for removability. "
+              "Rivet is permanent so excluded. Thermal excluded by removable constraint.",
     ),
 ]
 
