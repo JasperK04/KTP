@@ -35,12 +35,13 @@ def load_models():
         fasteners=[Fastener.from_dict(f) for f in kb["fasteners"]],
     )
 
-    if "input_state" in session:
-        input_model.restore_state(session["input_state"])
+    print("Loading session state...")
+    if "input_state" in session and session["input_state"]:
+        print("test loading")
+        input_model.restore_state(session["input_state"], session["input_order"])
 
-    task_state = session.get("task_state")
-    if task_state and "materials" in task_state:
-        input_model.task = FasteningTask.from_dict(task_state)
+    if "task_state" in session and "materials" in session["task_state"]:
+        input_model.task = FasteningTask.from_dict(session["task_state"])
 
     if "engine_state" in session:
         rule_engine.restore_state(session["engine_state"])
@@ -51,6 +52,7 @@ def load_models():
 @routes.before_app_request
 def ensure_session():
     session.setdefault("input_state", {})
+    session.setdefault("input_order", [])
     session.setdefault("task_state", {})
     session.setdefault("engine_state", {})
 
@@ -81,10 +83,15 @@ def question():
     if request.method == "POST":
         value = request.form.get("answer")
         if value is not None:
+            print("Answer received:", value)
             input_model.answer_question(question["id"], value)
 
-            session["input_state"] = input_model.get_state()
+            print(input_model.get_state())
+
+            session["input_state"], session["input_order"] = input_model.get_state()
             session["task_state"] = input_model.get_task().to_dict()
+        else:
+            print("No answer provided!")
 
         return redirect(url_for("routes.question"))
 
@@ -119,7 +126,7 @@ def questions_overview():
 
     return render_template(
         "questions.html",
-        answers=input_model.answers,
+        answers=input_model.get_state()[0],
         task=input_model.get_task().to_dict(),
         fired_rules=list(rule_engine.fired_rules),
     )

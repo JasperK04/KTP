@@ -44,6 +44,7 @@ class InputModel:
             mat["material_type"]: mat for mat in materials
         }
         self.answers: dict[str, Any] = {}
+        self.answer_order: list[str] = []
 
         self.task = self._create_empty_task()
 
@@ -51,26 +52,26 @@ class InputModel:
     # PUBLIC API
     # ─────────────────────────────────────────────
 
-    def get_state(self) -> dict[str, Any]:
+    def get_state(self) -> tuple[dict[str, Any], list[str]]:
         """
         Serialize the input model state to a dictionary.
 
         :return: A dictionary representation of the input model state.
         """
-        return {
-            "answers": self.answers,
-        }
+        return {qid: self.answers[qid] for qid in self.answer_order}, self.answer_order
 
-    def restore_state(self, state: dict[str, Any]) -> None:
-        """
-        Restore the input model state from a dictionary.
+    def restore_state(
+        self, answer_state: dict[str, Any], order_state: list[str]
+    ) -> None:
+        print(answer_state)
+        self.answers = answer_state
+        self.answer_order = order_state
 
-        :param state: A dictionary representation of the input model state.
-        """
-        self.answers = state.get("answers", {})
-        for question_id, value in self.answers.items():
-            question = self._get_question(question_id)
-            self._apply_answer(question["attribute"], value)
+        print("test")
+        for qid in self.answer_order:
+            print("Restoring answer for question:", qid)
+            question = self._get_question(qid)
+            self._apply_answer(question["attribute"], self.answers[qid])
 
     def is_question_applicable(self, question: dict) -> bool:
         """
@@ -123,6 +124,7 @@ class InputModel:
         """
         question = self._get_question(question_id)
         self.answers[question_id] = value
+        self.answer_order.append(question_id)
         self._apply_answer(question["attribute"], value)
 
     def get_task(self) -> FasteningTask:
