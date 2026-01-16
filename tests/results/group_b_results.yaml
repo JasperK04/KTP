@@ -1,5 +1,5 @@
 group: B
-generated_at: '2026-01-16T18:23:22.164605'
+generated_at: '2026-01-16T18:28:36.236722'
 summary:
   total_scenarios: 7
   passed: 7
@@ -94,8 +94,8 @@ scenarios:
     vibration_resistance: fair
   recommendation_count: 5
   recommended_categories:
-  - adhesive
   - mechanical
+  - adhesive
   evaluation:
     expected_categories_found:
     - mechanical

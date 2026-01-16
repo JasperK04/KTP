@@ -226,7 +226,6 @@
       "attribute": "constraints.orientation_vertical",
       "type": "boolean",
       "helps_rules": [
-        "vertical_or_overhead",
         "overhead_installation_requires_shear"
       ]
     },
@@ -250,9 +249,7 @@
         "moderate",
         "slow"
       ],
-      "helps_rules": [
-        "immediate_use_required"
-      ]
+      "helps_rules": []
     }
   ],
   "materials": [
