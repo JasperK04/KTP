@@ -380,18 +380,6 @@
       }
     },
     {
-      "id": "low_porosity_materials",
-      "context": "Limits adhesive use when materials have low surface porosity.",
-      "conditions": {
-        "materials.any.porosity": "low"
-      },
-      "effects": {
-        "requirements.excluded_categories": [
-          "adhesive"
-        ]
-      }
-    },
-    {
       "id": "metal_to_metal",
       "context": "Allows high-strength categories for identical metal parts (Mechanical/Thermal).",
       "conditions": {
