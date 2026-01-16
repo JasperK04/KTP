@@ -189,7 +189,7 @@
     {
       "id": "access_one_side",
       "text": "Is only one side of the materials accessible during installation?",
-      "attribute": "constraints.one_sided_access",
+      "attribute": "constraints.one_side_accessable",
       "type": "boolean",
       "helps_rules": []
     },
@@ -333,11 +333,12 @@
     {
       "material_type": "masonry",
       "porosity": "medium",
-      "brittleness": "high",
+      "brittleness": "medium",
       "base_strength": "high",
       "notes": [
         "Composite material (brick, concrete)",
-        "Requires expansion or anchoring mechanisms"
+        "Requires expansion or anchoring mechanisms",
+        "Can handle mechanical fasteners with proper anchoring"
       ]
     },
     {
@@ -371,7 +372,7 @@
       "id": "brittle_materials_present",
       "context": "Avoids mechanical fastening when one or more materials are brittle.",
       "conditions": {
-        "materials.any.brittleness": "high"
+        "materials.any.brittleness": ["high", "very_high"]
       },
       "effects": {
         "requirements.excluded_categories": [
