@@ -1,0 +1,12 @@
+services:
+  fasteners:
+    build: .
+    container_name: fasteners
+    networks:
+      - jasper
+    env_file:
+      - .env
+
+networks:
+  jasper:
+    external: true

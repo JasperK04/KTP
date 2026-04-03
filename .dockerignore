@@ -1,0 +1,27 @@
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite
+*.db
+.git/
+.gitignore
+.vscode/
+.DS_Store
+node_modules/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Local env files
+.env
+.env.*
+
+# Cache
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
