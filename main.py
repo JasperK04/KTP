@@ -24,6 +24,8 @@ def main():
     app = create_app()
     app.run(debug=args.debug, port=args.port)
 
+    return app
+
 
 if __name__ == "__main__":
-    main()
+    app = main()
