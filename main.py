@@ -6,6 +6,8 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from src.app import create_app
 
+app = create_app()
+
 
 def main():
     arg = ArgumentParser(description="Run the Flask web application.")
@@ -21,8 +23,9 @@ def main():
         help="Port number to run the Flask app on.",
     )
     args = arg.parse_args()
-    app = create_app()
     app.run(debug=args.debug, port=args.port)
+
+    return app
 
 
 if __name__ == "__main__":
