@@ -6,6 +6,7 @@ services:
       - jasper
     env_file:
       - .env
+    restart: unless-stopped
 
 networks:
   jasper:
